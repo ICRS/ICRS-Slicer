@@ -70,7 +70,7 @@ MediaFilePanel::MediaFilePanel(wxWindow * parent)
     // File type
     StateColor background(
         std::make_pair(0xEEEEEE, (int) StateColor::Checked),
-        std::make_pair(*wxLIGHT_GREY, (int) StateColor::Hovered), 
+        std::make_pair(*wxLIGHT_GREY, (int) StateColor::Hovered),
         std::make_pair(*wxWHITE, (int) StateColor::Normal));
     m_type_panel = new ::StaticBox(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
     m_type_panel->SetBackgroundColor(*wxWHITE);
@@ -113,7 +113,7 @@ MediaFilePanel::MediaFilePanel(wxWindow * parent)
     m_button_delete->SetBorderColorNormal(wxColor("#FF6F00"));
     m_button_delete->SetTextColorNormal(wxColor("#FF6F00"));
     m_button_management->SetBorderWidth(0);
-    m_button_management->SetBackgroundColorNormal(wxColor("#009688"));
+    m_button_management->SetBackgroundColorNormal(wxColor("#0085ff"));
     m_button_management->SetTextColorNormal(*wxWHITE);
     m_button_management->Enable(false);
 
@@ -315,7 +315,7 @@ wxString hide_id_middle_string(wxString const &str, size_t offset = 0, size_t le
             int result = e.GetExtraLong();
             if (result > 1 && !e.GetString().IsEmpty())
                 MessageDialog(this, e.GetString(), _L("Download failed"), wxOK | wxICON_ERROR).ShowModal();
-                
+
             NetworkAgent* agent = wxGetApp().getAgent();
             if (result > 1 || result == 0) {
                 json j;
@@ -425,7 +425,7 @@ void MediaFilePanel::fetchUrl(boost::weak_ptr<PrinterFileSystem> wfs)
         return;
     }
     if ((m_lan_mode || !m_remote_support) && m_local_support && !m_lan_ip.empty()) {
-        std::string url = "bambu:///local/" + m_lan_ip + ".?port=6000&user=" + m_lan_user + "&passwd=" + m_lan_passwd + 
+        std::string url = "bambu:///local/" + m_lan_ip + ".?port=6000&user=" + m_lan_user + "&passwd=" + m_lan_passwd +
                 "&device=" + m_machine + "&dev_ver=" + m_dev_ver;
         fs->SetUrl(url);
         return;
@@ -473,16 +473,16 @@ void MediaFilePanel::doAction(size_t index, int action)
     auto fs = m_image_grid->GetFileSystem();
     if (action == 0) {
         if (index == -1) {
-            MessageDialog dlg(this, 
+            MessageDialog dlg(this,
                 wxString::Format(_L_PLURAL("You are going to delete %u file from printer. Are you sure to continue?",
                                                          "You are going to delete %u files from printer. Are you sure to continue?", fs->GetSelectCount()),
-                                               fs->GetSelectCount()), 
+                                               fs->GetSelectCount()),
                 _L("Delete files"), wxYES_NO | wxICON_WARNING);
             if (dlg.ShowModal() != wxID_YES)
                 return;
         } else {
-            MessageDialog dlg(this, 
-                wxString::Format(_L("Do you want to delete the file '%s' from printer?"), from_u8(fs->GetFile(index).name)), 
+            MessageDialog dlg(this,
+                wxString::Format(_L("Do you want to delete the file '%s' from printer?"), from_u8(fs->GetFile(index).name)),
                 _L("Delete file"), wxYES_NO | wxICON_WARNING);
             if (dlg.ShowModal() != wxID_YES)
                 return;
@@ -498,8 +498,8 @@ void MediaFilePanel::doAction(size_t index, int action)
                     if (result == PrinterFileSystem::ERROR_CANCEL)
                         return;
                     if (result != 0) {
-                        MessageDialog(this, 
-                            _L("Failed to fetching model infomations from printer."), 
+                        MessageDialog(this,
+                            _L("Failed to fetching model infomations from printer."),
                             _L("Error"), wxOK).ShowModal();
                         return;
                     }
@@ -510,13 +510,13 @@ void MediaFilePanel::doAction(size_t index, int action)
                     std::istringstream is(data);
                     if (!Slic3r::load_gcode_3mf_from_stream(is, &config, &model, &plate_data_list, &file_version)
                             || plate_data_list.empty()) {
-                        MessageDialog(this, 
-                            _L("Failed to parse model infomations."), 
+                        MessageDialog(this,
+                            _L("Failed to parse model infomations."),
                             _L("Error"), wxOK).ShowModal();
                         return;
                     }
 
-                    
+
                     auto &file = fs->GetFile(index);
 
                     std::string file_path = file.path;
@@ -533,7 +533,7 @@ void MediaFilePanel::doAction(size_t index, int action)
                         MessageDialog dlg(this, _L("The .gcode.3mf file contains no G-code data.Please slice it with Orca Slicer and export a new .gcode.3mf file."), wxEmptyString, wxICON_WARNING | wxOK);
                         auto res = dlg.ShowModal();
                     }
-                    
+
                 });
                 return;
             }
@@ -543,8 +543,8 @@ void MediaFilePanel::doAction(size_t index, int action)
             if (file.IsDownload() && file.DownloadProgress() >= -1) {
                 if (!file.local_path.empty()) {
                     if (!fs->DownloadCheckFile(index)) {
-                        MessageDialog(this, 
-                            wxString::Format(_L("File '%s' was lost! Please download it again."), from_u8(file.name)), 
+                        MessageDialog(this,
+                            wxString::Format(_L("File '%s' was lost! Please download it again."), from_u8(file.name)),
                             _L("Error"), wxOK).ShowModal();
                         Refresh();
                         return;
@@ -569,8 +569,8 @@ void MediaFilePanel::doAction(size_t index, int action)
             if (file.IsDownload() && file.DownloadProgress() >= -1) {
                 if (!file.local_path.empty()) {
                     if (!fs->DownloadCheckFile(index)) {
-                        MessageDialog(this, 
-                            wxString::Format(_L("File '%s' was lost! Please download it again."), from_u8(file.name)), 
+                        MessageDialog(this,
+                            wxString::Format(_L("File '%s' was lost! Please download it again."), from_u8(file.name)),
                             _L("Error"), wxOK).ShowModal();
                         Refresh();
                         return;

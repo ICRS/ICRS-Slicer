@@ -1171,8 +1171,8 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     m_comboBox_printer->Bind(wxEVT_COMBOBOX, &SelectMachineDialog::on_selection_changed, this);
 
     m_sizer_printer->Add(m_comboBox_printer, 1, wxEXPAND | wxRIGHT, FromDIP(5));
-    m_btn_bg_enable = StateColor(std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed), std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
-                               std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal));
+    m_btn_bg_enable = StateColor(std::pair<wxColour, int>(wxColour(0xd06500), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0xffad54), StateColor::Hovered),
+                               std::pair<wxColour, int>(wxColour("#0085ff"), StateColor::Normal));
 
     m_button_refresh = new Button(this, _L("Refresh"));
     m_button_refresh->SetBackgroundColor(m_btn_bg_enable);
@@ -1250,7 +1250,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     m_status_bar    = std::make_shared<BBLStatusBarSend>(m_simplebook);
     m_panel_sending = m_status_bar->get_panel();
     m_simplebook->AddPage(m_panel_sending, wxEmptyString, false);
-    
+
     m_worker = std::make_unique<PlaterWorker<BoostThreadWorker>>(this, m_status_bar, "send_worker");
 
     // finish mode
@@ -1266,7 +1266,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
 
     m_statictext_finish = new wxStaticText(m_panel_finish, wxID_ANY, L("send completed"), wxDefaultPosition, wxDefaultSize, 0);
     m_statictext_finish->Wrap(-1);
-    m_statictext_finish->SetForegroundColour(wxColour(0, 150, 136));
+    m_statictext_finish->SetForegroundColour(wxColour("#0085ff"));
     m_sizer_finish_h->Add(m_statictext_finish, 0, wxALIGN_CENTER | wxALL, FromDIP(5));
 
     m_sizer_finish_v->Add(m_sizer_finish_h, 1, wxALIGN_CENTER, 0);
@@ -2483,7 +2483,7 @@ void SelectMachineDialog::on_ok_btn(wxCommandEvent &event)
         std::string info;
 
         DeviceManager::check_filaments_in_blacklist(filament_brand, filament_type, in_blacklist, action, info);
-        
+
         if (in_blacklist && action == "prohibition") {
             has_prohibited_filament = true;
             prohibited_error = wxString::FromUTF8(info);
@@ -2519,12 +2519,12 @@ void SelectMachineDialog::on_ok_btn(wxCommandEvent &event)
         if (!is_same_nozzle_diameters(tag_nozzle_type, nozzle_diameter)) {
             has_slice_warnings = true;
             has_update_nozzle  = true;
-            
+
             wxString nozzle_in_preset = wxString::Format(_L("nozzle in preset: %s %s"),nozzle_diameter, "");
             wxString nozzle_in_printer = wxString::Format(_L("nozzle memorized: %.1f %s"), obj_->nozzle_diameter, "");
 
-            confirm_text.push_back(_L("Your nozzle diameter in preset is not consistent with memorized nozzle diameter. Did you change your nozzle lately?") 
-                + "\n    " + nozzle_in_preset 
+            confirm_text.push_back(_L("Your nozzle diameter in preset is not consistent with memorized nozzle diameter. Did you change your nozzle lately?")
+                + "\n    " + nozzle_in_preset
                 + "\n    " + nozzle_in_printer
                 + "\n");
         }
@@ -2537,7 +2537,7 @@ void SelectMachineDialog::on_ok_btn(wxCommandEvent &event)
             confirm_text.push_back(nozzle_in_preset + "\n");
         }
     }
-    
+
 
     if (has_slice_warnings) {
         wxString confirm_title = _L("Warning");
@@ -2559,11 +2559,11 @@ void SelectMachineDialog::on_ok_btn(wxCommandEvent &event)
             if (obj_ && !tag_nozzle_type.empty() && !nozzle_diameter.empty()) {
                 try
                 {
-                    float diameter = std::stof(nozzle_diameter); 
+                    float diameter = std::stof(nozzle_diameter);
                     diameter = round(diameter * 10) / 10;
                     obj_->command_set_printer_nozzle(tag_nozzle_type, diameter);
                 }
-                catch (...) {} 
+                catch (...) {}
             }
         });
 
@@ -3495,7 +3495,7 @@ void SelectMachineDialog::update_show_status()
                 else {
                     show_status(PrintDialogStatus::PrintStatusAmsMappingByOrder);
                 }
-                
+
             } else {
                 int mismatch_index = -1;
                 for (int i = 0; i < m_ams_mapping_result.size(); i++) {
@@ -3534,13 +3534,13 @@ void SelectMachineDialog::update_show_status()
                     show_status(PrintDialogStatus::PrintStatusAmsMappingValid);
                 }
                 return;
-            }       
+            }
         }
         else {
             show_status(PrintDialogStatus::PrintStatusAmsMappingInvalid);
             return;
         }
-    } 
+    }
 }
 
 bool SelectMachineDialog::has_timelapse_warning()
@@ -3551,7 +3551,7 @@ bool SelectMachineDialog::has_timelapse_warning()
             return true;
         }
     }
-    
+
     return false;
 }
 
@@ -3840,7 +3840,7 @@ void SelectMachineDialog::set_default()
     else if (m_print_type == PrintFromType::FROM_SDCARD_VIEW) {
         set_default_from_sdcard();
     }
-    
+
     Layout();
     Fit();
 }
@@ -3870,14 +3870,14 @@ void SelectMachineDialog::set_default_normal()
     std::vector<std::string> display_materials;
     std::vector<std::string> m_filaments_id;
 
-    
+
     auto preset_bundle = wxGetApp().preset_bundle;
 
     for (auto filament_name : preset_bundle->filament_presets) {
         for (int f_index = 0; f_index < preset_bundle->filaments.size(); f_index++) {
             PresetCollection* filament_presets = &wxGetApp().preset_bundle->filaments;
             Preset* preset = &filament_presets->preset(f_index);
- 
+
             if (preset && filament_name.compare(preset->name) == 0) {
                 std::string display_filament_type;
                 std::string filament_type = preset->config.get_filament_type(display_filament_type);
@@ -3899,7 +3899,7 @@ void SelectMachineDialog::set_default_normal()
 
     //init MaterialItem
     auto        extruders = wxGetApp().plater()->get_partplate_list().get_curr_plate()->get_used_extruders();
-    
+
     MaterialHash::iterator iter = m_materialList.begin();
     while (iter != m_materialList.end()) {
         int       id = iter->first;
@@ -3948,7 +3948,7 @@ void SelectMachineDialog::set_default_normal()
             DeviceManager* dev_manager = Slic3r::GUI::wxGetApp().getDeviceManager();
             if (!dev_manager) return;
             MachineObject* obj_ = dev_manager->get_selected_machine();
-           
+
             if (obj_ && obj_->is_support_ams_mapping()) {
                 if (m_mapping_popup.IsShown()) return;
                 wxPoint pos = item->ClientToScreen(wxPoint(0, 0));
@@ -4361,9 +4361,9 @@ EditDevNameDialog::EditDevNameDialog(Plater *plater /*= nullptr*/)
 
 
     m_button_confirm = new Button(this, _L("Confirm"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal));
+    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0xd06500), StateColor::Pressed), std::pair<wxColour, int>(wxColour("#0085ff"), StateColor::Normal));
     m_button_confirm->SetBackgroundColor(btn_bg_green);
-    m_button_confirm->SetBorderColor(wxColour(0, 150, 136));
+    m_button_confirm->SetBorderColor(wxColour("#0085ff"));
     m_button_confirm->SetTextColor(wxColour(255, 255, 255));
     m_button_confirm->SetSize(wxSize(FromDIP(72), FromDIP(24)));
     m_button_confirm->SetMinSize(wxSize(FromDIP(72), FromDIP(24)));
@@ -4471,7 +4471,7 @@ void EditDevNameDialog::on_edit_name(wxCommandEvent &e)
 
  void ThumbnailPanel::set_thumbnail(wxImage img)
  {
-     m_bitmap = img;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+     m_bitmap = img;
      //Paint the background bitmap to the thumbnail bitmap with wxMemoryDC
      wxMemoryDC dc;
      bitmap_with_background.Create(wxSize(m_bitmap.GetWidth(), m_bitmap.GetHeight()));
@@ -4489,7 +4489,7 @@ void EditDevNameDialog::on_edit_name(wxCommandEvent &e)
  }
 
  void ThumbnailPanel::render(wxDC& dc) {
-     
+
      if (wxGetApp().dark_mode()) {
          #ifdef __WXMSW__
              wxMemoryDC memdc;
@@ -4503,7 +4503,7 @@ void EditDevNameDialog::on_edit_name(wxCommandEvent &e)
      }
      else
          dc.DrawBitmap(m_bitmap, 0, 0);
-     
+
  }
 
  ThumbnailPanel::~ThumbnailPanel() {}
