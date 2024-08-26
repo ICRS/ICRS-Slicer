@@ -80,6 +80,11 @@
 #endif // _WIN32
 #include <slic3r/GUI/CreatePresetsDialog.hpp>
 
+#include "ScannerAlertDialog.hpp"
+
+#include "../Utils/Http.hpp"
+#include "ICRSConfig.hpp"
+
 
 namespace Slic3r {
 namespace GUI {
@@ -1534,6 +1539,45 @@ wxBoxSizer* MainFrame::create_side_tools()
 
     m_print_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event)
         {
+
+            // double total_time_all_plates = 0.0;
+            // PartPlateList& plate_list = wxGetApp().plater()->get_partplate_list();
+            // for (auto plate : plate_list.get_nonempty_plate_list())
+            // {
+            //     auto plate_print_statistics = plate->get_slice_result()->print_statistics;
+            //     auto plate_extruders = plate->get_extruders(true);
+            //     const PrintEstimatedStatistics::Mode& plate_time_mode = plate_print_statistics.modes[static_cast<size_t>(m_time_estimate_mode)];
+            //     total_time_all_plates += plate_time_mode.time;
+            // }
+
+            bool send_print = false;
+            std::string errorMsg ="";
+            std::string endPoint = "http://127.0.0.1:8888/slicer/print/permissions?time_seconds=0";
+
+            Slic3r::Http http = Slic3r::Http::get(endPoint);
+            // http.on_complete([this](std::string body, unsigned status) {
+            //         try {
+            //             send_print = true;
+            //         }
+            //         catch (...) {
+            //             errorMsg = "Unknown Error";
+            //             send_print = false;
+            //         }
+            //     })
+                // .on_error(
+                //     [](std::string body, std::string error, unsigned status) {
+                //         errorMsg = error;
+                //         send_print = false;
+                // })
+                // .perform_sync();
+            if(!send_print)
+            {
+                auto m_scanner_dlg = new ScannerAlertDialog(errorMsg);
+                m_scanner_dlg->ShowModal();
+                return;
+            };
+
+
             //this->m_plater->select_view_3D("Preview");
             if (m_print_select == ePrintAll || m_print_select == ePrintPlate)
             {

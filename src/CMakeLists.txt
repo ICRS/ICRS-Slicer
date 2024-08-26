@@ -19,6 +19,9 @@ add_subdirectory(hints)
 add_subdirectory(mcut)
 add_subdirectory(qoi)
 
+
+add_definitions(-w)
+
 # Adding libnest2d project for bin packing...
 add_subdirectory(libnest2d)
 
@@ -84,7 +87,7 @@ if (SLIC3R_GUI)
         list(FILTER wxWidgets_LIBRARIES EXCLUDE REGEX expat)
         list(APPEND wxWidgets_LIBRARIES ${EXPAT_LIBRARIES})
     endif ()
-    
+
     # This is an issue in the new wxWidgets cmake build, doesn't deal with librt
     find_library(LIBRT rt)
     if(LIBRT)
