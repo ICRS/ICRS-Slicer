@@ -9,32 +9,29 @@
     "Snapmaker A250 (0.4 nozzle)",
     "Snapmaker A250 (0.6 nozzle)",
     "Snapmaker A250 (0.8 nozzle)",
-    "Snapmaker A350 (0.4 nozzle)",
-    "Snapmaker A350 (0.6 nozzle)",
-    "Snapmaker A350 (0.8 nozzle)",
-    "Snapmaker A250 Dual (0.4 nozzle)",
-    "Snapmaker A250 Dual (0.6 nozzle)",
-    "Snapmaker A250 Dual (0.8 nozzle)",
-    "Snapmaker A350 Dual (0.4 nozzle)",
-    "Snapmaker A350 Dual (0.6 nozzle)",
-    "Snapmaker A350 Dual (0.8 nozzle)",
-    "Snapmaker A250 Dual QSKit (0.4 nozzle)",
-    "Snapmaker A250 Dual QSKit (0.6 nozzle)",
-    "Snapmaker A250 Dual QSKit (0.8 nozzle)",
-    "Snapmaker A350 Dual QSKit (0.4 nozzle)",
-    "Snapmaker A350 Dual QSKit (0.6 nozzle)",
-    "Snapmaker A350 Dual QSKit (0.8 nozzle)",
+    "Snapmaker A250 BKit (0.4 nozzle)",
+    "Snapmaker A250 BKit (0.6 nozzle)",
+    "Snapmaker A250 BKit (0.8 nozzle)",
+    "Snapmaker A250 QS+B Kit (0.4 nozzle)",
+    "Snapmaker A250 QS+B Kit (0.6 nozzle)",
+    "Snapmaker A250 QS+B Kit (0.8 nozzle)",
     "Snapmaker A250 QSKit (0.4 nozzle)",
     "Snapmaker A250 QSKit (0.6 nozzle)",
     "Snapmaker A250 QSKit (0.8 nozzle)",
+    "Snapmaker A350 (0.4 nozzle)",
+    "Snapmaker A350 (0.6 nozzle)",
+    "Snapmaker A350 (0.8 nozzle)",
+    "Snapmaker A350 BKit (0.4 nozzle)",
+    "Snapmaker A350 BKit (0.6 nozzle)",
+    "Snapmaker A350 BKit (0.8 nozzle)",
+    "Snapmaker A350 QS+B Kit (0.4 nozzle)",
+    "Snapmaker A350 QS+B Kit (0.6 nozzle)",
+    "Snapmaker A350 QS+B Kit (0.8 nozzle)",
     "Snapmaker A350 QSKit (0.4 nozzle)",
     "Snapmaker A350 QSKit (0.6 nozzle)",
     "Snapmaker A350 QSKit (0.8 nozzle)"
   ],
   "hot_plate_temp": [
-    "45"
-  ],
-  "hot_plate_temp_initial_layer": [
     "45"
   ],
   "overhang_fan_speed": [
@@ -45,6 +42,12 @@
   ],
   "filament_max_volumetric_speed": [
     "7.2"
+  ],
+  "nozzle_temperature_initial_layer": [
+    "240"
+  ],
+  "nozzle_temperature": [
+    "240"
   ],
   "fan_max_speed": [
     "100"

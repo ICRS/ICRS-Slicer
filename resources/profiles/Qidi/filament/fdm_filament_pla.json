@@ -5,7 +5,7 @@
     "instantiation": "false",
     "inherits": "fdm_filament_common",
     "fan_cooling_layer_time": [
-        "100"
+        "60"
     ],
     "filament_max_volumetric_speed": [
         "12"
@@ -20,28 +20,28 @@
         "20"
     ],
     "cool_plate_temp" : [
-        "55"
+        "60"
     ],
     "eng_plate_temp" : [
-        "55"
+        "60"
     ],
     "hot_plate_temp" : [
-        "55"
+        "60"
     ],
     "textured_plate_temp" : [
-        "55"
+        "60"
     ],
     "cool_plate_temp_initial_layer" : [
-        "55"
+        "60"
     ],
     "eng_plate_temp_initial_layer" : [
-        "55"
+        "60"
     ],
     "hot_plate_temp_initial_layer" : [
-        "55"
+        "60"
     ],
     "textured_plate_temp_initial_layer" : [
-        "55"
+        "60"
     ],
     "nozzle_temperature_initial_layer": [
         "210"
@@ -62,33 +62,40 @@
         "100"
     ],
     "overhang_fan_threshold": [
-        "50%"
+        "95%"
     ],
     "close_fan_the_first_x_layers": [
-        "2"
+        "1"
     ],
-        "full_fan_speed_layer": [
-        "4"
+    "full_fan_speed_layer": [
+        "3"
     ],
     "nozzle_temperature": [
         "220"
     ],
     "temperature_vitrification": [
-        "60"
+        "45"
     ],
     "nozzle_temperature_range_low": [
         "190"
     ],
     "nozzle_temperature_range_high": [
-        "230"
+        "240"
     ],
     "slow_down_min_speed": [
-        "10"
+        "20"
     ],
     "slow_down_layer_time": [
-        "4"
+        "8"
     ],
     "additional_cooling_fan_speed": [
         "0"
+    ],
+    "dont_slow_down_outer_wall": [
+        "1"
+    ],
+    "enable_overhang_bridge_fan": [
+        "0"
     ]
+
 }

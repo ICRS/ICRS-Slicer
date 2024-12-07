@@ -17,7 +17,7 @@
     "filament_settings_id": [
         "QIDI PAHT-CF @Qidi Q1 Pro 0.6 nozzle"
     ],
-    "from": "User",
+    "from": "system",
     "inherits": "QIDI PAHT-CF",
     "is_custom_defined": "0",
     "name": "QIDI PAHT-CF @Qidi Q1 Pro 0.6 nozzle",
@@ -28,13 +28,13 @@
         "300"
     ],
     "overhang_fan_speed": [
-        "50"
+        "40"
     ],
     "pressure_advance": [
         "0.032"
     ],
     "slow_down_layer_time": [
-        "5"
+        "8"
     ],
     "slow_down_min_speed": [
         "20"

@@ -12,9 +12,10 @@
 	"nozzle_diameter": [
 		"0.8"
 	],
+	"bed_shape": "rectangular",
 	"printable_area": [
 		"0x0",
-		"3000x0",
+		"300x0",
 		"300x300",
 		"0x300"
 	],
@@ -78,10 +79,10 @@
 		"0.4"
 	],
 	"max_layer_height": [
-		"0.36"
+		"0.64"
 	],
 	"min_layer_height": [
-		"0.08"
+		"0.16"
 	],
 	"printer_settings_id": "Creality",
 	"retraction_minimum_travel": [
@@ -101,9 +102,6 @@
 	],
 	"deretraction_speed": [
 		"45"
-	],
-	"z_hop": [
-		"0"
 	],
 	"single_extruder_multi_material": "1",
 	"change_filament_gcode": "M600",

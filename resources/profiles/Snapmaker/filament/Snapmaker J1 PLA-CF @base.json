@@ -29,24 +29,6 @@
   "temperature_vitrification": [
     "150"
   ],
-  "cool_plate_temp": [
-    "55"
-  ],
-  "eng_plate_temp": [
-    "55"
-  ],
-  "textured_plate_temp": [
-    "55"
-  ],
-  "cool_plate_temp_initial_layer": [
-    "55"
-  ],
-  "eng_plate_temp_initial_layer": [
-    "55"
-  ],
-  "textured_plate_temp_initial_layer": [
-    "55"
-  ],
   "default_filament_colour": [
     "#3D3C39"
   ],

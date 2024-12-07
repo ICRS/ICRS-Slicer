@@ -21,8 +21,8 @@
     "printable_height": "250",
     "nozzle_type": "hardened_steel",
     "auxiliary_fan": "1",
-	"support_air_filtration": "1",
-	"support_multi_bed_types": "1",
+    "support_air_filtration": "1",
+    "support_multi_bed_types": "1",
     "machine_max_acceleration_e": [
         "5000",
         "5000"
@@ -87,14 +87,14 @@
         "0.5"
     ],
     "min_layer_height": [
-        "0.08"
+        "0.16"
     ],
     "printer_settings_id": "Creality",
     "retraction_minimum_travel": [
         "2"
     ],
     "retract_before_wipe": [
-        "70%"
+        "0%"
     ],
     "retraction_length": [
         "0.5"
@@ -113,6 +113,9 @@
     "extruder_clearance_radius": "45",
     "z_hop": [
         "0.2"
+    ],
+    "wipe_distance": [
+        "2"
     ],
     "single_extruder_multi_material": "1",
     "manual_filament_change": "1",
