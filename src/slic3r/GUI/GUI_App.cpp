@@ -323,7 +323,7 @@ public:
 
         // use a memory DC to draw directly onto the bitmap
         wxMemoryDC memDc(bmp);
-        
+
         int width = bmp.GetWidth();
 		int height = bmp.GetHeight();
 
@@ -947,7 +947,7 @@ void GUI_App::post_init()
         }
     }
 
-    // Start preset sync after project opened, otherwise we could have preset change during project opening which could cause crash 
+    // Start preset sync after project opened, otherwise we could have preset change during project opening which could cause crash
     if (app_config->get("sync_user_preset") == "true") {
         // BBS loading user preset
         // Always async, not such startup step
@@ -1763,7 +1763,7 @@ void GUI_App::init_networking_callbacks()
                     else {
                         obj->parse_json(msg, true);
                     }
-                    
+
 
                     if (!this->is_enable_multi_machine()) {
                         if ((sel == obj || sel == nullptr) && obj->is_ams_need_update) {
@@ -3044,7 +3044,7 @@ void GUI_App::UpdateDarkUI(wxWindow* window, bool highlited/* = false*/, bool ju
         auto orig_col = window->GetBackgroundColour();
         auto bg_col = StateColor::darkModeColorFor(orig_col);
         // there are cases where the background color of an item is bright, specifically:
-        // * the background color of a button: #009688  -- 73
+        // * the background color of a button: #0085ff  -- 73
         if (bg_col != orig_col) {
             window->SetBackgroundColour(bg_col);
         }
@@ -3940,17 +3940,17 @@ std::string GUI_App::handle_web_request(std::string cmd)
                 if (path.has_value()) {
                     wxLaunchDefaultBrowser(path.value());
                 }
-            } 
+            }
             else if (command_str.compare("homepage_makerlab_get") == 0) {
                 //if (mainframe->m_webview) { mainframe->m_webview->SendMakerlabList(); }
             }
-            else if (command_str.compare("makerworld_model_open") == 0) 
+            else if (command_str.compare("makerworld_model_open") == 0)
             {
                 if (root.get_child_optional("model") != boost::none) {
                     pt::ptree                    data_node = root.get_child("model");
                     boost::optional<std::string> path      = data_node.get_optional<std::string>("url");
-                    if (path.has_value()) 
-                    { 
+                    if (path.has_value())
+                    {
                         wxString realurl = from_u8(url_decode(path.value()));
                         wxGetApp().request_model_download(realurl);
                     }
