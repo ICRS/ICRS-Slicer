@@ -837,8 +837,8 @@ void AuxiliaryPanel::init_bitmap()
 void AuxiliaryPanel::init_tabpanel()
 {
     StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Disabled),
-                            std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed),
-                            std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
+                            std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
+                            std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
                             std::pair<wxColour, int>(wxColour(0xff8500), StateColor::Normal));
     auto back_btn = new Button(this, _L("return"), "assemble_return", wxBORDER_NONE | wxBU_LEFT | wxBU_EXACTFIT);
     back_btn->SetSize(wxSize(FromDIP(220), FromDIP(18)));

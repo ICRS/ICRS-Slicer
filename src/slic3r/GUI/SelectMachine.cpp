@@ -1152,7 +1152,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     m_sizer_backup = new wxBoxSizer(wxHORIZONTAL);
     m_ams_backup_tip = new Label(this, _L("Auto Refill"));
     m_ams_backup_tip->SetFont(::Label::Head_12);
-    m_ams_backup_tip->SetForegroundColour(wxColour(0x009688));
+    m_ams_backup_tip->SetForegroundColour(wxColour(0x0090ff));
     m_ams_backup_tip->SetBackgroundColour(*wxWHITE);
     img_ams_backup = new wxStaticBitmap(this, wxID_ANY, create_scaled_bitmap("automatic_material_renewal", this, 16), wxDefaultPosition, wxSize(FromDIP(16), FromDIP(16)), 0);
     img_ams_backup->SetBackgroundColour(*wxWHITE);
@@ -1196,7 +1196,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     m_comboBox_printer->Bind(wxEVT_COMBOBOX, &SelectMachineDialog::on_selection_changed, this);
 
     m_sizer_printer->Add(m_comboBox_printer, 1, wxEXPAND | wxRIGHT, FromDIP(5));
-    m_btn_bg_enable = StateColor(std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed), std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
+    m_btn_bg_enable = StateColor(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
                                std::pair<wxColour, int>(wxColour(0xff8500), StateColor::Normal));
 
     m_button_refresh = new Button(this, _L("Refresh"));
@@ -2665,7 +2665,7 @@ wxString SelectMachineDialog::format_steel_name(std::string name)
 void SelectMachineDialog::Enable_Auto_Refill(bool enable)
 {
     if (enable) {
-        m_ams_backup_tip->SetForegroundColour(wxColour(0x009688));
+        m_ams_backup_tip->SetForegroundColour(wxColour(0x0090ff));
     }
     else {
         m_ams_backup_tip->SetForegroundColour(wxColour(0x90, 0x90, 0x90));
@@ -4688,7 +4688,7 @@ EditDevNameDialog::EditDevNameDialog(Plater *plater /*= nullptr*/)
 
 
     m_button_confirm = new Button(this, _L("Confirm"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0xff8500), StateColor::Normal));
+    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0xff8500), StateColor::Normal));
     m_button_confirm->SetBackgroundColor(btn_bg_green);
     m_button_confirm->SetBorderColor(wxColour(0xff8500));
     m_button_confirm->SetTextColor(wxColour(255, 255, 255));
