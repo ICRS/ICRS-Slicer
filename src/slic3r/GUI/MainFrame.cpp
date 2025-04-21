@@ -12,7 +12,7 @@
 //#include <wx/glcanvas.h>
 #include <wx/filename.h>
 #include <wx/debug.h>
-#include <wx/utils.h> 
+#include <wx/utils.h>
 
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/log/trivial.hpp>
@@ -186,7 +186,7 @@ DPIFrame(NULL, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, BORDERLESS_FRAME_
     set_miniaturizable(GetHandle());
 #endif
 
-    if (!wxGetApp().app_config->has("user_mode")) { 
+    if (!wxGetApp().app_config->has("user_mode")) {
         wxGetApp().app_config->set("user_mode", "simple");
         wxGetApp().app_config->set_bool("developer_mode", false);
         wxGetApp().app_config->save();
@@ -498,7 +498,7 @@ DPIFrame(NULL, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, BORDERLESS_FRAME_
         wxGetApp().plater()->get_current_canvas3D()->request_extra_frame();
         event.Skip();
     });
-#endif   
+#endif
 
     update_ui_from_settings();    // FIXME (?)
 
@@ -564,12 +564,12 @@ DPIFrame(NULL, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, BORDERLESS_FRAME_
             return;
         }
         else if (evt.CmdDown() && evt.GetKeyCode() == 'G') { if (can_export_gcode()) { wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_EXPORT_SLICED_FILE)); } evt.Skip(); return; }
-        if (evt.CmdDown() && evt.GetKeyCode() == 'J') { m_printhost_queue_dlg->Show(); return; }    
+        if (evt.CmdDown() && evt.GetKeyCode() == 'J') { m_printhost_queue_dlg->Show(); return; }
         if (evt.CmdDown() && evt.GetKeyCode() == 'N') { m_plater->new_project(); return;}
         if (evt.CmdDown() && evt.GetKeyCode() == 'O') { m_plater->load_project(); return;}
         if (evt.CmdDown() && evt.ShiftDown() && evt.GetKeyCode() == 'S') { if (can_save_as()) m_plater->save_project(true); return;}
         else if (evt.CmdDown() && evt.GetKeyCode() == 'S') { if (can_save()) m_plater->save_project(); return;}
-        if (evt.CmdDown() && evt.GetKeyCode() == 'F') { 
+        if (evt.CmdDown() && evt.GetKeyCode() == 'F') {
             if (m_plater && (m_tabpanel->GetSelection() == TabPosition::tp3DEditor || m_tabpanel->GetSelection() == TabPosition::tpPreview)) {
                 m_plater->sidebar().can_search();
             }
@@ -2000,9 +2000,9 @@ void MainFrame::update_side_button_style()
     m_slice_btn->SetExtraSize(wxSize(FromDIP(38), FromDIP(10)));
     m_slice_btn->SetBottomColour(wxColour(0x3B4446));*/
     StateColor m_btn_bg_enable = StateColor(
-        std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed), 
+        std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed),
         std::pair<wxColour, int>(wxColour(48, 221, 112), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal)
+        std::pair<wxColour, int>(wxColour(0xff8500), StateColor::Normal)
     );
 
     // m_publish_btn->SetMinSize(wxSize(FromDIP(125), FromDIP(24)));
@@ -2567,7 +2567,7 @@ void MainFrame::init_menubar_as_editor()
 #if 0
         // BBS Delete selected
         append_menu_item(editMenu, wxID_ANY, _L("Delete selected") + "\tBackSpace",
-            _L("Deletes the current selection"),[this](wxCommandEvent&) { 
+            _L("Deletes the current selection"),[this](wxCommandEvent&) {
                 m_plater->remove_selected();
             },
             "", nullptr, [this](){return can_delete(); }, this);
@@ -2610,7 +2610,7 @@ void MainFrame::init_menubar_as_editor()
 
         // BBS Select All
         append_menu_item(editMenu, wxID_ANY, _L("Select all") + sep + ctrl_t + "A",
-            _L("Selects all objects"), [this, handle_key_event](wxCommandEvent&) { 
+            _L("Selects all objects"), [this, handle_key_event](wxCommandEvent&) {
                 wxKeyEvent e;
                 e.SetEventType(wxEVT_KEY_DOWN);
                 e.SetControlDown(true);
@@ -2946,7 +2946,7 @@ void MainFrame::init_menubar_as_editor()
             m_retraction_calib_dlg->ShowModal();
         }, "", nullptr,
         [this]() {return m_plater->is_view3D_shown();; }, this);
-        
+
     append_menu_item(m_topbar->GetCalibMenu(), wxID_ANY, _L("Orca Tolerance Test"), _L("Orca Tolerance Test"),
         [this](wxCommandEvent&) {
             m_plater->new_project();
@@ -2975,10 +2975,10 @@ void MainFrame::init_menubar_as_editor()
         },
         "", nullptr,
         [this]() {return m_plater->is_view3D_shown();; }, this);
-        
+
     // Input Shaping calibrations
     auto input_shaping_menu = new wxMenu();
-    
+
     append_menu_item(
         input_shaping_menu, wxID_ANY, _L("Input Shaping Frequency"), _L("Input Shaping Frequency"),
         [this](wxCommandEvent&) {
@@ -2988,7 +2988,7 @@ void MainFrame::init_menubar_as_editor()
         },
         "", nullptr,
         [this]() {return m_plater->is_view3D_shown();; }, this);
-        
+
     append_menu_item(
         input_shaping_menu, wxID_ANY, _L("Input Shaping Damping/zeta factor"), _L("Input Shaping Damping/zeta factor"),
         [this](wxCommandEvent&) {
@@ -2998,9 +2998,9 @@ void MainFrame::init_menubar_as_editor()
         },
         "", nullptr,
         [this]() {return m_plater->is_view3D_shown();; }, this);
-    
+
     m_topbar->GetCalibMenu()->AppendSubMenu(input_shaping_menu, _L("Input Shaping"));
-    
+
     // Add Junction Deviation option to More menu
     append_menu_item(
         advance_menu, wxID_ANY, _L("Junction Deviation"), _L("Junction Deviation calibration"),
@@ -3011,10 +3011,10 @@ void MainFrame::init_menubar_as_editor()
         },
         "", nullptr,
         [this]() {return m_plater->is_view3D_shown();; }, this);
-        
+
     m_topbar->GetCalibMenu()->AppendSubMenu(advance_menu, _L("More..."));
 
-    // help 
+    // help
     append_menu_item(m_topbar->GetCalibMenu(), wxID_ANY, _L("Tutorial"), _L("Calibration help"),
         [this](wxCommandEvent&) {
             std::string url = "https://github.com/SoftFever/OrcaSlicer/wiki/Calibration";
@@ -3046,7 +3046,7 @@ void MainFrame::init_menubar_as_editor()
             m_temp_calib_dlg->ShowModal();
         }, "", nullptr,
         [this]() {return m_plater->is_view3D_shown();; }, this);
-        
+
     // Flowrate
     auto flowrate_menu = new wxMenu();
     append_menu_item(flowrate_menu, wxID_ANY, _L("Pass 1"), _L("Flow rate test - Pass 1"),
@@ -3095,21 +3095,21 @@ void MainFrame::init_menubar_as_editor()
     auto advance_menu = new wxMenu();
     append_menu_item(
         advance_menu, wxID_ANY, _L("Max flowrate"), _L("Max flowrate"),
-        [this](wxCommandEvent&) { 
+        [this](wxCommandEvent&) {
             if (!m_vol_test_dlg)
                 m_vol_test_dlg = new MaxVolumetricSpeed_Test_Dlg((wxWindow*)this, wxID_ANY, m_plater);
-            m_vol_test_dlg->ShowModal(); 
+            m_vol_test_dlg->ShowModal();
         }, "", nullptr,
         [this]() {return m_plater->is_view3D_shown();; }, this);
     append_menu_item(
         advance_menu, wxID_ANY, _L("VFA"), _L("VFA"),
-        [this](wxCommandEvent&) { 
+        [this](wxCommandEvent&) {
             if (!m_vfa_test_dlg)
                 m_vfa_test_dlg = new VFA_Test_Dlg((wxWindow*)this, wxID_ANY, m_plater);
             m_vfa_test_dlg->ShowModal();
         }, "", nullptr,
-        [this]() {return m_plater->is_view3D_shown();; }, this);    
-       
+        [this]() {return m_plater->is_view3D_shown();; }, this);
+
     // Add Junction Deviation option to More menu
     append_menu_item(
         advance_menu, wxID_ANY, _L("Junction Deviation"), _L("Junction Deviation calibration"),
@@ -3119,10 +3119,10 @@ void MainFrame::init_menubar_as_editor()
             m_junction_deviation_calib_dlg->ShowModal();
         }, "", nullptr,
         [this]() {return m_plater->is_view3D_shown();; }, this);
-        
+
     // Input Shaping calibrations
     auto input_shaping_menu = new wxMenu();
-    
+
     append_menu_item(
         input_shaping_menu, wxID_ANY, _L("Input Shaping Frequency"), _L("Input Shaping Frequency"),
         [this](wxCommandEvent&) {
@@ -3132,7 +3132,7 @@ void MainFrame::init_menubar_as_editor()
         },
         "", nullptr,
         [this]() {return m_plater->is_view3D_shown();; }, this);
-        
+
     append_menu_item(
         input_shaping_menu, wxID_ANY, _L("Input Shaping Damping/zeta factor"), _L("Input Shaping Damping/zeta factor"),
         [this](wxCommandEvent&) {
@@ -3142,16 +3142,16 @@ void MainFrame::init_menubar_as_editor()
         },
         "", nullptr,
         [this]() {return m_plater->is_view3D_shown();; }, this);
-    
+
     calib_menu->AppendSubMenu(input_shaping_menu, _L("Input Shaping"));
-    
+
     append_submenu(calib_menu, advance_menu, wxID_ANY, _L("More..."), _L("More calibrations"), "",
         [this]() {return m_plater->is_view3D_shown();; });
     // help
     append_menu_item(calib_menu, wxID_ANY, _L("Tutorial"), _L("Calibration help"),
         [this](wxCommandEvent&) { wxLaunchDefaultBrowser("https://github.com/SoftFever/OrcaSlicer/wiki/Calibration", wxBROWSER_NEW_WINDOW); }, "", nullptr,
         [this]() {return m_plater->is_view3D_shown();; }, this);
-    
+
     m_menubar->Append(calib_menu,wxString::Format("&%s", _L("Calibration")));
     if (helpMenu)
         m_menubar->Append(helpMenu, wxString::Format("&%s", _L("Help")));
@@ -3314,7 +3314,7 @@ void MainFrame::export_config()
 {
     ExportConfigsDialog export_configs_dlg(nullptr);
     export_configs_dlg.ShowModal();
-    return; 
+    return;
 
     // Generate a cummulative configuration for the selected print, filaments and printer.
     wxDirDialog dlg(this, _L("Choose a directory"),

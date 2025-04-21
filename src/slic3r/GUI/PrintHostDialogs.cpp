@@ -121,7 +121,7 @@ void PrintHostSendDialog::init()
     auto checkbox_text = new wxStaticText(this, wxID_ANY, _L("Switch to Device tab after upload."), wxDefaultPosition, wxDefaultSize, 0);
     checkbox_sizer->Add(checkbox_text, 0, wxALL | wxALIGN_CENTER, FromDIP(2));
     checkbox_text->SetFont(::Label::Body_13);
-    checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#2a3240")));
+    checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#5476b0")));
     content_sizer->Add(checkbox_sizer);
     content_sizer->AddSpacer(VERT_SPACING);
 
@@ -730,7 +730,7 @@ void ElegooPrintHostSendDialog::init() {
         auto checkbox_text = new wxStaticText(this, wxID_ANY, _L("Switch to Device tab after upload."), wxDefaultPosition, wxDefaultSize, 0);
         checkbox_sizer->Add(checkbox_text, 0, wxALL | wxALIGN_CENTER, FromDIP(2));
         checkbox_text->SetFont(::Label::Body_13);
-        checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#2a3240")));
+        checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#5476b0")));
         content_sizer->Add(checkbox_sizer);
         content_sizer->AddSpacer(VERT_SPACING);
     }
@@ -756,7 +756,7 @@ void ElegooPrintHostSendDialog::init() {
         auto checkbox_text = new wxStaticText(this, wxID_ANY, _L("Upload and Print"), wxDefaultPosition, wxDefaultSize, 0);
         checkbox_sizer->Add(checkbox_text, 0, wxALL | wxALIGN_CENTER, FromDIP(2));
         checkbox_text->SetFont(::Label::Body_13);
-        checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#2a3240")));
+        checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#5476b0")));
         content_sizer->Add(checkbox_sizer);
         content_sizer->AddSpacer(VERT_SPACING);
     }
@@ -775,7 +775,7 @@ void ElegooPrintHostSendDialog::init() {
         auto checkbox_text = new wxStaticText(this, wxID_ANY, _L("Time-lapse"), wxDefaultPosition, wxDefaultSize, 0);
         checkbox_sizer->Add(checkbox_text, 0, wxALL | wxALIGN_CENTER, FromDIP(2));
         checkbox_text->SetFont(::Label::Body_13);
-        checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#2a3240")));
+        checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#5476b0")));
         uploadandprint_sizer->Add(checkbox_sizer);
         uploadandprint_sizer->AddSpacer(VERT_SPACING);
     }
@@ -794,7 +794,7 @@ void ElegooPrintHostSendDialog::init() {
         auto checkbox_text = new wxStaticText(this, wxID_ANY, _L("Heated Bed Leveling"), wxDefaultPosition, wxDefaultSize, 0);
         checkbox_sizer->Add(checkbox_text, 0, wxALL | wxALIGN_CENTER, FromDIP(2));
         checkbox_text->SetFont(::Label::Body_13);
-        checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#2a3240")));
+        checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#5476b0")));
         uploadandprint_sizer->Add(checkbox_sizer);
         uploadandprint_sizer->AddSpacer(VERT_SPACING);
     }
@@ -828,7 +828,7 @@ void ElegooPrintHostSendDialog::init() {
             auto checkbox_text = new wxStaticText(this, wxID_ANY, _L("Textured Build Plate (Side A)"), wxDefaultPosition, wxDefaultSize, 0);
             radio_sizer->Add(checkbox_text, 0, wxALL | wxALIGN_CENTER, FromDIP(2));
             checkbox_text->SetFont(::Label::Body_13);
-            checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#2a3240")));
+            checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#5476b0")));
             uploadandprint_sizer->Add(radio_sizer);
             uploadandprint_sizer->AddSpacer(VERT_SPACING);
         }
@@ -840,7 +840,7 @@ void ElegooPrintHostSendDialog::init() {
             auto checkbox_text = new wxStaticText(this, wxID_ANY, _L("Smooth Build Plate (Side B)"), wxDefaultPosition, wxDefaultSize, 0);
             radio_sizer->Add(checkbox_text, 0, wxALL | wxALIGN_CENTER, FromDIP(2));
             checkbox_text->SetFont(::Label::Body_13);
-            checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#2a3240")));
+            checkbox_text->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#5476b0")));
             uploadandprint_sizer->Add(radio_sizer);
             uploadandprint_sizer->AddSpacer(VERT_SPACING);
         }

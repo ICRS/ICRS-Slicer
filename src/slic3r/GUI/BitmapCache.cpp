@@ -327,7 +327,7 @@ wxBitmap* BitmapCache::load_svg(const std::string &bitmap_name, unsigned target_
     replaces["\"#00FF00\""] = "\"#52c7b8\"";
     if (dark_mode) {
         replaces["\"#262E30\""] = "\"#EFEFF0\"";
-        replaces["\"#2a3240\""] = "\"#B3B3B5\"";
+        replaces["\"#5476b0\""] = "\"#B3B3B5\"";
         replaces["\"#808080\""] = "\"#818183\"";
         //replaces["\"#ACACAC\""] = "\"#54545A\"";
         replaces["\"#CECECE\""] = "\"#54545B\"";

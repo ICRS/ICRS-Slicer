@@ -689,7 +689,7 @@ void Slic3r::GUI::ImageGrid::renderContent2(wxDC &dc, wxPoint const &pt, int ind
     dc.SetPen(pn);
     // Draw infos
     dc.SetFont(Label::Head_16);
-    dc.SetTextForeground(StateColor::darkModeColorFor("#2a3240"));
+    dc.SetTextForeground(StateColor::darkModeColorFor("#5476b0"));
     auto em = em_unit(this);
     wxRect rect{pt.x, pt.y + m_content_rect.GetHeight() - h, m_content_rect.GetWidth(), h / 2};
     rect.Deflate(em, 0);

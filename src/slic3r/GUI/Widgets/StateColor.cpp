@@ -16,7 +16,7 @@ static std::map<wxColour, wxColour> gDarkColors{
     {"#ACACAC", "#65656A"}, // rgb(172, 172, 172)  Disabled Text on boxes | Dimmed Elements
     {"#EEEEEE", "#4C4C55"}, // rgb(238, 238, 238)  Separator Line | Title Line Color
     {"#E8E8E8", "#3E3E45"}, // rgb(232, 232, 232)  ???
-    {"#2a3240", "#E5E5E4"}, // rgb(50, 58, 61)     Softer text color
+    {"#5476b0", "#E5E5E4"}, // rgb(50, 58, 61)     Softer text color
     {"#FFFFFF", "#2D2D31"}, // rgb(255, 255, 255)  Window background
     {"#F8F8F8", "#36363C"}, // rgb(248, 248, 248)  Sidebar > Titlebar > Gradient Top | BBL monitor page titlebar bg
     {"#F1F1F1", "#36363B"}, // rgb(241, 241, 241)  Sidebar > Titlebar > Gradient Bottom
