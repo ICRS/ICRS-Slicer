@@ -67,7 +67,7 @@ PrivacyUpdateDialog::PrivacyUpdateDialog(wxWindow* parent, wxWindowID id, const 
 
     auto sizer_button = new wxBoxSizer(wxHORIZONTAL);
     StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0xff8500), StateColor::Normal));
+        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
 
     StateColor btn_bg_white(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Pressed), std::pair<wxColour, int>(wxColour(220, 220, 220), StateColor::Hovered),
         std::pair<wxColour, int>(wxColour(238, 238, 238), StateColor::Normal));

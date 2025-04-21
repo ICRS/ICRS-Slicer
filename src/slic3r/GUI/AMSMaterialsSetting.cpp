@@ -44,9 +44,9 @@ void AMSMaterialsSetting::create()
 
     m_button_confirm = new Button(this, _L("Confirm"));
     m_btn_bg_green   = StateColor(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                            std::pair<wxColour, int>(wxColour(0xff8500), StateColor::Normal));
+                            std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
     m_button_confirm->SetBackgroundColor(m_btn_bg_green);
-    m_button_confirm->SetBorderColor(wxColour(0xff8500));
+    m_button_confirm->SetBorderColor(wxColour(0, 133, 255));
     m_button_confirm->SetTextColor(wxColour("#FFFFFE"));
     m_button_confirm->SetMinSize(AMS_MATERIALS_SETTING_BUTTON_SIZE);
     m_button_confirm->SetCornerRadius(FromDIP(12));
@@ -1064,7 +1064,7 @@ void AMSMaterialsSetting::on_select_filament(wxCommandEvent &evt)
     }
     else {
         m_button_confirm->SetBackgroundColor(m_btn_bg_green);
-        m_button_confirm->SetBorderColor(wxColour(0xff8500));
+        m_button_confirm->SetBorderColor(wxColour(0, 133, 255));
         m_button_confirm->SetTextColor(wxColour("#FFFFFE"));
         m_button_confirm->Enable(true);
     }
