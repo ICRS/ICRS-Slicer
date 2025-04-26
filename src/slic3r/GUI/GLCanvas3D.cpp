@@ -667,7 +667,7 @@ void GLCanvas3D::LayersEditing::update_slicing_parameters()
         m_slicing_parameters = new SlicingParameters();
         *m_slicing_parameters = PrintObject::slicing_parameters(*m_config, *m_model_object, m_object_max_z, m_shrinkage_compensation);
     }
-    
+
 }
 
 float GLCanvas3D::LayersEditing::thickness_bar_width(const GLCanvas3D & canvas)
@@ -1050,14 +1050,14 @@ void GLCanvas3D::load_arrange_settings()
 
     std::string en_rot_sla_str =
         wxGetApp().app_config->get("arrange", "enable_rotation_sla");
-    
+
     std::string en_allow_multiple_materials_str =
         wxGetApp().app_config->get("arrange", "allow_multi_materials_on_same_plate");
-    
+
     std::string en_avoid_region_str =
         wxGetApp().app_config->get("arrange", "avoid_extrusion_cali_region");
-    
-    
+
+
 
     if (!dist_fff_str.empty())
         m_arrange_settings_fff.distance = std::stof(dist_fff_str);
@@ -1070,14 +1070,14 @@ void GLCanvas3D::load_arrange_settings()
 
     if (!en_rot_fff_str.empty())
         m_arrange_settings_fff.enable_rotation = (en_rot_fff_str == "1" || en_rot_fff_str == "true");
-    
+
     if (!en_allow_multiple_materials_str.empty())
         m_arrange_settings_fff.allow_multi_materials_on_same_plate = (en_allow_multiple_materials_str == "1" || en_allow_multiple_materials_str == "true");
-    
+
 
     if (!en_rot_fff_seqp_str.empty())
         m_arrange_settings_fff_seq_print.enable_rotation = (en_rot_fff_seqp_str == "1" || en_rot_fff_seqp_str == "true");
-    
+
     if(!en_avoid_region_str.empty())
         m_arrange_settings_fff.avoid_extrusion_cali_region = (en_avoid_region_str == "1" || en_avoid_region_str == "true");
 
@@ -1500,7 +1500,7 @@ void GLCanvas3D::set_config(const DynamicPrintConfig* config)
 {
     m_config = config;
     m_layers_editing.set_config(config);
-    
+
     // Orca: Filament shrinkage compensation
     const Print *print = fff_print();
     if (print != nullptr)
@@ -1837,7 +1837,7 @@ void GLCanvas3D::render(bool only_init)
 
     if (!is_initialized() && !init())
         return;
-    if (m_canvas_type == ECanvasType::CanvasView3D  && m_gizmos.get_current_type() == GLGizmosManager::Undefined) { 
+    if (m_canvas_type == ECanvasType::CanvasView3D  && m_gizmos.get_current_type() == GLGizmosManager::Undefined) {
         enable_return_toolbar(false);
     }
     if (!m_main_toolbar.is_enabled())
@@ -2302,7 +2302,7 @@ void GLCanvas3D::reload_scene(bool refresh_immediately, bool force_full_scene_re
 
     if (!m_initialized)
         return;
-    
+
     _set_current();
 
     m_hover_volume_idxs.clear();
@@ -3259,7 +3259,7 @@ void GLCanvas3D::on_char(wxKeyEvent& evt)
         case WXK_F5: {
             if (wxGetApp().mainframe->is_printer_view())
                 wxGetApp().mainframe->load_printer_url();
-            
+
             //if ((wxGetApp().is_editor() && !wxGetApp().plater()->model().objects.empty()) ||
             //    (wxGetApp().is_gcode_viewer() && !wxGetApp().plater()->get_last_loaded_gcode().empty()))
             //    post_event(SimpleEvent(EVT_GLCANVAS_RELOAD_FROM_DISK));
@@ -3278,7 +3278,7 @@ void GLCanvas3D::on_char(wxKeyEvent& evt)
         case '3':
         case '4':
         case '5':
-        case '6': 
+        case '6':
         case '7':
         case '8':
         case '9': {
@@ -4316,7 +4316,7 @@ void GLCanvas3D::on_mouse(wxMouseEvent& evt)
         }
         // do not process the dragging if the left mouse was set down in another canvas
         else if (is_camera_rotate(evt)) {
-            // Orca: Sphere rotation for painting view 
+            // Orca: Sphere rotation for painting view
             // if dragging over blank area with left button, rotate
             if ((any_gizmo_active || m_hover_volume_idxs.empty()) && m_mouse.is_start_position_3D_defined()) {
                 Camera& camera = wxGetApp().plater()->get_camera();
@@ -4536,14 +4536,14 @@ void GLCanvas3D::on_mouse(wxMouseEvent& evt)
 
     // Detection of doubleclick on text to open emboss edit window
     auto type = m_gizmos.get_current_type();
-    if (evt.LeftDClick() && !m_hover_volume_idxs.empty() && 
+    if (evt.LeftDClick() && !m_hover_volume_idxs.empty() &&
         (type == GLGizmosManager::EType::Undefined ||
          type == GLGizmosManager::EType::Move ||
          type == GLGizmosManager::EType::Rotate ||
          type == GLGizmosManager::EType::Scale ||
          type == GLGizmosManager::EType::Emboss ||
          type == GLGizmosManager::EType::Svg) ) {
-        for (int hover_volume_id : m_hover_volume_idxs) { 
+        for (int hover_volume_id : m_hover_volume_idxs) {
             const GLVolume &hover_gl_volume = *m_volumes.volumes[hover_volume_id];
             int object_idx = hover_gl_volume.object_idx();
             if (object_idx < 0 || static_cast<size_t>(object_idx) >= m_model->objects.size()) continue;
@@ -4555,7 +4555,7 @@ void GLCanvas3D::on_mouse(wxMouseEvent& evt)
             if (hover_volume->text_configuration.has_value()) {
                 m_selection.add_volumes(Selection::EMode::Volume, {(unsigned) hover_volume_id});
                 if (type != GLGizmosManager::EType::Emboss)
-                    m_gizmos.open_gizmo(GLGizmosManager::EType::Emboss);            
+                    m_gizmos.open_gizmo(GLGizmosManager::EType::Emboss);
                 wxGetApp().obj_list()->update_selections();
                 return;
             } else if (hover_volume->emboss_shape.has_value()) {
@@ -5484,7 +5484,7 @@ bool GLCanvas3D::is_object_sinking(int object_idx) const
     return false;
 }
 
-void GLCanvas3D::apply_retina_scale(Vec2d &screen_coordinate) const 
+void GLCanvas3D::apply_retina_scale(Vec2d &screen_coordinate) const
 {
 #if ENABLE_RETINA_GL
     double scale = static_cast<double>(m_retina_helper->get_scale_factor());
@@ -5776,7 +5776,7 @@ void GLCanvas3D::_render_3d_navigator()
     strcpy(style.FaceLabels[ImGuizmo::FACES::FACE_BOTTOM], _utf8("Bottom").c_str());
     strcpy(style.FaceLabels[ImGuizmo::FACES::FACE_LEFT], _utf8("Left").c_str());
     strcpy(style.FaceLabels[ImGuizmo::FACES::FACE_RIGHT], _utf8("Right").c_str());
-    
+
     float sc = get_scale();
 #ifdef WIN32
     const int dpi = get_dpi_for_window(wxGetApp().GetTopWindow());
@@ -6062,7 +6062,7 @@ void GLCanvas3D::render_thumbnail_internal(ThumbnailData& thumbnail_data, const 
             shader->set_uniform("view_model_matrix", view_matrix * model_matrix);
             shader->set_uniform("projection_matrix", projection_matrix);
             const Matrix3d view_normal_matrix = view_matrix.matrix().block(0, 0, 3, 3) * model_matrix.matrix().block(0, 0, 3, 3).inverse().transpose();
-            shader->set_uniform("view_normal_matrix", view_normal_matrix); 
+            shader->set_uniform("view_normal_matrix", view_normal_matrix);
             vol->simple_render(shader,  model_objects, extruder_colors, ban_light);
             vol->is_active = is_active;
         }
@@ -7914,7 +7914,7 @@ void GLCanvas3D::_render_imgui_select_plate_toolbar()
 #if ENABLE_RETINA_GL
     float f_scale  = m_retina_helper->get_scale_factor();
 #else
-    float f_scale  = wxGetApp().em_unit() / 10; // ORCA add scaling support  
+    float f_scale  = wxGetApp().em_unit() / 10; // ORCA add scaling support
 #endif
     Size cnv_size = get_canvas_size();
     auto canvas_w = float(cnv_size.get_width());
@@ -7953,7 +7953,7 @@ void GLCanvas3D::_render_imgui_select_plate_toolbar()
     float window_width       = button_width + (margin_size + button_margin + ImGui::GetStyle().WindowPadding.x) * 2 + (show_scroll ? scrollbar_size : 0);
 
     ImVec4 window_bg     = m_is_dark ? ImVec4(.13f, .13f, .15f, .5f) : ImVec4(1.f, 1.f, 1.f, .7f);
-    ImVec4 button_active = ImGuiWrapper::COL_ORCA; // ORCA: Use orca color for selected sliced plate border 
+    ImVec4 button_active = ImGuiWrapper::COL_ORCA; // ORCA: Use orca color for selected sliced plate border
     ImVec4 button_hover  = ImVec4(0.67f, 0.67f, 0.67, m_is_dark ? .6f : 1.0f);
     ImVec4 scroll_col    = ImVec4(0.77f, 0.77f, 0.77f, m_is_dark ? .6f : 1.0f);
     ImU32  plate_bg      = m_is_dark ? IM_COL32(255, 255, 255, 10) : IM_COL32(0, 0, 0, 10);
@@ -7963,7 +7963,7 @@ void GLCanvas3D::_render_imgui_select_plate_toolbar()
     //use white text as the background switch to black
     ImGui::PushStyleColor(ImGuiCol_Text, m_is_dark ? ImVec4(.9f, .9f, .9f, 1) : ImVec4(.3f, .3f, .3f, 1)); // ORCA Plate number text > Add support for dark mode
     ImGui::PushStyleColor(ImGuiCol_WindowBg, window_bg);
-    ImGui::PushStyleColor(ImGuiCol_ScrollbarBg, ImVec4(0.f, 0.f, 0.f, 0.f)); // ORCA using background color with opacity creates a second color. This prevents secondary color 
+    ImGui::PushStyleColor(ImGuiCol_ScrollbarBg, ImVec4(0.f, 0.f, 0.f, 0.f)); // ORCA using background color with opacity creates a second color. This prevents secondary color
     ImGui::PushStyleColor(ImGuiCol_ScrollbarGrabActive, scroll_col);
     ImGui::PushStyleColor(ImGuiCol_ScrollbarGrabHovered, scroll_col);
     ImGui::PushStyleColor(ImGuiCol_ScrollbarGrab, scroll_col);
@@ -8068,7 +8068,7 @@ void GLCanvas3D::_render_imgui_select_plate_toolbar()
             text_bottom = std::to_string(sliced_plates_cnt) + " / " + std::to_string(total_plates_cnt);
             ImVec2 bar_fg_end = ImVec2(bar_bg_bgn.x + bar_total_perc_pos + bar_current_perc_pos, bar_bg_end.y);
             ImGui::GetWindowDrawList()->AddRectFilled(bar_bg_bgn, bar_bg_end, IM_COL32(128, 128, 128, 255), bar_size.y); // BAR BACKGROUND
-            ImGui::GetWindowDrawList()->AddRectFilled(bar_bg_bgn, bar_fg_end, IM_COL32(0, 150, 136, 255),   bar_size.y); // BAR PROGRESS
+            ImGui::GetWindowDrawList()->AddRectFilled(bar_bg_bgn, bar_fg_end, IM_COL32(0, 144, 255, 255),   bar_size.y); // BAR PROGRESS
         }
         else if (all_plates_stats_item->slice_state == IMToolbarItem::SliceState::SLICE_FAILED) {
             text_top    = _u8L("Failed");

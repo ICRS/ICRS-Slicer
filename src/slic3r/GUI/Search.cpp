@@ -209,12 +209,12 @@ bool OptionsSearcher::search(const std::string &search, bool force /* = false*/,
         if (full_list) {
             std::string label = into_u8(get_label(opt));
             //all
-            if (type == Preset::TYPE_INVALID) { 
+            if (type == Preset::TYPE_INVALID) {
                 found.emplace_back(FoundOption{label, label, into_u8(get_tooltip(opt)), i, 0});
             } else if (type == opt.type){
                 found.emplace_back(FoundOption{label, label, into_u8(get_tooltip(opt)), i, 0});
             }
-            
+
             continue;
         }
 
@@ -257,7 +257,7 @@ bool OptionsSearcher::search(const std::string &search, bool force /* = false*/,
             } else if (type == opt.type) {
                 found.emplace_back(FoundOption{label_plain, label_u8, into_u8(get_tooltip(opt)), i, score});
             }
-            
+
         }
     }
 
@@ -434,7 +434,7 @@ void SearchItem::OnPaint(wxPaintEvent &event)
     int       left = 20;
 
     auto bold_pair = std::vector<std::pair<int, int>>();
-    
+
     auto index     = 0;
 
     auto b_first_list  = std::vector<int>();
@@ -473,19 +473,19 @@ void SearchItem::OnPaint(wxPaintEvent &event)
         auto inset = false;
         auto pair_index = 0;
         for (auto o = 0; o < bold_pair.size(); o++) {
-            if (c >= bold_pair[o].first && c <= bold_pair[o].second) { 
+            if (c >= bold_pair[o].first && c <= bold_pair[o].second) {
                 pair_index = o;
                 inset = true;
                 break;
             }
         }
 
-        if (!inset) { 
+        if (!inset) {
             left += DrawTextString(dc, str, wxPoint(left, top), false).GetWidth();
         } else {
             //str = str.erase(bold_pair[pair_index].first, 3);
             //str = str.erase(bold_pair[pair_index].second, 4);
-            if (c - bold_pair[pair_index].first >= 3 && bold_pair[pair_index].second - c > 3) { 
+            if (c - bold_pair[pair_index].first >= 3 && bold_pair[pair_index].second - c > 3) {
                 left += DrawTextString(dc, str, wxPoint(left, top), true).GetWidth();
             }
         }
@@ -494,7 +494,7 @@ void SearchItem::OnPaint(wxPaintEvent &event)
 
 void SearchItem::on_mouse_enter(wxMouseEvent &evt)
 {
-    SetBackgroundColour(StateColor::darkModeColorFor(wxColour("#BFE1DE"))); // ORCA color with %25 opacity
+    SetBackgroundColour(StateColor::darkModeColorFor(wxColour("#BFE1FF"))); // ORCA color with %25 opacity
     Refresh();
 }
 
@@ -506,7 +506,7 @@ void SearchItem::on_mouse_leave(wxMouseEvent &evt)
 
 void SearchItem::on_mouse_left_down(wxMouseEvent &evt)
 {
-    SetBackgroundColour(StateColor::darkModeColorFor(wxColour("#BFE1DE"))); // ORCA color with %25 opacity
+    SetBackgroundColour(StateColor::darkModeColorFor(wxColour("#BFE1FF"))); // ORCA color with %25 opacity
     Refresh();
 }
 
@@ -538,7 +538,7 @@ static const std::map<const char, int> icon_idxs = {
     {ImGui::PrintIconMarker, 0}, {ImGui::PrinterIconMarker, 1}, {ImGui::PrinterSlaIconMarker, 2}, {ImGui::FilamentIconMarker, 3}, {ImGui::MaterialIconMarker, 4},
 };
 
-SearchDialog::SearchDialog(OptionsSearcher *searcher, Preset::Type type, wxWindow *parent, TextInput *input, wxWindow *search_btn) 
+SearchDialog::SearchDialog(OptionsSearcher *searcher, Preset::Type type, wxWindow *parent, TextInput *input, wxWindow *search_btn)
     : PopupWindow(parent, wxBORDER_NONE | wxPU_CONTAINS_CONTROLS), searcher(searcher)
 {
     m_event_tag       = parent;
@@ -674,7 +674,7 @@ void SearchDialog::Dismiss()
     }
 }
 
-void SearchDialog::Die() 
+void SearchDialog::Die()
 {
     PopupWindow::Dismiss();
     wxCommandEvent event(wxCUSTOMEVT_EXIT_SEARCH);
