@@ -7,6 +7,7 @@ set -x
 #  -v /tmp/.X11-unix:/tmp/.X11-unix \
 #  If you get an error like "Authorization required, but no authorization protocol specified," run line 9 in your terminal before rerunning this program
 #  xhost +local:docker
+xhost si:localuser:$USER
 docker run \
   `# Use the hosts networking.  Printer wifi and also dbus communication` \
   --net=host \
