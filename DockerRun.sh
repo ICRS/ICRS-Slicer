@@ -14,8 +14,9 @@ docker run \
   --ipc host \
   `# Run as your workstations username to keep permissions the same` \
   -u $USER \
+  --user $UID \
   `# Bind mount your home directory into the container for loading/saving files` \
-  -v /root:/$USER \
+  -v $HOME:/home/ubuntu \
   `# Pass the X display number to the container` \
   -e DISPLAY=$DISPLAY \
   `# It seems that libGL and dbus things need privileged mode` \
@@ -25,5 +26,4 @@ docker run \
   `# Clean up after yourself` \
   --rm \
   `# Pass all parameters from this script to the orca slicer  ENTRYPOINT binary` \
-  orcaslicer $* 
-  
+  orcaslicer $*
