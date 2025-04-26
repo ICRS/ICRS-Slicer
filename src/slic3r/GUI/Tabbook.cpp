@@ -15,7 +15,7 @@
 wxDEFINE_EVENT(wxCUSTOMEVT_TABBOOK_SEL_CHANGED, wxCommandEvent);
 
 const static wxColour TAB_BUTTON_BG  = wxColour("#FEFFFF");
-const static wxColour TAB_BUTTON_SEL = wxColour("#BFE1DE"); // ORCA
+const static wxColour TAB_BUTTON_SEL = wxColour("#BFE1FF"); // ORCA
 
 static const wxFont& TAB_BUTTON_FONT     = Label::Body_14;
 static const wxFont& TAB_BUTTON_FONT_SEL = Label::Head_14;
@@ -72,7 +72,7 @@ void TabButtonsListCtrl::OnPaint(wxPaintEvent &)
     for (int idx = 0; idx < int(m_pageButtons.size()); idx++) {
         TabButton *btn = m_pageButtons[idx];
         btn->SetBackgroundColor(idx == m_selection ? TAB_BUTTON_SEL : TAB_BUTTON_BG);
-        
+
         wxPoint pos = btn->GetPosition();
         wxSize size = btn->GetSize();
         const wxColour &clr  = StateColor::darkModeColorFor(idx == m_selection ? btn_marker_color : TAB_BUTTON_BG);
@@ -193,5 +193,3 @@ void TabButtonsListCtrl::SetPaddingSize(const wxSize& size) {
 }
 
 //#endif // _WIN32
-
-

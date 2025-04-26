@@ -177,11 +177,11 @@ body {
 }
 
 .BtnItem:hover {
-  background-color: #bfe1de; /*ORCA color with %25 opacity*/
+  background-color: #bfe1ff; /*ORCA color with %25 opacity*/
 }
 
 .BtnItemSelected {
-  background-color: #bfe1de; /*ORCA color with %25 opacity*/
+  background-color: #bfe1ff; /*ORCA color with %25 opacity*/
 }
 
 .BtnIcon {
