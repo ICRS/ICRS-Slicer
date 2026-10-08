@@ -16,6 +16,10 @@
 
 #include <bitset>
 
+//unofficial linux lib
+#ifdef HAVE_SPNAV
+#include <spnav.h>
+#endif
 
 // WARN: If updating these lists, please also update resources/udev/90-3dconnexion.rules
 

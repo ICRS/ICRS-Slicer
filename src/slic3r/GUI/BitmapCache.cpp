@@ -13,11 +13,12 @@
     #include <wx/mstream.h>
     #include <wx/rawbmp.h>
 #endif /* __WXGTK2__ */
-
+#include <glad/gl.h>
 #define NANOSVG_IMPLEMENTATION
 #include "nanosvg/nanosvg.h"
 #define NANOSVGRAST_IMPLEMENTATION
 #include "nanosvg/nanosvgrast.h"
+#include "3DScene.hpp"
 
 namespace Slic3r { namespace GUI {
 
@@ -202,7 +203,7 @@ wxBitmap* BitmapCache::insert(const std::string &bitmap_key, const wxBitmap *beg
         x += bmp->GetScaledWidth();
 #else
         x += bmp->GetWidth();
-#endif
+#endif 
     }
     memDC.SelectObject(wxNullBitmap);
     return bitmap;
@@ -233,8 +234,8 @@ wxBitmap* BitmapCache::insert_raw_rgba(const std::string &bitmap_key, unsigned w
 wxBitmap* BitmapCache::load_png(const std::string &bitmap_name, unsigned width, unsigned height,
     const bool grayscale/* = false*/, const float scale_in_center/* = 0*/) // BBS: support resize by fill border
 {
-    std::string bitmap_key = bitmap_name + ( height !=0 ?
-                                           "-h" + std::to_string(height) :
+    std::string bitmap_key = bitmap_name + ( height !=0 ? 
+                                           "-h" + std::to_string(height) : 
                                            "-w" + std::to_string(width))
                                          + (grayscale ? "-gs" : "");
 
@@ -306,11 +307,11 @@ error:
     return NULL;
 }
 
-wxBitmap* BitmapCache::load_svg(const std::string &bitmap_name, unsigned target_width, unsigned target_height,
+wxBitmap* BitmapCache::load_svg(const std::string &bitmap_name, unsigned target_width, unsigned target_height, 
     const bool grayscale/* = false*/, const bool dark_mode/* = false*/, const std::string& new_color /*= ""*/, const float scale_in_center/* = 0*/)
 {
-    std::string bitmap_key = bitmap_name + ( target_height !=0 ?
-                                           "-h" + std::to_string(target_height) :
+    std::string bitmap_key = bitmap_name + ( target_height !=0 ? 
+                                           "-h" + std::to_string(target_height) : 
                                            "-w" + std::to_string(target_width))
                                          + (m_scale != 1.0f ? "-s" + float_to_string_decimal_point(m_scale) : "")
                                          + (dark_mode ? "-dm" : "")
@@ -327,7 +328,7 @@ wxBitmap* BitmapCache::load_svg(const std::string &bitmap_name, unsigned target_
     replaces["\"#00FF00\""] = "\"#52c7b8\"";
     if (dark_mode) {
         replaces["\"#262E30\""] = "\"#EFEFF0\"";
-        replaces["\"#5476b0\""] = "\"#B3B3B5\"";
+        replaces["\"#5476B0\""] = "\"#B3B3B5\"";
         replaces["\"#808080\""] = "\"#818183\"";
         //replaces["\"#ACACAC\""] = "\"#54545A\"";
         replaces["\"#CECECE\""] = "\"#54545B\"";
@@ -335,6 +336,7 @@ wxBitmap* BitmapCache::load_svg(const std::string &bitmap_name, unsigned target_
         replaces["\"#909090\""] = "\"#FFFFFF\"";
         replaces["\"#00FF00\""] = "\"#FF0000\"";
         replaces["\"#0085ff\""] = "\"#0085ff\"";
+        replaces["\"#F1F1F1\""] = "\"#36363B\"";
         replaces["#DBDBDB"] = "#4A4A51"; // ORCA border color
         replaces["#F0F0F1"] = "#333337"; // ORCA disabled background color
         replaces["#262E30"] = "#EFEFF0"; // ORCA
@@ -345,8 +347,8 @@ wxBitmap* BitmapCache::load_svg(const std::string &bitmap_name, unsigned target_
     if (strstr(bitmap_name.c_str(), "toggle_on") != NULL && dark_mode) // ORCA only replace color of toggle button
         replaces["#0085ff"] = "#0085ff";
 
-    //if (!new_color.empty())
-    //    replaces["\"#ED6B21\""] = "\"" + new_color + "\"";
+    if (!new_color.empty())
+        replaces["\"#0085ff\""] = "\"" + new_color + "\"";
 
      NSVGimage *image = nullptr;
     if (strstr(bitmap_name.c_str(), "printer_thumbnail") == NULL) {
@@ -365,7 +367,7 @@ wxBitmap* BitmapCache::load_svg(const std::string &bitmap_name, unsigned target_
 
     target_height != 0 ? target_height *= m_scale : target_width *= m_scale;
 
-    float svg_scale = target_height != 0 ?
+    float svg_scale = target_height != 0 ? 
                   (float)target_height / image->height  : target_width != 0 ?
                   (float)target_width / image->width    : 1;
 
@@ -406,7 +408,7 @@ wxBitmap* BitmapCache::load_svg2(const std::string& bitmap_name, unsigned target
         replaces["#D9D9D9"] = array_new_color[0];
         replaces["fill-opacity=\"1.0"] = array_new_color[1];
     }
-
+    
 
     NSVGimage* image = nullptr;
     image = nsvgParseFromFileWithReplace(Slic3r::var(bitmap_name + ".svg").c_str(), "px", 96.0f, replaces);
@@ -551,6 +553,67 @@ bool BitmapCache::parse_color4(const std::string& scolor, unsigned char* rgba_ou
             return false;
         rgba_out[i] = (unsigned char)(digit1 * 16 + digit2);
     }
+    return true;
+}
+//BBS Replace svg green with the specified colour
+bool BitmapCache::load_from_svg_file_change_color(const std::string &filename, unsigned width, unsigned height, ImTextureID &texture_id, const char *hexColor)
+{
+    NSVGimage* image = nsvgParseFromFile(filename.c_str(), "px", 96.0f);
+    if (image == nullptr) {
+        return false;
+    }
+    char temp_color[8];
+    strncpy(temp_color, hexColor, 7);
+    temp_color[7]             = '\0';
+    unsigned int change_color = nsvg__parseColorHex(temp_color);
+    change_color |= (unsigned int) (1.0f * 255) << 24; // opacity
+    unsigned int green_color = 0xFF889600; // #0085ff
+    for (NSVGshape* shape = image->shapes; shape != nullptr; shape = shape->next) {
+        // find green color
+        if (shape->fill.color == green_color) {
+            shape->fill.color = change_color;
+        }
+    }
+
+    float scale = (float)width / image->width;
+
+    int n_pixels = width * height;
+
+    if (n_pixels <= 0) {
+        nsvgDelete(image);
+        return false;
+    }
+
+    NSVGrasterizer* rast = nsvgCreateRasterizer();
+    if (rast == nullptr) {
+        nsvgDelete(image);
+        return false;
+    }
+    std::vector<unsigned char> data(n_pixels * 4, 0);
+    nsvgRasterize(rast, image, 0, 0, scale, data.data(), width, height, width * 4);
+
+    bool compress = false;
+    GLint last_texture;
+    unsigned m_image_texture{ 0 };
+    unsigned char* pixels = (unsigned char*)(&data[0]);
+
+    glsafe(::glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture));
+    glsafe(::glGenTextures(1, &m_image_texture));
+    glsafe(::glBindTexture(GL_TEXTURE_2D, m_image_texture));
+    glsafe(::glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+    glsafe(::glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+    glsafe(::glPixelStorei(GL_UNPACK_ROW_LENGTH, 0));
+    glsafe(::glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels));
+
+    // Store our identifier
+    texture_id = (ImTextureID)(intptr_t)m_image_texture;
+
+    // Restore state
+    glsafe(::glBindTexture(GL_TEXTURE_2D, last_texture));
+
+    nsvgDeleteRasterizer(rast);
+    nsvgDelete(image);
+
     return true;
 }
 

@@ -100,9 +100,6 @@ MsgUpdateConfig::MsgUpdateConfig(const std::vector<Update> &updates, bool force_
 	auto  title = force_before_wizard ? _L("Configuration update") : _L("Configuration update");
 	SetTitle(title);
 
-	std::string icon_path = (boost::format("%1%/images/OrcaSlicerTitle.ico") % resources_dir()).str();
-    SetIcon(wxIcon(encode_path(icon_path.c_str()), wxBITMAP_TYPE_ICO));
-
     SetBackgroundColour(*wxWHITE);
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top   = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1));
@@ -124,7 +121,7 @@ MsgUpdateConfig::MsgUpdateConfig(const std::vector<Update> &updates, bool force_
     wxBoxSizer *m_sizer_right = new wxBoxSizer(wxVERTICAL);
 
 
-    auto m_text_up_info = new wxStaticText(this, wxID_ANY, _L("A new configuration package available, Do you want to install it?"), wxDefaultPosition, wxDefaultSize, 0);
+    auto m_text_up_info = new wxStaticText(this, wxID_ANY, _L("A new configuration package is available. Do you want to install it?"), wxDefaultPosition, wxDefaultSize, 0);
     m_text_up_info->SetFont(::Label::Head_14);
     m_text_up_info->SetForegroundColour(wxColour(0x26, 0x2E, 0x30));
     m_text_up_info->Wrap(-1);
@@ -140,32 +137,12 @@ MsgUpdateConfig::MsgUpdateConfig(const std::vector<Update> &updates, bool force_
 
 	auto sizer_button = new wxBoxSizer(wxHORIZONTAL);
     sizer_button->Add(0, 0, 1, wxEXPAND, 5);
-
-
-	StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-                            std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered), std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
-
-    StateColor btn_bg_white(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Pressed),
-                            std::pair<wxColour, int>(wxColour(238, 238, 238), StateColor::Hovered),
-                            std::pair<wxColour, int>(*wxWHITE, StateColor::Normal));
-
-
+  
 	auto m_butto_ok = new Button(this, _L("OK"));
-    m_butto_ok->SetBackgroundColor(btn_bg_green);
-    m_butto_ok->SetBorderColor(*wxWHITE);
-    m_butto_ok->SetTextColor(*wxWHITE);
-    m_butto_ok->SetFont(Label::Body_12);
-    m_butto_ok->SetSize(wxSize(FromDIP(58), FromDIP(24)));
-    m_butto_ok->SetMinSize(wxSize(FromDIP(58), FromDIP(24)));
-
+    m_butto_ok->SetStyle(ButtonStyle::Confirm, ButtonType::Choice);
 
     auto m_button_cancel = new Button(this, _L("Cancel"));
-    m_button_cancel->SetBackgroundColor(*wxWHITE);
-    m_button_cancel->SetBorderColor(wxColour(38, 46, 48));
-    m_button_cancel->SetFont(Label::Body_12);
-    m_button_cancel->SetSize(wxSize(FromDIP(58), FromDIP(24)));
-    m_button_cancel->SetMinSize(wxSize(FromDIP(58), FromDIP(24)));
-
+    m_button_cancel->SetStyle(ButtonStyle::Regular, ButtonType::Choice);
 
     sizer_button->Add(m_butto_ok, 0, wxALL, 5);
     sizer_button->Add(m_button_cancel, 0, wxALL, 5);
@@ -173,13 +150,13 @@ MsgUpdateConfig::MsgUpdateConfig(const std::vector<Update> &updates, bool force_
 	m_sizer_right->Add(m_scrollwindw_release_note, 0, wxEXPAND | wxRIGHT, FromDIP(20));
     m_sizer_right->Add(sizer_button, 0, wxEXPAND | wxRIGHT, FromDIP(20));
 
-
+    
     m_sizer_body->Add(m_sizer_right, 1, wxBOTTOM | wxEXPAND, FromDIP(30));
     m_sizer_main->Add(m_sizer_body, 0, wxEXPAND, 0);
 
 	wxBoxSizer *content_sizer             = new wxBoxSizer(wxVERTICAL);
 
-
+   
 
 
 
@@ -211,20 +188,20 @@ MsgUpdateConfig::MsgUpdateConfig(const std::vector<Update> &updates, bool force_
 
         versions->Add(flex);
 
-
+		
 
         // BBS: use changelog string instead of url
 
-			//auto change_log = new wxStaticText(m_scrollwindw_release_note, wxID_ANY, from_u8(update.change_log), wxDefaultPosition, wxDefaultSize);
+			//auto change_log = new wxStaticText(m_scrollwindw_release_note, wxID_ANY, from_u8(update.change_log), wxDefaultPosition, wxDefaultSize); 
 			changelog_textctrl->SetLabel(changelog_textctrl->GetLabel() + wxString::Format("%s\n", from_u8(update.change_log)));
     }
 
 	content_sizer->Add(versions);
 
-
+	
 
     ////BBS: use changelog string instead of url
-    if (changelog_textctrl)
+    if (changelog_textctrl) 
 		content_sizer->Add(changelog_textctrl, 1, wxEXPAND | wxTOP, FromDIP(30));
 
 
@@ -252,13 +229,13 @@ MsgUpdateConfig::~MsgUpdateConfig() {}
 //MsgUpdateForced
 
 MsgUpdateForced::MsgUpdateForced(const std::vector<Update>& updates) :
-    MsgDialog(nullptr, _(L("Configuration incompatible")), _(L("the configuration package is incompatible with current application.")) + " ", wxOK | wxICON_ERROR)
+    MsgDialog(nullptr, _(L("Configuration incompatible")), _(L("the configuration package is incompatible with the current application.")) + " ", wxOK | wxICON_ERROR)
 {
 	auto* text = new wxStaticText(this, wxID_ANY, wxString::Format(_(L(
-		"The configuration package is incompatible with current application.\n"
-		"%s will update the configuration package, Otherwise it won't be able to start"
+		"The configuration package is incompatible with the current application.\n"
+		"%s will update the configuration package to allow the application to start."
 	)), SLIC3R_APP_FULL_NAME));
-
+	
 
 	text->Wrap(CONTENT_WIDTH * wxGetApp().em_unit());
 	content_sizer->Add(text);
@@ -317,7 +294,7 @@ MsgUpdateForced::~MsgUpdateForced() {}
 // MsgDataIncompatible
 
 MsgDataIncompatible::MsgDataIncompatible(const std::unordered_map<std::string, wxString> &incompats) :
-    MsgDialog(nullptr,  _(L("Configuration incompatible")), _(L("the Configuration package is incompatible with current APP.")), wxICON_ERROR)
+    MsgDialog(nullptr,  _(L("Configuration incompatible")), _(L("the configuration package is incompatible with the current application.")), wxICON_ERROR)
 {
     //TODO
 	//auto *text = new wxStaticText(this, wxID_ANY, wxString::Format(_(L(
@@ -325,7 +302,7 @@ MsgDataIncompatible::MsgDataIncompatible(const std::unordered_map<std::string, w
 	//	"This probably happened as a result of running an older %s after using a newer one.\n\n"
 
 	//	"You may either exit %s and try again with a newer version, or you may re-run the initial configuration. "
-	//	"Doing so will create a backup snapshot of the existing configuration before installing files compatible with this %s.")) + "\n",
+	//	"Doing so will create a backup snapshot of the existing configuration before installing files compatible with this %s.")) + "\n", 
 	//	SLIC3R_APP_NAME, SLIC3R_APP_NAME, SLIC3R_APP_NAME, SLIC3R_APP_NAME));
 	//text->Wrap(CONTENT_WIDTH * wxGetApp().em_unit());
 	//content_sizer->Add(text);

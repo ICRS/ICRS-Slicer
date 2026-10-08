@@ -7,7 +7,7 @@
 
 
 wxDEFINE_EVENT(wxCUSTOMEVT_SET_TEMP_FINISH, wxCommandEvent);
-BEGIN_EVENT_TABLE(ProgressBar, wxPanel)
+BEGIN_EVENT_TABLE(ProgressBar, wxWindow)
 EVT_PAINT(ProgressBar::paintEvent)
 END_EVENT_TABLE()
 
@@ -114,9 +114,13 @@ void ProgressBar::Reset()
 
 void ProgressBar::SetProgress(int step)
 {
-    m_disable = false;
     if (step < 0) return;
-    //if (step == m_step) return;
+    if (m_disable == false && m_step == step)
+    {
+        return;
+    }
+
+    m_disable = false;
     m_step = step;
     Refresh();
 }
