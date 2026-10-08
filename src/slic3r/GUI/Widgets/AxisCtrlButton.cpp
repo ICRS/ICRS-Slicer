@@ -9,12 +9,17 @@ StateColor blank_bg(StateColor(std::make_pair(wxColour("#FFFFFF"), (int)StateCol
 static const wxColour BUTTON_BG_COL = wxColour("#EEEEEE");
 static const wxColour BUTTON_IN_BG_COL = wxColour("#CECECE");
 
+<<<<<<< HEAD
 static const wxColour bd = wxColour(0, 133, 255);
 static const wxColour text_num_color = wxColour(0x898989);
+=======
+static const wxColour bd = wxColour(0, 150, 136);
+static const wxColour text_num_color   = wxColour("#898989");
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 static const wxColour BUTTON_PRESS_COL = wxColour(172, 172, 172);
 static const double sqrt2 = std::sqrt(2);
 
-BEGIN_EVENT_TABLE(AxisCtrlButton, wxPanel)
+BEGIN_EVENT_TABLE(AxisCtrlButton, wxWindow)
 EVT_LEFT_DOWN(AxisCtrlButton::mouseDown)
 EVT_LEFT_UP(AxisCtrlButton::mouseReleased)
 EVT_MOTION(AxisCtrlButton::mouseMoving)
@@ -124,7 +129,9 @@ void AxisCtrlButton::SetInnerBackgroundColor(StateColor const& color)
 
 void AxisCtrlButton::SetBitmap(ScalableBitmap &bmp)
 {
-    m_icon = bmp;
+    if (&bmp  && (& bmp.bmp()) && (bmp.bmp().IsOk())) {
+        m_icon = bmp;
+    }
 }
 
 void AxisCtrlButton::Rescale() {

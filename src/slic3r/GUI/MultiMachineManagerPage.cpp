@@ -2,6 +2,8 @@
 #include "GUI_App.hpp"
 #include "MainFrame.hpp"
 
+#include "DeviceCore/DevManager.h"
+
 namespace Slic3r {
 namespace GUI {
 
@@ -18,7 +20,7 @@ MultiMachineItem::MultiMachineItem(wxWindow* parent, MachineObject* obj)
     Bind(wxEVT_LEFT_DOWN, &MultiMachineItem::OnLeftDown, this);
     Bind(wxEVT_MOTION, &MultiMachineItem::OnMove, this);
     Bind(EVT_MULTI_DEVICE_VIEW, [this, obj](auto& e) {
-        wxGetApp().mainframe->jump_to_monitor(obj->dev_id);
+        wxGetApp().mainframe->jump_to_monitor(obj->get_dev_id());
         if (wxGetApp().mainframe->m_monitor->get_status_panel()->get_media_play_ctrl()) {
             wxGetApp().mainframe->m_monitor->get_status_panel()->get_media_play_ctrl()->jump_to_play();
         }
@@ -152,7 +154,7 @@ void MultiMachineItem::doRender(wxDC& dc)
 
     if (obj_) {
         //dev name
-        wxString dev_name = wxString::FromUTF8(obj_->dev_name);
+        wxString dev_name = wxString::FromUTF8(obj_->get_dev_name());
         if (!obj_->is_online()) {
             dev_name = dev_name + "(" + _L("Offline") + ")";
         }
@@ -186,8 +188,13 @@ void MultiMachineItem::doRender(wxDC& dc)
         }
         else if (state_device > 2 && state_device < 7) {
             dc.SetFont(Label::Body_12);
+<<<<<<< HEAD
             dc.SetTextForeground(wxColour(0, 133, 255));
             if (obj_->get_curr_stage().IsEmpty() && obj_->subtask_) {
+=======
+            dc.SetTextForeground(wxColour(0, 150, 136));
+            if (obj_->get_curr_stage() == _L("Printing") && obj_->subtask_) {
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
                 //wxString layer_info = wxString::Format(_L("Layer: %d/%d"), obj_->curr_layer, obj_->total_layers);
                 wxString progress_info = wxString::Format("%d", obj_->subtask_->task_progress);
                 wxString left_time = wxString::Format("%s", get_left_time(obj_->mc_left_time));
@@ -235,7 +242,7 @@ void MultiMachineItem::doRender(wxDC& dc)
 void MultiMachineItem::post_event(wxCommandEvent&& event)
 {
     event.SetEventObject(this);
-    event.SetString(obj_->dev_id);
+    event.SetString(obj_->get_dev_id());
     event.SetInt(state_selected);
     wxPostEvent(this, event);
 }
@@ -280,6 +287,7 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
     );
 
     //edit prints
+<<<<<<< HEAD
     auto m_btn_bg_enable = StateColor(
         std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
         std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
@@ -293,16 +301,12 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
     StateColor clean_bd(std::pair<wxColour, int>(wxColour(144, 144, 144), StateColor::Disabled), std::pair<wxColour, int>(wxColour(38, 46, 48), StateColor::Enabled));
     StateColor clean_text(std::pair<wxColour, int>(wxColour(144, 144, 144), StateColor::Disabled), std::pair<wxColour, int>(wxColour(38, 46, 48), StateColor::Enabled));
 
+=======
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     auto sizer_button_printer = new wxBoxSizer(wxHORIZONTAL);
     sizer_button_printer->SetMinSize(wxSize(FromDIP(DEVICE_ITEM_MAX_WIDTH), -1));
     m_button_edit = new Button(m_main_panel, _L("Edit Printers"));
-    m_button_edit->SetBackgroundColor(clean_bg);
-    m_button_edit->SetBorderColor(clean_bd);
-    m_button_edit->SetTextColor(clean_text);
-    m_button_edit->SetFont(Label::Body_12);
-    m_button_edit->SetCornerRadius(6);
-    m_button_edit->SetMinSize(wxSize(FromDIP(90), FromDIP(36)));
-    m_button_edit->SetMaxSize(wxSize(FromDIP(90), FromDIP(36)));
+    m_button_edit->SetStyle(ButtonStyle::Confirm, ButtonType::Window);
 
     m_button_edit->Bind(wxEVT_BUTTON, [this](wxCommandEvent& evt) {
         MultiMachinePickPage dlg;
@@ -320,7 +324,7 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
     m_table_head_panel->SetBackgroundColour(TABLE_HEAR_NORMAL_COLOUR);
     m_table_head_sizer = new wxBoxSizer(wxHORIZONTAL);
 
-    m_printer_name = new Button(m_table_head_panel, _L("Device Name"), "toolbar_double_directional_arrow", wxNO_BORDER, ICON_SIZE);
+    m_printer_name = new Button(m_table_head_panel, _L("Device Name"), "toolbar_double_directional_arrow", wxNO_BORDER, ICON_SINGLE_SIZE);
     m_printer_name->SetBackgroundColor(head_bg);
     m_printer_name->SetFont(TABLE_HEAD_FONT);
     m_printer_name->SetCornerRadius(0);
@@ -341,9 +345,13 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
         this->m_sort.set_role(sortcb, SortItem::SR_MACHINE_NAME, device_dev_name_big);
         this->refresh_user_device();
     });
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
 
-    m_task_name = new Button(m_table_head_panel, _L("Task Name"), "", wxNO_BORDER, ICON_SIZE);
+    m_task_name = new Button(m_table_head_panel, _L("Task Name"), "", wxNO_BORDER, ICON_SINGLE_SIZE);
     m_task_name->SetBackgroundColor(TABLE_HEAR_NORMAL_COLOUR);
     m_task_name->SetFont(TABLE_HEAD_FONT);
     m_task_name->SetCornerRadius(0);
@@ -351,9 +359,13 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
     m_task_name->SetMaxSize(wxSize(FromDIP(DEVICE_LEFT_DEV_NAME), FromDIP(DEVICE_ITEM_MAX_HEIGHT)));
     m_task_name->SetCenter(false);
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
 
-    m_status = new Button(m_table_head_panel, _L("Device Status"), "toolbar_double_directional_arrow", wxNO_BORDER, ICON_SIZE);
+    m_status = new Button(m_table_head_panel, _L("Device Status"), "toolbar_double_directional_arrow", wxNO_BORDER, ICON_SINGLE_SIZE);
     m_status->SetBackgroundColor(head_bg);
     m_status->SetFont(TABLE_HEAD_FONT);
     m_status->SetCornerRadius(0);
@@ -374,9 +386,13 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
         this->m_sort.set_role(sortcb, SortItem::SortRule::SR_MACHINE_STATE, device_state_big);
         this->refresh_user_device();
     });
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
 
-    m_action = new Button(m_table_head_panel, _L("Actions"), "", wxNO_BORDER, ICON_SIZE, false);
+    m_action = new Button(m_table_head_panel, _L("Actions"), "", wxNO_BORDER, ICON_SINGLE_SIZE, false);
     m_action->SetBackgroundColor(TABLE_HEAR_NORMAL_COLOUR);
     m_action->SetFont(TABLE_HEAD_FONT);
     m_action->SetCornerRadius(0);
@@ -403,13 +419,7 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
     m_tip_text->Wrap(-1);
 
     m_button_add = new Button(m_main_panel, _L("Add"));
-    m_button_add->SetBackgroundColor(m_btn_bg_enable);
-    m_button_add->SetBorderColor(m_btn_bg_enable);
-    m_button_add->SetTextColor(*wxWHITE);
-    m_button_add->SetFont(Label::Body_12);
-    m_button_add->SetCornerRadius(6);
-    m_button_add->SetMinSize(wxSize(FromDIP(90), FromDIP(36)));
-    m_button_add->SetMaxSize(wxSize(FromDIP(90), FromDIP(36)));
+    m_button_add->SetStyle(ButtonStyle::Confirm, ButtonType::Window);
 
     m_button_add->Bind(wxEVT_BUTTON, [this](wxCommandEvent& evt) {
         MultiMachinePickPage dlg;
@@ -517,7 +527,7 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
     m_main_panel->SetSizer(m_main_sizer);
     m_main_panel->Layout();
     page_sizer = new wxBoxSizer(wxVERTICAL);
-    page_sizer->Add(m_main_panel, 1, wxALL | wxEXPAND, FromDIP(25));
+    page_sizer->Add(m_main_panel, 1, wxALL | wxEXPAND, FromDIP(10)); // ORCA match margin with other tabs
 
     SetSizer(page_sizer);
     Layout();
@@ -620,8 +630,8 @@ void MultiMachineManagerPage::sync_state(MachineObject* obj_)
     ObjState state_obj;
 
     if (obj_) {
-        state_obj.dev_id = obj_->dev_id;
-        state_obj.state_dev_name = obj_->dev_name;
+        state_obj.dev_id = obj_->get_dev_id();
+        state_obj.state_dev_name = obj_->get_dev_name();
 
         if (obj_->print_status == "IDLE") {
             state_obj.state_device = 0;
@@ -676,7 +686,7 @@ void MultiMachineManagerPage::start_timer()
 
     m_flipping_timer->SetOwner(this);
     m_flipping_timer->Start(1000);
-    wxPostEvent(this, wxTimerEvent());
+    wxPostEvent(this, wxTimerEvent(*m_flipping_timer));
 }
 
 void MultiMachineManagerPage::update_page_number()

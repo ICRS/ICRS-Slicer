@@ -11,6 +11,7 @@ html {
   height: 100%;
 }
 
+<<<<<<< HEAD
 body {
   min-width: 1280px;
   height: 100%;
@@ -38,6 +39,40 @@ body {
   position: relative;
   overflow-y: hidden;
   display: none;
+=======
+body
+{
+	/* min-width: 1280px; ORCA fixes scrollbar appear on welcome screen */
+	height: 100%;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #F4F4F4;	
+	font-size: 14px;	
+	color: #595959;	
+	line-height: 24px;
+}
+
+#EmptyArea
+{
+	/* min-width: 1280px; ORCA fixes scrollbar appear on welcome screen */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}
+
+
+#WholeArea
+{
+	min-width: 1280px; /* ORCA fix scrollbar appears on welcome screen */
+	height:  100%;
+	position: relative;
+	overflow-y: hidden;
+	display: none;
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 }
 
 .ZScrol::-webkit-scrollbar {
@@ -318,6 +353,7 @@ body {
   background-color: rgba(255, 0, 0, 0.5) !important;
 }
 
+<<<<<<< HEAD
 #AddModelInfoBtn {
   border-width: 1px;
   border-style: solid;
@@ -332,3 +368,10 @@ body {
 #AddModelInfoBtn:hover {
   background-color: #cdcece;
 }
+=======
+#AddModelInfoBtn
+{
+	margin-top: 20px;
+	margin-right:0;
+}
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1

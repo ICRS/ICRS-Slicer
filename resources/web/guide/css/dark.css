@@ -3,9 +3,16 @@
   border-color: #b9b9bc;
 }
 
+<<<<<<< HEAD
 body {
   background-color: #3e3e45;
   color: #efeff0;
+=======
+body
+{
+	background-color:#2D2D31; /* ORCA match background color */
+	color: #efeff0;
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 }
 
 .ZScrol::-webkit-scrollbar-thumb {
@@ -22,6 +29,7 @@ body {
   color: #0085ff;
 }
 
+<<<<<<< HEAD
 /*-----Button-----*/
 .GrayBtn {
   border: 1px solid #b9b9bc;
@@ -33,6 +41,8 @@ body {
   color: #565656;
 }
 
+=======
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 /*-------Text------*/
 
 .TextS1 {

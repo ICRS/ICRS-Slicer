@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .ChooseBlock {
   display: flex;
   line-height: 32px;
@@ -98,4 +99,12 @@ input {
 
 #GotoNetPluginBtn {
   display: none;
+=======
+#Content {
+	padding: 10px 15px 5px;
+}
+
+#GotoNetPluginBtn {
+	display: none;
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 }

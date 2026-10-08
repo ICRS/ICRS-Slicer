@@ -2,9 +2,17 @@ html {
   background-color: #fff;
 }
 
+<<<<<<< HEAD
 body {
   text-align: center;
   padding-top: 10%;
+=======
+body
+{
+	text-align:center;
+	padding-top: 10%;
+	overflow: auto;
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 }
 
 #SlicerIcon {
@@ -26,7 +34,14 @@ body {
   align-items: center;
 }
 
+<<<<<<< HEAD
 #StartBtn {
   display: inline-block;
   text-decoration: none;
+=======
+#StartBtn
+{
+	display: inline-block;
+    text-decoration:none;	
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 }

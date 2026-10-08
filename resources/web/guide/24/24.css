@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #Content {
   overflow-y: auto;
 }
@@ -157,3 +158,10 @@
   padding-bottom: 5px;
   padding-left: 42px;
 }
+=======
+
+/* UNIQUE STYLES */
+#CreateBtn {
+	margin: 0 auto 0 0;
+}
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1

@@ -25,6 +25,7 @@ body {
 }
 
 /*----Left Menu Button----*/
+<<<<<<< HEAD
 #LogoutBtn:hover {
   background: #223c3c;
   color: #efeff0;
@@ -32,6 +33,11 @@ body {
 
 .BtnItem {
   color: #b3b3b5;
+=======
+.BtnItem
+{
+	color:#B3B3B5;
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 }
 
 .BtnItem:hover {
@@ -58,12 +64,18 @@ body {
   background-color: #223c3c;
 }
 
+<<<<<<< HEAD
 #RecentClearAllBtn:hover {
   color: #000;
 }
 
 .FileImg {
   background-color: #36363c; /*ORCA use darker color for dark theme for thumbnails*/
+=======
+.FileImg
+{
+	background-color: #36363C; /*ORCA use darker color for dark theme for thumbnails*/
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 }
 
 #recnet_context_menu {
@@ -109,7 +121,25 @@ body {
   border: 1px solid rgba(129, 129, 131, 0.64);
 }
 
+<<<<<<< HEAD
 .swiper-button-next {
   background: rgba(54, 54, 60, 0.88);
   border: 1px solid rgba(129, 129, 131, 0.64);
 }
+=======
+.swiper-button-next
+{
+	background: rgba(54, 54, 60, 0.88);
+    border: 1px solid rgba(129, 129, 131, 0.64);
+}
+
+/*--- Account Sections ---*/
+.AccountSectionLabel    { color: #818183; }
+.OrcaAccountText        { color: #efeff0; }
+.AccountStatusText      { color: #818183; }
+
+/*--- Bambu Cloud Section ---*/
+#BambuCloudHeader       { color: #818183; }
+#BambuCloudHeader:hover { color: #efeff0; }
+.bambu-chevron svg path { stroke: currentColor; }
+>>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
