@@ -114,10 +114,6 @@ void ProgressBar::Reset()
 
 void ProgressBar::SetProgress(int step)
 {
-<<<<<<< HEAD
-    m_disable = false;
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     if (step < 0) return;
     if (m_disable == false && m_step == step)
     {

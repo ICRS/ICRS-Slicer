@@ -285,11 +285,6 @@ SendToPrinterDialog::SendToPrinterDialog(Plater *plater)
     m_comboBox_printer->Bind(wxEVT_COMBOBOX, &SendToPrinterDialog::on_selection_changed, this);
 
     m_sizer_printer->Add(m_comboBox_printer, 1, wxEXPAND | wxRIGHT, FromDIP(5));
-<<<<<<< HEAD
-    btn_bg_enable = StateColor(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                               std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     m_button_refresh = new Button(this, _L("Refresh"));
     m_button_refresh->SetStyle(ButtonStyle::Confirm, ButtonType::Window);
@@ -358,7 +353,7 @@ SendToPrinterDialog::SendToPrinterDialog(Plater *plater)
     m_status_bar    = std::make_shared<BBLStatusBarSend>(m_simplebook);
     m_panel_sending = m_status_bar->get_panel();
     m_simplebook->AddPage(m_panel_sending, wxEmptyString, false);
-
+    
     m_worker = std::make_unique<PlaterWorker<BoostThreadWorker>>(this, m_status_bar, "send_worker");
 
     // finish mode
@@ -921,8 +916,6 @@ void SendToPrinterDialog::on_ok(wxCommandEvent &event)
 		file_name = default_output_file_path.filename().string();
     }*/
 
-<<<<<<< HEAD
-=======
     if (obj_->is_support_brtc && (m_tcp_try_connect || m_tutk_try_connect))
     {
         update_print_status_msg(wxEmptyString, false, false);
@@ -958,7 +951,6 @@ void SendToPrinterDialog::on_ok(wxCommandEvent &event)
         auto m_send_job           = std::make_unique<SendJob>(m_printer_last_select);
         m_send_job->m_dev_ip      = obj_->get_dev_ip();
         m_send_job->m_access_code = obj_->get_access_code();
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
 
         BOOST_LOG_TRIVIAL(info) << "send_job: use ftp send job";
@@ -981,16 +973,7 @@ void SendToPrinterDialog::on_ok(wxCommandEvent &event)
             : m_send_job->sdcard_state == DevStorage::SdcardState::HAS_SDCARD_NORMAL;
         m_send_job->set_project_name(m_current_project_name.utf8_string());
 
-<<<<<<< HEAD
-    m_send_job->connection_type     = obj_->connection_type();
-    m_send_job->cloud_print_only    = true;
-    m_send_job->has_sdcard          = obj_->has_sdcard();
-    m_send_job->set_project_name(m_current_project_name.utf8_string());
-
-    enable_prepare_mode = false;
-=======
         enable_prepare_mode = false;
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
         m_send_job->on_check_ip_address_fail([this, token = std::weak_ptr(m_token)](int result) {
              CallAfter([token, this] {

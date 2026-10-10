@@ -199,21 +199,6 @@ void TempInput::SetTagTemp(int temp)
 }
 
 void TempInput::SetTagTemp(wxString temp)
-<<<<<<< HEAD
-{
-    text_ctrl->SetValue(temp);
-    messureSize();
-    Refresh();
-}
-
-void TempInput::SetCurrTemp(int temp)
-{
-    SetLabel(wxString::Format("%d", temp));
-}
-
-void TempInput::SetCurrTemp(wxString temp)
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 {
     if (text_ctrl->GetValue() != temp) {
         text_ctrl->SetValue(temp);

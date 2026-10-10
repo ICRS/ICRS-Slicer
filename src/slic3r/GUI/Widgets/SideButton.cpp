@@ -25,11 +25,6 @@ SideButton::SideButton(wxWindow* parent, wxString text, wxString icon, long stly
 
     icon_offset = 0;
     text_orientation = HO_Left;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     border_color.append(0x6B6B6B, StateColor::Disabled);
     border_color.append(wxColour(0, 100, 239), StateColor::Pressed);

@@ -185,23 +185,6 @@ PA_Calibration_Dlg::PA_Calibration_Dlg(wxWindow* parent, wxWindowID id, Plater* 
     sp_speed_sizer->Add(m_tiBMSpeeds , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     settings_sizer->Add(sp_speed_sizer, 0, wxLEFT, FromDIP(3));
 
-<<<<<<< HEAD
-    v_sizer->Add(settings_sizer);
-	v_sizer->Add(0, FromDIP(10), 0, wxEXPAND, 5);
-    m_btnStart = new Button(this, _L("OK"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-		std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-		std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-
-	m_btnStart->SetBackgroundColor(btn_bg_green);
-	m_btnStart->SetBorderColor(wxColour(0, 133, 255));
-	m_btnStart->SetTextColor(wxColour("#FFFFFE"));
-	m_btnStart->SetSize(wxSize(FromDIP(48), FromDIP(24)));
-	m_btnStart->SetMinSize(wxSize(FromDIP(48), FromDIP(24)));
-	m_btnStart->SetCornerRadius(FromDIP(3));
-	m_btnStart->Bind(wxEVT_BUTTON, &PA_Calibration_Dlg::on_start, this);
-	v_sizer->Add(m_btnStart, 0, wxALL | wxALIGN_RIGHT, FromDIP(5));
-=======
     v_sizer->Add(settings_sizer, 0, wxTOP | wxRIGHT | wxLEFT | wxEXPAND, FromDIP(10));
     v_sizer->AddSpacer(FromDIP(5));
 
@@ -215,7 +198,6 @@ PA_Calibration_Dlg::PA_Calibration_Dlg(wxWindow* parent, wxWindowID id, Plater* 
     v_sizer->Add(bottom_sizer, 0, wxEXPAND);
 
     dlg_btns->GetOK()->Bind(wxEVT_BUTTON, &PA_Calibration_Dlg::on_start, this);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     PA_Calibration_Dlg::reset_params();
 
@@ -420,23 +402,6 @@ Temp_Calibration_Dlg::Temp_Calibration_Dlg(wxWindow* parent, wxWindowID id, Plat
     temp_step_sizer->Add(m_tiStep      , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     settings_sizer->Add(temp_step_sizer, 0, wxLEFT, FromDIP(3));
 
-<<<<<<< HEAD
-    v_sizer->Add(settings_sizer);
-    v_sizer->Add(0, FromDIP(10), 0, wxEXPAND, 5);
-    m_btnStart = new Button(this, _L("OK"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-
-    m_btnStart->SetBackgroundColor(btn_bg_green);
-    m_btnStart->SetBorderColor(wxColour(0, 133, 255));
-    m_btnStart->SetTextColor(wxColour("#FFFFFE"));
-    m_btnStart->SetSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetMinSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetCornerRadius(FromDIP(3));
-    m_btnStart->Bind(wxEVT_BUTTON, &Temp_Calibration_Dlg::on_start, this);
-    v_sizer->Add(m_btnStart, 0, wxALL | wxALIGN_RIGHT, FromDIP(5));
-=======
     settings_sizer->AddSpacer(FromDIP(5));
 
     v_sizer->Add(settings_sizer, 0, wxTOP | wxRIGHT | wxLEFT | wxEXPAND, FromDIP(10));
@@ -452,7 +417,6 @@ Temp_Calibration_Dlg::Temp_Calibration_Dlg(wxWindow* parent, wxWindowID id, Plat
     v_sizer->Add(bottom_sizer, 0, wxEXPAND);
 
     dlg_btns->GetOK()->Bind(wxEVT_BUTTON, &Temp_Calibration_Dlg::on_start, this);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     m_rbFilamentType->Connect(wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler(Temp_Calibration_Dlg::on_filament_type_changed), NULL, this);
 
@@ -621,28 +585,10 @@ MaxVolumetricSpeed_Test_Dlg::MaxVolumetricSpeed_Test_Dlg(wxWindow* parent, wxWin
     vol_step_sizer->Add(m_tiStep     , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     settings_sizer->Add(vol_step_sizer, 0, wxLEFT, FromDIP(3));
 
-<<<<<<< HEAD
-    v_sizer->Add(settings_sizer);
-    v_sizer->Add(0, FromDIP(10), 0, wxEXPAND, 5);
-    m_btnStart = new Button(this, _L("OK"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-
-    m_btnStart->SetBackgroundColor(btn_bg_green);
-    m_btnStart->SetBorderColor(wxColour(0, 133, 255));
-    m_btnStart->SetTextColor(wxColour("#FFFFFE"));
-    m_btnStart->SetSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetMinSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetCornerRadius(FromDIP(3));
-    m_btnStart->Bind(wxEVT_BUTTON, &MaxVolumetricSpeed_Test_Dlg::on_start, this);
-    v_sizer->Add(m_btnStart, 0, wxALL | wxALIGN_RIGHT, FromDIP(5));
-=======
     v_sizer->Add(settings_sizer, 0, wxTOP | wxRIGHT | wxLEFT | wxEXPAND, FromDIP(10));
     v_sizer->AddSpacer(FromDIP(5));
 
     auto dlg_btns = new DialogButtons(this, {"OK"});
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     auto bottom_sizer = new wxBoxSizer(wxHORIZONTAL);
     auto wiki = new HyperLink(this, _L("Wiki Guide"), "https://www.orcaslicer.com/wiki/volumetric_speed_calib");
@@ -745,28 +691,10 @@ VFA_Test_Dlg::VFA_Test_Dlg(wxWindow* parent, wxWindowID id, Plater* plater)
     vol_step_sizer->Add(m_tiStep     , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     settings_sizer->Add(vol_step_sizer, 0, wxLEFT, FromDIP(3));
 
-<<<<<<< HEAD
-    v_sizer->Add(settings_sizer);
-    v_sizer->Add(0, FromDIP(10), 0, wxEXPAND, 5);
-    m_btnStart = new Button(this, _L("OK"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-
-    m_btnStart->SetBackgroundColor(btn_bg_green);
-    m_btnStart->SetBorderColor(wxColour(0, 133, 255));
-    m_btnStart->SetTextColor(wxColour("#FFFFFE"));
-    m_btnStart->SetSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetMinSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetCornerRadius(FromDIP(3));
-    m_btnStart->Bind(wxEVT_BUTTON, &VFA_Test_Dlg::on_start, this);
-    v_sizer->Add(m_btnStart, 0, wxALL | wxALIGN_RIGHT, FromDIP(5));
-=======
     settings_sizer->AddSpacer(FromDIP(5));
 
     v_sizer->Add(settings_sizer, 0, wxTOP | wxRIGHT | wxLEFT | wxEXPAND, FromDIP(10));
     v_sizer->AddSpacer(FromDIP(5));
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     auto dlg_btns = new DialogButtons(this, {"OK"});
 
@@ -872,28 +800,10 @@ Retraction_Test_Dlg::Retraction_Test_Dlg(wxWindow* parent, wxWindowID id, Plater
     length_step_sizer->Add(m_tiStep        , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     settings_sizer->Add(length_step_sizer, 0, wxLEFT, FromDIP(3));
 
-<<<<<<< HEAD
-    v_sizer->Add(settings_sizer);
-    v_sizer->Add(0, FromDIP(10), 0, wxEXPAND, 5);
-    m_btnStart = new Button(this, _L("OK"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-
-    m_btnStart->SetBackgroundColor(btn_bg_green);
-    m_btnStart->SetBorderColor(wxColour(0, 133, 255));
-    m_btnStart->SetTextColor(wxColour("#FFFFFE"));
-    m_btnStart->SetSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetMinSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetCornerRadius(FromDIP(3));
-    m_btnStart->Bind(wxEVT_BUTTON, &Retraction_Test_Dlg::on_start, this);
-    v_sizer->Add(m_btnStart, 0, wxALL | wxALIGN_RIGHT, FromDIP(5));
-=======
     settings_sizer->AddSpacer(FromDIP(5));
 
     v_sizer->Add(settings_sizer, 0, wxTOP | wxRIGHT | wxLEFT | wxEXPAND, FromDIP(10));
     v_sizer->AddSpacer(FromDIP(5));
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     auto dlg_btns = new DialogButtons(this, {"OK"});
 
@@ -1021,20 +931,11 @@ Input_Shaping_Freq_Test_Dlg::Input_Shaping_Freq_Test_Dlg(wxWindow* parent, wxWin
     m_tiFreqStartX->GetTextCtrl()->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
     m_tiFreqEndX   = new TextInput(this, std::to_string(110), _L("Hz"), "", wxDefaultPosition, ti_size);
     m_tiFreqEndX->GetTextCtrl()->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
-<<<<<<< HEAD
-
-    x_freq_sizer->Add(start_x_text, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    x_freq_sizer->Add(m_tiFreqStartX, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    x_freq_sizer->Add(end_x_text, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    x_freq_sizer->Add(m_tiFreqEndX, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    settings_sizer->Add(x_freq_sizer);
-=======
     
     x_freq_sizer->Add(start_x_text  , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     x_freq_sizer->Add(m_tiFreqStartX, 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     x_freq_sizer->Add(m_tiFreqEndX  , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     settings_sizer->Add(x_freq_sizer, 0, wxLEFT, FromDIP(3));
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     // Y axis frequencies
     auto y_freq_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -1044,13 +945,6 @@ Input_Shaping_Freq_Test_Dlg::Input_Shaping_Freq_Test_Dlg(wxWindow* parent, wxWin
     m_tiFreqEndY =   new TextInput(this, std::to_string(110), _L("Hz"), "", wxDefaultPosition, ti_size);
     m_tiFreqEndY->GetTextCtrl()->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
 
-<<<<<<< HEAD
-    y_freq_sizer->Add(start_y_text, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    y_freq_sizer->Add(m_tiFreqStartY, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    y_freq_sizer->Add(end_y_text, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    y_freq_sizer->Add(m_tiFreqEndY, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    settings_sizer->Add(y_freq_sizer);
-=======
     y_freq_sizer->Add(start_y_text  , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     y_freq_sizer->Add(m_tiFreqStartY, 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     y_freq_sizer->Add(m_tiFreqEndY  , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
@@ -1067,7 +961,6 @@ Input_Shaping_Freq_Test_Dlg::Input_Shaping_Freq_Test_Dlg(wxWindow* parent, wxWin
         m_tiFreqStartX->GetTextCtrl()->SetToolTip(_L("RepRap firmware uses the same frequency range for both axes."));
         m_tiFreqEndX->GetTextCtrl()->SetToolTip(_L("RepRap firmware uses the same frequency range for both axes."));
     }
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     // Damping Factor
     wxString damping_factor_str = _L("Damp: ");
@@ -1075,15 +968,6 @@ Input_Shaping_Freq_Test_Dlg::Input_Shaping_Freq_Test_Dlg(wxWindow* parent, wxWin
     auto damping_factor_text = new wxStaticText(this, wxID_ANY, damping_factor_str, wxDefaultPosition, st_size, wxALIGN_LEFT);
     m_tiDampingFactor = new TextInput(this, wxString::Format("%.3f", 0.15), "", "", wxDefaultPosition, ti_size);
     m_tiDampingFactor->GetTextCtrl()->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
-<<<<<<< HEAD
-
-    damping_factor_sizer->Add(damping_factor_text, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    damping_factor_sizer->Add(m_tiDampingFactor, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    settings_sizer->Add(damping_factor_sizer);
-
-    // Add a note explaining that 0 means use default value
-    auto note_text = new wxStaticText(this, wxID_ANY, _L("Recommended: Set Damp to 0.\nThis will use the printer's default or the last saved value."), wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
-=======
     
     damping_factor_sizer->Add(damping_factor_text, 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     damping_factor_sizer->Add(m_tiDampingFactor  , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
@@ -1092,33 +976,14 @@ Input_Shaping_Freq_Test_Dlg::Input_Shaping_Freq_Test_Dlg(wxWindow* parent, wxWin
     settings_sizer->AddSpacer(FromDIP(5));
 
     auto note_text = new wxStaticText(this, wxID_ANY, _L("Recommended: Set Damp to 0.\nThis will use the printer's default or saved value."), wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     note_text->SetForegroundColour(wxColour(128, 128, 128));
     note_text->Wrap(FromDIP(350));
     settings_sizer->Add(note_text, 0, wxALL, FromDIP(5));
 
-<<<<<<< HEAD
-    v_sizer->Add(settings_sizer);
-    v_sizer->Add(0, FromDIP(10), 0, wxEXPAND, 5);
-    m_btnStart = new Button(this, _L("OK"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-
-    m_btnStart->SetBackgroundColor(btn_bg_green);
-    m_btnStart->SetBorderColor(wxColour(0, 133, 255));
-    m_btnStart->SetTextColor(wxColour("#FFFFFE"));
-    m_btnStart->SetSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetMinSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetCornerRadius(FromDIP(3));
-    m_btnStart->Bind(wxEVT_BUTTON, &Input_Shaping_Freq_Test_Dlg::on_start, this);
-    v_sizer->Add(m_btnStart, 0, wxALL | wxALIGN_RIGHT, FromDIP(5));
-=======
     settings_sizer->AddSpacer(FromDIP(5));
 
     v_sizer->Add(settings_sizer, 0, wxTOP | wxRIGHT | wxLEFT | wxEXPAND, FromDIP(10));
     v_sizer->AddSpacer(FromDIP(5));
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     auto dlg_btns = new DialogButtons(this, {"OK"});
 
@@ -1191,10 +1056,10 @@ void Input_Shaping_Freq_Test_Dlg::on_start(wxCommandEvent& event) {
     }
 
     m_params.mode = CalibMode::Calib_Input_shaping_freq;
-
+    
     // Set model type based on selection
     m_params.test_model = m_rbModel->GetSelection() == 0 ? 0 : 1; // 0 = Ringing Tower, 1 = Fast Tower
-
+    
     m_plater->calib_input_shaping_freq(m_params);
     EndModal(wxID_OK);
 }
@@ -1283,14 +1148,6 @@ Input_Shaping_Damp_Test_Dlg::Input_Shaping_Damp_Test_Dlg(wxWindow* parent, wxWin
     m_tiFreqX->GetTextCtrl()->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
     m_tiFreqY = new TextInput(this, std::to_string(30), _L("Hz"), "", wxDefaultPosition, ti_size);
     m_tiFreqY->GetTextCtrl()->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
-<<<<<<< HEAD
-
-    freq_sizer->Add(freq_x_text, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    freq_sizer->Add(m_tiFreqX, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    freq_sizer->Add(freq_y_text, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    freq_sizer->Add(m_tiFreqY, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    settings_sizer->Add(freq_sizer);
-=======
     freq_sizer->Add(freq_text, 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     freq_sizer->Add(m_tiFreqX, 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     freq_sizer->Add(m_tiFreqY, 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
@@ -1302,7 +1159,6 @@ Input_Shaping_Damp_Test_Dlg::Input_Shaping_Damp_Test_Dlg(wxWindow* parent, wxWin
         freq_text->SetLabel(freq_str);
         m_tiFreqX->GetTextCtrl()->SetToolTip(_L("RepRap firmware uses the same frequency for both axes."));
     }
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     // Damping Factor Start and End
     auto damp_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -1311,21 +1167,12 @@ Input_Shaping_Damp_Test_Dlg::Input_Shaping_Damp_Test_Dlg(wxWindow* parent, wxWin
     m_tiDampingFactorStart->GetTextCtrl()->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
     m_tiDampingFactorEnd   = new TextInput(this, wxString::Format("%.3f", 0.40), "", "", wxDefaultPosition, ti_size);
     m_tiDampingFactorEnd->GetTextCtrl()->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
-<<<<<<< HEAD
-
-    damp_sizer->Add(damp_start_text, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    damp_sizer->Add(m_tiDampingFactorStart, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    damp_sizer->Add(damp_end_text, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    damp_sizer->Add(m_tiDampingFactorEnd, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-    settings_sizer->Add(damp_sizer);
-=======
     damp_sizer->Add(damp_text             , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     damp_sizer->Add(m_tiDampingFactorStart, 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     damp_sizer->Add(m_tiDampingFactorEnd  , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     settings_sizer->Add(damp_sizer, 0, wxLEFT, FromDIP(3));
 
     settings_sizer->AddSpacer(FromDIP(5));
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     // Add a note to explain users to use their previously calculated frequency
     auto note_text = new wxStaticText(this, wxID_ANY, _L("Note: Use previously calculated frequencies."), wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
@@ -1334,28 +1181,10 @@ Input_Shaping_Damp_Test_Dlg::Input_Shaping_Damp_Test_Dlg(wxWindow* parent, wxWin
 
     settings_sizer->AddSpacer(FromDIP(5));
 
-<<<<<<< HEAD
-    v_sizer->Add(settings_sizer);
-    v_sizer->Add(0, FromDIP(10), 0, wxEXPAND, 5);
-    m_btnStart = new Button(this, _L("OK"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-
-    m_btnStart->SetBackgroundColor(btn_bg_green);
-    m_btnStart->SetBorderColor(wxColour(0, 133, 255));
-    m_btnStart->SetTextColor(wxColour("#FFFFFE"));
-    m_btnStart->SetSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetMinSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetCornerRadius(FromDIP(3));
-    m_btnStart->Bind(wxEVT_BUTTON, &Input_Shaping_Damp_Test_Dlg::on_start, this);
-    v_sizer->Add(m_btnStart, 0, wxALL | wxALIGN_RIGHT, FromDIP(5));
-=======
     v_sizer->Add(settings_sizer, 0, wxTOP | wxRIGHT | wxLEFT | wxEXPAND, FromDIP(10));
     v_sizer->AddSpacer(FromDIP(5));
 
     auto dlg_btns = new DialogButtons(this, {"OK"});
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     auto bottom_sizer = new wxBoxSizer(wxHORIZONTAL);
     auto wiki = new HyperLink(this, _L("Wiki Guide"), "https://www.orcaslicer.com/wiki/input_shaping_calib");
@@ -1395,10 +1224,6 @@ void Input_Shaping_Damp_Test_Dlg::on_start(wxCommandEvent& event) {
     read_double = read_double && m_tiDampingFactorStart->GetTextCtrl()->GetValue().ToDouble(&m_params.start);
     read_double = read_double && m_tiDampingFactorEnd->GetTextCtrl()->GetValue().ToDouble(&m_params.end);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     if (!read_double ||
         m_params.freqStartX < 0 || m_params.freqStartX > 500 ||
         (!reprap_firmware && (m_params.freqStartY < 0 || m_params.freqStartY > 500))) {
@@ -1425,10 +1250,10 @@ void Input_Shaping_Damp_Test_Dlg::on_start(wxCommandEvent& event) {
     }
 
     m_params.mode = CalibMode::Calib_Input_shaping_damp;
-
+    
     // Set model type based on selection
     m_params.test_model = m_rbModel->GetSelection() == 0 ? 0 : 1; // 0 = Ringing Tower, 1 = Fast Tower
-
+    
     m_plater->calib_input_shaping_damp(m_params);
     EndModal(wxID_OK);
 }
@@ -1516,38 +1341,15 @@ Cornering_Test_Dlg::Cornering_Test_Dlg(wxWindow* parent, wxWindowID id, Plater* 
        end_jd_sizer->Add(m_tiJDEnd  , 0, wxALL | wxALIGN_CENTER_VERTICAL, FromDIP(2));
     settings_sizer->Add(end_jd_sizer, 0, wxLEFT, FromDIP(3));
 
-<<<<<<< HEAD
-    // Add note about junction deviation
-    auto note_text = new wxStaticText(this, wxID_ANY, _L("Note: Lower values = sharper corners but slower speeds"),
-                                    wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
-=======
     settings_sizer->AddSpacer(FromDIP(5));
 
     // Add note about cornering based on GCode Flavor
     wxString note_msg = _L("Note: Lower values = sharper corners but slower speeds.");
     auto note_text = new wxStaticText(this, wxID_ANY, note_msg, wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     note_text->SetForegroundColour(wxColour(128, 128, 128));
     note_text->Wrap(FromDIP(300));
     settings_sizer->Add(note_text, 0, wxALL, FromDIP(5));
 
-<<<<<<< HEAD
-    v_sizer->Add(settings_sizer);
-    v_sizer->Add(0, FromDIP(10), 0, wxEXPAND, 5);
-    m_btnStart = new Button(this, _L("OK"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-
-    m_btnStart->SetBackgroundColor(btn_bg_green);
-    m_btnStart->SetBorderColor(wxColour(0, 133, 255));
-    m_btnStart->SetTextColor(wxColour("#FFFFFE"));
-    m_btnStart->SetSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetMinSize(wxSize(FromDIP(48), FromDIP(24)));
-    m_btnStart->SetCornerRadius(FromDIP(3));
-    m_btnStart->Bind(wxEVT_BUTTON, &Junction_Deviation_Test_Dlg::on_start, this);
-    v_sizer->Add(m_btnStart, 0, wxALL | wxALIGN_RIGHT, FromDIP(5));
-=======
     if (gcode_flavor_option) {
         wxString note_msg_2;
         switch (gcode_flavor_option->value) {
@@ -1577,7 +1379,6 @@ Cornering_Test_Dlg::Cornering_Test_Dlg(wxWindow* parent, wxWindowID id, Plater* 
 
     v_sizer->Add(settings_sizer, 0, wxTOP | wxRIGHT | wxLEFT | wxEXPAND, FromDIP(10));
     v_sizer->AddSpacer(FromDIP(5));
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     auto dlg_btns = new DialogButtons(this, {"OK"});
 
@@ -1635,21 +1436,12 @@ void Cornering_Test_Dlg::on_start(wxCommandEvent& event) {
         msg_dlg.ShowModal();
     }
 
-<<<<<<< HEAD
-    m_params.mode = CalibMode::Calib_Junction_Deviation;
-
-    // Set model type based on selection
-    m_params.test_model = m_rbModel->GetSelection() == 0 ? 0 : 1; // 0 = Ringing Tower, 1 = Fast Tower
-
-    m_plater->calib_junction_deviation(m_params);
-=======
     m_params.mode = CalibMode::Calib_Cornering;
 
     // Set model type based on selection
     m_params.test_model = m_rbModel->GetSelection();
 
     m_plater->Calib_Cornering(m_params);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     EndModal(wxID_OK);
 }
 

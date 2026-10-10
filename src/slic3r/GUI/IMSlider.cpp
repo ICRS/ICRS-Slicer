@@ -812,7 +812,7 @@ void IMSlider::show_tooltip(const TickCode& tick){
     if (!time_str.empty()) {
         time_str += "\n";
     }
-
+    
     switch (tick.type)
     {
     case CustomGCode::ColorChange:
@@ -836,17 +836,17 @@ void IMSlider::show_tooltip(const TickCode& tick){
 
 int IMSlider::get_tick_near_point(int v_min, int v_max, const ImVec2& pt, const ImRect& rect) {
     ImS32 v_range = (v_min < v_max ? v_max - v_min : v_min - v_max);
-
+    
     const ImGuiAxis axis = is_horizontal() ? ImGuiAxis_X : ImGuiAxis_Y;
     const float region_usable_sz = (rect.Max[axis] - rect.Min[axis]);
     const float region_usable_pos_min = rect.Min[axis];
-
+    
     const float abs_pos = pt[axis];
-
+    
     float pos_ratio = (region_usable_sz > 0.0f) ? ImClamp((abs_pos - region_usable_pos_min) / region_usable_sz, 0.0f, 1.0f) : 0.0f;
     if (axis == ImGuiAxis_Y)
         pos_ratio = 1.0f - pos_ratio;
-
+    
     return v_min + (ImS32)(v_range * pos_ratio + 0.5f);
 }
 
@@ -854,9 +854,9 @@ void IMSlider::draw_tick_on_mouse_position(const ImRect& slideable_region) {
     int v_min = GetMinValue();
     int v_max = GetMaxValue();
     ImGuiContext& context = *GImGui;
-
+    
     int tick = get_tick_near_point(v_min, v_max, context.IO.MousePos, slideable_region);
-
+    
     //draw tick
     ImVec2 tick_offset   = ImVec2(22.0f, 14.0f) * m_scale;
     float  tick_width    = 1.0f * m_scale;
@@ -868,7 +868,7 @@ void IMSlider::draw_tick_on_mouse_position(const ImRect& slideable_region) {
     ImRect tick_right = ImRect(slideable_region.GetCenter().x + tick_offset.y, tick_pos - tick_width, slideable_region.GetCenter().x + tick_offset.x, tick_pos);
     ImGui::RenderFrame(tick_left.Min, tick_left.Max, tick_clr, false);
     ImGui::RenderFrame(tick_right.Min, tick_right.Max, tick_clr, false);
-
+    
     // draw layer time
     std::string label = get_label(tick, ltEstimatedTime);
     show_tooltip(label);
@@ -1042,17 +1042,6 @@ bool IMSlider::vertical_slider(const char* str_id, int* higher_value, int* lower
     bool value_changed = false;
     if (!one_layer_flag)
     {
-<<<<<<< HEAD
-        // select higher handle by default
-        static bool h_selected = (selection == ssHigher);
-        if (ImGui::ItemHoverable(higher_handle, id) && context.IO.MouseClicked[0]) {
-            selection = ssHigher;
-            h_selected = true;
-        }
-        if (ImGui::ItemHoverable(lower_handle, id) && context.IO.MouseClicked[0]) {
-            selection = ssLower;
-            h_selected = false;
-=======
         const SelectedSlider dragged_label = label_drag.id == id && context.IO.MouseDown[0] ? label_drag.selection : ssUndef;
         if (dragged_label == ssUndef && !menu_open) {
             if (ImGui::ItemHoverable(higher_handle, id) && context.IO.MouseClicked[0]) {
@@ -1061,23 +1050,10 @@ bool IMSlider::vertical_slider(const char* str_id, int* higher_value, int* lower
             if (ImGui::ItemHoverable(lower_handle, id) && context.IO.MouseClicked[0]) {
                 selection = ssLower;
             }
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
         }
         bool h_selected = selection != ssLower;
 
         // update handle position and value
-<<<<<<< HEAD
-        if (h_selected)
-        {
-            value_changed = slider_behavior(id, higher_slideable_region, v_min, v_max,
-                higher_value, &higher_handle, ImGuiSliderFlags_Vertical,
-                m_tick_value, m_tick_rect);
-        }
-        if (!h_selected) {
-            value_changed = slider_behavior(id, lower_slideable_region, v_min, v_max,
-                lower_value, &lower_handle, ImGuiSliderFlags_Vertical,
-                m_tick_value, m_tick_rect);
-=======
         if (dragged_label != ssUndef) {
             const ImRect& drag_region = dragged_label == ssHigher ? higher_slideable_region : lower_slideable_region;
             const float region_height = drag_region.GetHeight();
@@ -1113,7 +1089,6 @@ bool IMSlider::vertical_slider(const char* str_id, int* higher_value, int* lower
                     lower_value, &lower_handle, ImGuiSliderFlags_Vertical,
                     m_tick_value, m_tick_rect);
             }
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
         }
         SelectedSlider active_label = ssUndef;
         if (dragged_label != ssUndef)
@@ -1174,20 +1149,10 @@ bool IMSlider::vertical_slider(const char* str_id, int* higher_value, int* lower
         text_size = ImVec2(max_label_width, lower_text_content_size.y) + text_padding * 2;
         text_start        = ImVec2(lower_handle.Min.x - text_size.x - label_width_margin, lower_handle_center.y);
         text_rect = ImRect(text_start, text_start + text_size);
-<<<<<<< HEAD
-        ImGui::RenderFrame(text_rect.Min, text_rect.Max, white_bg, false, text_frame_rounding);
-        pos_1 = ImVec2(text_rect.Max.x, text_rect.Min.y) - triangle_offsets[0];
-        pos_2 = pos_1 + triangle_offsets[1];
-        pos_3 = pos_1 + triangle_offsets[2];
-        window->DrawList->AddTriangleFilled(pos_1, pos_2, pos_3, white_bg);
-        ImGui::RenderText(text_start + text_padding, lower_label.c_str());
-
-=======
         const bool lower_label_active = active_label == ssLower;
         draw_label(text_rect, lower_text_content_size, lower_label,
             hovered_label == ssLower || lower_label_active, lower_label_active);
         
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
         // draw mouse position
         if (slider_hovered && !context.IO.MouseDown[0]) {
             draw_tick_on_mouse_position(h_selected ? higher_slideable_region : lower_slideable_region);
@@ -1221,11 +1186,6 @@ bool IMSlider::vertical_slider(const char* str_id, int* higher_value, int* lower
         if (!menu_open && ((!ImGui::ItemHoverable(one_handle, id) && context.IO.MouseClicked[1]) ||
             context.IO.MouseClicked[0]))
             m_show_menu = false;
-<<<<<<< HEAD
-
-        ImVec2 bar_center = higher_handle.GetCenter();
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
         // draw ticks
         draw_ticks(one_slideable_region);
@@ -1239,15 +1199,9 @@ bool IMSlider::vertical_slider(const char* str_id, int* higher_value, int* lower
         text_size = ImVec2(max_label_width, higher_text_content_size.y) + text_padding * 2;
         ImVec2 text_start = ImVec2(one_handle.Min.x - text_size.x - label_width_margin, handle_center.y - 0.5 * text_size.y);
         ImRect text_rect = ImRect(text_start, text_start + text_size);
-<<<<<<< HEAD
-        ImGui::RenderFrame(text_rect.Min, text_rect.Max, white_bg, false, text_frame_rounding);
-        ImGui::RenderText(text_start + text_padding, higher_label.c_str());
-
-=======
         const bool label_active = context.ActiveId == id && context.IO.MouseDown[0];
         draw_label(text_rect, higher_text_content_size, higher_label, hovered_label == ssHigher || label_active, label_active);
         
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
         // draw mouse position
         if (slider_hovered && !context.IO.MouseDown[0]) {
             draw_tick_on_mouse_position(one_slideable_region);

@@ -37,14 +37,9 @@ DropDown::DropDown(std::vector<Item> &items)
     : items(items)
     , state_handler(this)
     , border_color(0xDBDBDB)
-<<<<<<< HEAD
-    , text_color(0x363636)
-    , selector_border_color(std::make_pair(0x0090ff, (int) StateColor::Hovered),
-=======
     , text_color(std::make_pair(0x909090, (int) StateColor::Disabled),
         std::make_pair(0x363636, (int) StateColor::Normal))
-    , selector_border_color(std::make_pair(0x009688, (int) StateColor::Hovered),
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
+    , selector_border_color(std::make_pair(0x0090ff, (int) StateColor::Hovered),
         std::make_pair(*wxWHITE, (int) StateColor::Normal))
     , selector_background_color(std::make_pair(0xBFE1FF, (int) StateColor::Checked), // ORCA updated background color for checked item
         std::make_pair(*wxWHITE, (int) StateColor::Normal))

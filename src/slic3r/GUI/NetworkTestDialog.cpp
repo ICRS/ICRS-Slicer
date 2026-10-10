@@ -56,10 +56,6 @@ NetworkTestDialog::NetworkTestDialog(wxWindow* parent, wxWindowID id, const wxSt
 
 wxBoxSizer* NetworkTestDialog::create_top_sizer(wxWindow* parent)
 {
-<<<<<<< HEAD
-    StateColor btn_bg(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered), std::pair<wxColour, int>(wxColour(255, 255, 255), StateColor::Enabled));
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 	auto sizer = new wxBoxSizer(wxVERTICAL);
 
 	auto line_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -141,14 +137,8 @@ wxBoxSizer* NetworkTestDialog::create_content_sizer(wxWindow* parent)
 	grid_sizer->SetFlexibleDirection(wxBOTH);
 	grid_sizer->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
 
-<<<<<<< HEAD
-    StateColor btn_bg(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered), std::pair<wxColour, int>(wxColour(255,255,255), StateColor::Enabled));
-	btn_link = new Button(this, _L("Test OrcaSlicer(GitHub)"));
-    btn_link->SetBackgroundColor(btn_bg);
-=======
 	btn_link = new Button(this, _L("Test OrcaSlicer (GitHub)"));
     btn_link->SetStyle(ButtonStyle::Regular, ButtonType::Window);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 	grid_sizer->Add(btn_link, 0, wxEXPAND | wxALL, 5);
 
 	text_link_title = new wxStaticText(this, wxID_ANY, _L("Test OrcaSlicer (GitHub):"), wxDefaultPosition, wxDefaultSize, 0);
@@ -381,3 +371,5 @@ void NetworkTestDialog::update_status(int job_id, wxString info)
 
 } // namespace GUI
 } // namespace Slic3r
+
+

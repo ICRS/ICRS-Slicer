@@ -351,88 +351,6 @@ public:
         }
     }
 
-<<<<<<< HEAD
-    void Decorate(wxBitmap& bmp)
-    {
-        if (!bmp.IsOk())
-            return;
-
-		bool is_dark = wxGetApp().app_config->get("dark_color_mode") == "1";
-
-        // use a memory DC to draw directly onto the bitmap
-        wxMemoryDC memDc(bmp);
-
-        int width = bmp.GetWidth();
-		int height = bmp.GetHeight();
-
-		// Logo
-        BitmapCache bmp_cache;
-        wxBitmap logo_bmp = *bmp_cache.load_svg(is_dark ? "splash_logo_dark" : "splash_logo", width, height);  // use with full width & height
-        memDc.DrawBitmap(logo_bmp, 0, 0, true);
-
-        // Version
-        memDc.SetFont(m_constant_text.version_font);
-        memDc.SetTextForeground(StateColor::darkModeColorFor(wxColor(134, 134, 134)));
-        wxSize version_ext = memDc.GetTextExtent(m_constant_text.version);
-        wxRect version_rect(
-			wxPoint(0, int(height * 0.70)),
-			wxPoint(width, int(height * 0.70) + version_ext.GetHeight())
-		);
-        memDc.DrawLabel(m_constant_text.version, version_rect, wxALIGN_CENTER);
-
-        // Dynamic Text
-        m_action_line_y_position = int(height * 0.83);
-
-		// Based on Text
-        memDc.SetFont(m_constant_text.based_on_font);
-        auto bs_version = wxString::Format("Based on PrusaSlicer and BambuStudio").ToStdString();
-        wxSize based_on_ext = memDc.GetTextExtent(bs_version);
-        wxRect based_on_rect(
-			wxPoint(0, height - based_on_ext.GetHeight() * 2),
-            wxPoint(width, height - based_on_ext.GetHeight())
-		);
-        memDc.DrawLabel(bs_version, based_on_rect, wxALIGN_CENTER);
-    }
-
-    static wxBitmap MakeBitmap()
-    {
-        int width = FromDIP(480, nullptr);
-        int height = FromDIP(480, nullptr);
-
-        wxImage image(width, height);
-        wxBitmap new_bmp(image);
-
-        wxMemoryDC memDC;
-        memDC.SelectObject(new_bmp);
-        memDC.SetBrush(StateColor::darkModeColorFor(*wxWHITE));
-        memDC.DrawRectangle(-1, -1, width + 2, height + 2);
-        memDC.DrawBitmap(new_bmp, 0, 0, true);
-        return new_bmp;
-    }
-
-    void set_bitmap(wxBitmap& bmp)
-    {
-        m_window->SetBitmap(bmp);
-        m_window->Refresh();
-        m_window->Update();
-    }
-
-    void scale_bitmap(wxBitmap& bmp, float scale)
-    {
-        if (scale == 1.0)
-            return;
-
-        wxImage image = bmp.ConvertToImage();
-        if (!image.IsOk() || image.GetWidth() == 0 || image.GetHeight() == 0)
-            return;
-
-        int width   = int(scale * image.GetWidth());
-        int height  = int(scale * image.GetHeight());
-        image.Rescale(width, height, wxIMAGE_QUALITY_BILINEAR);
-
-        bmp = wxBitmap(std::move(image));
-    }
-=======
     // Orca: keep the splash alive until it is explicitly destroyed.
     // wxSplashScreen installs an application-wide event filter that calls
     // Close() (which Destroy()s the window) on ANY key press or mouse-button
@@ -443,7 +361,6 @@ public:
     // splash can only be removed via the explicit Destroy() once the main frame
     // is shown.
     int FilterEvent(wxEvent& /*event*/) override { return wxEventFilter::Event_Skip; }
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     void scale_font(wxFont& font, float scale)
     {
@@ -993,7 +910,7 @@ void GUI_App::post_init()
         show_network_plugin_download_dialog(false);
     }
 
-    // Start preset sync after project opened, otherwise we could have preset change during project opening which could cause crash
+    // Start preset sync after project opened, otherwise we could have preset change during project opening which could cause crash 
     if (app_config->get("sync_user_preset") == "true") {
         // BBS loading user preset
         // Always async, not such startup step
@@ -2233,27 +2150,11 @@ void GUI_App::init_networking_callbacks()
                 const std::string provider = this->get_printer_cloud_provider();
                 if (MachineObject* obj = this->m_device_manager->get_user_machine(dev_id, provider)) {
                     auto sel = this->m_device_manager->get_selected_machine();
-<<<<<<< HEAD
-
-                    if (sel && sel->dev_id == dev_id) {
-                        obj->parse_json(msg);
-                    }
-                    else {
-                        obj->parse_json(msg, true);
-                    }
-
-
-                    if (!this->is_enable_multi_machine()) {
-                        if ((sel == obj || sel == nullptr) && obj->is_ams_need_update) {
-                            GUI::wxGetApp().sidebar().load_ams_list(obj->dev_id, obj);
-                        }
-=======
                     if (sel && sel->get_dev_id() == dev_id) {
                         obj->parse_json("cloud", msg);
                         GUI::wxGetApp().sidebar().load_ams_list(obj);
                     } else {
                         obj->parse_json("cloud", msg, true);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
                     }
                 }
 
@@ -4968,17 +4869,17 @@ std::string GUI_App::handle_web_request(std::string cmd)
                 if (path.has_value()) {
                     wxLaunchDefaultBrowser(path.value());
                 }
-            }
+            } 
             else if (command_str.compare("homepage_makerlab_get") == 0) {
                 //if (mainframe->m_webview) { mainframe->m_webview->SendMakerlabList(); }
             }
-            else if (command_str.compare("makerworld_model_open") == 0)
+            else if (command_str.compare("makerworld_model_open") == 0) 
             {
                 if (root.get_child_optional("model") != boost::none) {
                     pt::ptree                    data_node = root.get_child("model");
                     boost::optional<std::string> path      = data_node.get_optional<std::string>("url");
-                    if (path.has_value())
-                    {
+                    if (path.has_value()) 
+                    { 
                         wxString realurl = from_u8(url_decode(path.value()));
                         wxGetApp().request_model_download(realurl);
                     }
@@ -5098,14 +4999,6 @@ void GUI_App::on_http_error(wxCommandEvent &evt)
     std::string error;
     if (status >= 400 && status < 500) {
         try {
-<<<<<<< HEAD
-        auto evt_str = evt.GetString();
-        if (!evt_str.empty()) {
-            json j = json::parse(evt_str.utf8_string());
-            if (j.contains("code")) {
-                if (!j["code"].is_null())
-                    code = j["code"].get<int>();
-=======
             if (!body_str.empty()) {
                 json j = json::parse(body_str);
                 if (j.contains("code")) {
@@ -5115,7 +5008,6 @@ void GUI_App::on_http_error(wxCommandEvent &evt)
                 if (j.contains("error"))
                     if (!j["error"].is_null())
                         error = j["error"].get<std::string>();
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
             }
         } catch (...) {}
     }

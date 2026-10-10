@@ -23,11 +23,7 @@ StepCtrlBase::StepCtrlBase(wxWindow *      parent,
     , font_tip(Label::Body_14)
     , clr_bar(0xACACAC)
     , clr_step(0xACACAC)
-<<<<<<< HEAD
     , clr_text(std::make_pair(0x0090ff, (int) StateColor::Checked),
-=======
-    , clr_text(std::make_pair(0x009688, (int) StateColor::Checked),
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
             std::make_pair(0x6B6B6B, (int) StateColor::Normal))
     , clr_tip(0x828280)
 {
@@ -55,17 +51,11 @@ void StepCtrlBase::SelectItem(int item)
 
 void StepCtrlBase::Idle()
 {
-<<<<<<< HEAD
-    step = -1;
-    sendStepCtrlEvent();
-    Refresh();
-=======
     if (step != -1) {
         step = -1;
         sendStepCtrlEvent();
         Refresh();
     }
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 }
 
 bool StepCtrlBase::SetTipFont(wxFont const& font)
@@ -268,11 +258,7 @@ StepIndicator::StepIndicator(wxWindow *parent, wxWindowID id, const wxPoint &pos
     clr_bar = 0xE1E1E1;
     clr_step = StateColor(
             std::make_pair(0xACACAC, (int) StateColor::Disabled),
-<<<<<<< HEAD
             std::make_pair(0x0090ff, 0));
-=======
-            std::make_pair(0x009688, 0));
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     clr_text = StateColor(
             std::make_pair(0xACACAC, (int) StateColor::Disabled),
             std::make_pair(0x323A3D, (int) StateColor::Checked),
@@ -382,7 +368,7 @@ FilamentStepIndicator::FilamentStepIndicator(wxWindow* parent, wxWindowID id, co
     clr_bar = 0xE1E1E1;
     clr_step = StateColor(
         std::make_pair(0xACACAC, (int)StateColor::Disabled),
-        std::make_pair(0x009688, 0));
+        std::make_pair(0x0090ff, 0));
     clr_text = StateColor(
         std::make_pair(0xACACAC, (int)StateColor::Disabled),
         std::make_pair(0x323A3D, (int)StateColor::Checked),
@@ -420,7 +406,7 @@ void FilamentStepIndicator::doRender(wxDC& dc)
     }
 
     dc.SetFont(::Label::Head_16);
-    dc.SetTextForeground(wxColour(0, 150, 136));
+    dc.SetTextForeground(wxColour(0, 133, 255));
     int circleX = 20;
     int circleY = 20;
     wxSize sz = dc.GetTextExtent(L"Loading");

@@ -211,19 +211,19 @@ void BBLTopbarArt::DrawButton(wxDC& dc, wxWindow* wnd, const wxAuiToolBarItem& i
     }
 }
 
-BBLTopbar::BBLTopbar(wxFrame* parent)
+BBLTopbar::BBLTopbar(wxFrame* parent) 
     : wxAuiToolBar(parent, ID_TOOL_BAR, wxDefaultPosition, wxDefaultSize, wxAUI_TB_TEXT | wxAUI_TB_HORZ_TEXT)
-{
+{ 
     Init(parent);
 }
 
 BBLTopbar::BBLTopbar(wxWindow* pwin, wxFrame* parent)
-    : wxAuiToolBar(pwin, ID_TOOL_BAR, wxDefaultPosition, wxDefaultSize, wxAUI_TB_TEXT | wxAUI_TB_HORZ_TEXT)
-{
+    : wxAuiToolBar(pwin, ID_TOOL_BAR, wxDefaultPosition, wxDefaultSize, wxAUI_TB_TEXT | wxAUI_TB_HORZ_TEXT) 
+{ 
     Init(parent);
 }
 
-void BBLTopbar::Init(wxFrame* parent)
+void BBLTopbar::Init(wxFrame* parent) 
 {
     auto* art = new BBLTopbarArt();
     art->SetFont(Label::Body_12);
@@ -709,12 +709,7 @@ void BBLTopbar::OnMouseLeftDown(wxMouseEvent& event)
     wxAuiToolBarItem* item = this->FindToolByPosition(event.GetX(), event.GetY());
     m_delta = mouse_pos - frame_pos;
 
-<<<<<<< HEAD
-    if (FindToolByCurrentPosition() == NULL
-        || this->FindToolByCurrentPosition() == m_title_item)
-=======
     if (item == NULL || item->GetWindow() == m_title_ctrl)
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     {
 #ifdef __WXMSW__
         CaptureMouse();
@@ -765,7 +760,7 @@ void BBLTopbar::OnMouseMotion(wxMouseEvent& event)
 
     if (event.Dragging() && event.LeftIsDown())
     {
-        // leave max state and adjust position
+        // leave max state and adjust position 
         if (m_frame->IsMaximized()) {
             wxRect rect = m_frame->GetRect();
             // Filter unexcept mouse move

@@ -285,21 +285,7 @@ void SavePresetDialog::build(std::vector<Preset::Type> types, std::string suffix
 
     auto dlg_btns = new DialogButtons(this, {"OK", "Cancel"});
 
-<<<<<<< HEAD
-    m_confirm = new Button(this, _L("OK"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-                            std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                            std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-    m_confirm->SetBackgroundColor(btn_bg_green);
-    m_confirm->SetBorderColor(wxColour(0, 133, 255));
-    m_confirm->SetTextColor(wxColour("#FFFFFE"));
-    m_confirm->SetMinSize(SAVE_PRESET_DIALOG_BUTTON_SIZE);
-    m_confirm->SetCornerRadius(FromDIP(12));
-    m_confirm->Bind(wxEVT_BUTTON, &SavePresetDialog::accept, this);
-    btns->Add(m_confirm, 0, wxEXPAND, 0);
-=======
     dlg_btns->GetOK()->Bind(wxEVT_BUTTON, &SavePresetDialog::accept, this);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     dlg_btns->GetCANCEL()->Bind(wxEVT_BUTTON, &SavePresetDialog::on_select_cancel, this);
 

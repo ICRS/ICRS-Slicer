@@ -99,10 +99,7 @@ void ComboBox::SetSelection(int n)
     }
 
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 void ComboBox::SelectAndNotify(int n) {
     SetSelection(n);
     sendComboBoxEvent();

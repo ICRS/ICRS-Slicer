@@ -107,10 +107,6 @@ MachineInfoPanel::MachineInfoPanel(wxWindow* parent, wxWindowID id, const wxPoin
 
     m_staticText_ver_val = new wxStaticText(this, wxID_ANY, "-", wxDefaultPosition, wxDefaultSize, 0);
     m_staticText_ver_val->Wrap(-1);
-<<<<<<< HEAD
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
 
     m_staticText_beta_version = new wxStaticText(this, wxID_ANY, _L("Beta"), wxDefaultPosition, wxDefaultSize, 0);
@@ -230,21 +226,7 @@ MachineInfoPanel::MachineInfoPanel(wxWindow* parent, wxWindowID id, const wxPoin
     m_main_right_sizer->Add(0, FromDIP(50), 0, wxEXPAND, FromDIP(5));
 
     m_button_upgrade_firmware = new Button(this, _L("Update firmware"));
-<<<<<<< HEAD
-    StateColor btn_bg(std::pair<wxColour, int>(wxColour(255, 255, 255), StateColor::Disabled), std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-                      std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered), std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Enabled),
-                      std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-    StateColor btn_bd(std::pair<wxColour, int>(wxColour(144, 144, 144), StateColor::Disabled), std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Enabled));
-    StateColor btn_text(std::pair<wxColour, int>(wxColour(144, 144, 144), StateColor::Disabled), std::pair<wxColour, int>(wxColour(255, 255, 255), StateColor::Enabled));
-    m_button_upgrade_firmware->SetBackgroundColor(btn_bg);
-    m_button_upgrade_firmware->SetBorderColor(btn_bd);
-    m_button_upgrade_firmware->SetTextColor(btn_text);
-    m_button_upgrade_firmware->SetFont(Label::Body_10);
-    m_button_upgrade_firmware->SetMinSize(wxSize(FromDIP(-1), FromDIP(24)));
-    m_button_upgrade_firmware->SetCornerRadius(FromDIP(12));
-=======
     m_button_upgrade_firmware->SetStyle(ButtonStyle::Confirm, ButtonType::Choice);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     m_main_right_sizer->Add(m_button_upgrade_firmware, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, FromDIP(5));
 
     m_staticText_upgrading_info = new wxStaticText(this, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, 0);
@@ -334,8 +316,6 @@ wxPanel *MachineInfoPanel::create_caption_panel(wxWindow *parent)
     return caption_panel;
 }
 
-<<<<<<< HEAD
-=======
 void MachineInfoPanel::createAirPumpWidgets(wxBoxSizer* main_left_sizer)
 {
     m_air_pump_line_above = new wxStaticLine(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
@@ -422,7 +402,6 @@ void MachineInfoPanel::createExtinguishWidgets(wxBoxSizer* main_left_sizer)
     main_left_sizer->Add(m_extinguish_sizer, 0, wxEXPAND, 0);
 }
 
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 void MachineInfoPanel::msw_rescale()
 {
     rescale_bitmaps();
@@ -584,12 +563,7 @@ void MachineInfoPanel::update(MachineObject* obj)
 
 void MachineInfoPanel::update_version_text(MachineObject* obj)
 {
-<<<<<<< HEAD
-
-    if (obj->upgrade_display_state == (int)MachineObject::UpgradingDisplayState::UpgradingInProgress) {
-=======
     if (obj->upgrade_display_state == DevFirmwareUpgradingState::UpgradingInProgress) {
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
         m_staticText_ver_val->SetLabelText("-");
         //m_staticText_ams_ver_val->SetLabelText("-");
         m_ota_new_version_img->Hide();
@@ -1597,11 +1571,7 @@ bool UpgradePanel::Show(bool show)
      m_staticText_ams_ver_val->SetForegroundColour("#262E30");
      m_staticText_ams_ver_val->Wrap(-1);
 
-<<<<<<< HEAD
-     m_staticText_beta_version = new wxStaticText(this, wxID_ANY, "Beta", wxDefaultPosition, wxDefaultSize, 0);
-=======
      m_staticText_beta_version = new wxStaticText(this, wxID_ANY, _L("Beta"), wxDefaultPosition, wxDefaultSize, 0);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
      m_staticText_beta_version->SetForegroundColour("#778899");
      m_staticText_beta_version->Wrap(-1);
      m_staticText_beta_version->Hide();

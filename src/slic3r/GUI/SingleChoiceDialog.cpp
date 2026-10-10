@@ -28,12 +28,7 @@ SingleChoiceDialog::SingleChoiceDialog(const wxString &message, const wxString &
 
     auto dlg_btns = new DialogButtons(this, {"OK", "Cancel"});
 
-<<<<<<< HEAD
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                            std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
-=======
     dlg_btns->GetOK()->Bind(wxEVT_BUTTON, [this](wxCommandEvent &e) { EndModal(wxID_OK); });
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     dlg_btns->GetCANCEL()->Bind(wxEVT_BUTTON, [this](wxCommandEvent &e) { EndModal(wxID_CANCEL); });
 

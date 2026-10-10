@@ -212,19 +212,8 @@ private:
     wxString           m_full_title;
 
 public:
-<<<<<<< HEAD
-    MachineObjectPanel(wxWindow *      parent,
-                       wxWindowID      id    = wxID_ANY,
-                       const wxPoint & pos   = wxDefaultPosition,
-                       const wxSize &  size  = wxDefaultSize,
-                       long            style = wxTAB_TRAVERSAL,
-                       const wxString &name  = wxEmptyString);
-
-    ~MachineObjectPanel();
-=======
     PrintOption(wxWindow *parent, wxString title, wxString tips, std::vector<POItem> ops, std::string param = "");
     ~PrintOption(){};
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
 public:
     void        enable(bool en);
@@ -251,21 +240,7 @@ private:
     void doRender(wxDC &dc);
 };
 
-<<<<<<< HEAD
-#define SELECT_MACHINE_POPUP_SIZE wxSize(FromDIP(216), FromDIP(364))
-#define SELECT_MACHINE_LIST_SIZE wxSize(FromDIP(212), FromDIP(360))
-#define SELECT_MACHINE_ITEM_SIZE wxSize(FromDIP(190), FromDIP(35))
-#define SELECT_MACHINE_GREY900 wxColour(38, 46, 48)
-#define SELECT_MACHINE_GREY600 wxColour(144,144,144)
-#define SELECT_MACHINE_GREY400 wxColour(206, 206, 206)
-#define SELECT_MACHINE_BRAND wxColour(0, 133, 255)
-#define SELECT_MACHINE_REMIND wxColour(255,111,0)
-#define SELECT_MACHINE_LIGHT_GREEN wxColour(219, 253, 231)
-
-class MachinePanel
-=======
 class ThumbnailPanel : public wxPanel
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 {
 public:
     wxBitmap        m_bitmap;
@@ -305,49 +280,11 @@ private:
     void doRender(wxDC& dc);
 
 private:
-<<<<<<< HEAD
-    int                               m_my_devices_count{0};
-    int                               m_other_devices_count{0};
-    PinCodePanel*                     m_panel_ping_code{nullptr};
-    PinCodePanel*                     m_panel_direct_connection{nullptr};
-    wxWindow*                         m_placeholder_panel{nullptr};
-    wxHyperlinkCtrl*                  m_hyperlink{nullptr};
-    Label*                            m_ping_code_text{nullptr};
-    wxStaticBitmap*                   m_img_ping_code{nullptr};
-    wxBoxSizer *                      m_sizer_body{nullptr};
-    wxBoxSizer *                      m_sizer_my_devices{nullptr};
-    wxBoxSizer *                      m_sizer_other_devices{nullptr};
-    wxBoxSizer *                      m_sizer_search_bar{nullptr};
-    wxSearchCtrl*                     m_search_bar{nullptr};
-    wxScrolledWindow *                m_scrolledWindow{nullptr};
-    wxWindow *                        m_panel_body{nullptr};
-    wxTimer *                         m_refresh_timer{nullptr};
-    std::vector<MachinePanel*>        m_user_list_machine_panel;
-    std::vector<MachinePanel*>        m_other_list_machine_panel;
-    boost::thread*                    get_print_info_thread{ nullptr };
-    std::shared_ptr<int>              m_token = std::make_shared<int>(0);
-    std::string                       m_print_info = "";
-    bool                              m_dismiss { false };
-
-    std::map<std::string, MachineObject*> m_bind_machine_list;
-    std::map<std::string, MachineObject*> m_free_machine_list;
-
-private:
-    void OnLeftUp(wxMouseEvent &event);
-    void on_timer(wxTimerEvent &event);
-
-	void      update_other_devices();
-    void      update_user_devices();
-    bool      search_for_printer(MachineObject* obj);
-    void      on_dissmiss_win(wxCommandEvent &event);
-    wxWindow *create_title_panel(wxString text);
-=======
     bool is_selected {false};
     ScalableBitmap m_img_selected;
     ScalableBitmap m_img_unselected;
     ScalableBitmap m_img_selected_tag;
     ScalableBitmap m_img_unselected_tag;
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 };
 
 class PrinterInfoBox;
@@ -378,12 +315,9 @@ private:
     wxColour                            m_colour_bold_color{wxColour(38, 46, 48)};
     StateColor                          m_btn_bg_enable;
 
-<<<<<<< HEAD
-=======
     std::unordered_map<string, PrintOption*> m_checkbox_list;
     std::list<PrintOption*>                  m_checkbox_list_order;
 
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     std::shared_ptr<int>                m_token = std::make_shared<int>(0);
     wxString                             m_ams_tooltip;
     std::vector<wxString>               m_bedtype_list;

@@ -178,17 +178,8 @@ void DailyTipsDataRenderer::render_text(const ImVec2& start_pos, const ImVec2& s
 
     ImGui::SetCursorPos(start_pos);
     imgui.text(title_line);
-<<<<<<< HEAD
-
-    bool is_zh = false;
-    for (int i = 0; i < content_lines.size() - 1; i += 2) {
-        if ((content_lines[i] & 0x80) && (content_lines[i + 1] & 0x80))
-            is_zh = true;
-    }
-=======
     
     bool is_zh = has_cjk(content_lines);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     if (!is_zh) {
         // problem in Chinese with spaces
         ImGui::SetCursorPosX(start_pos.x);
@@ -222,7 +213,7 @@ void DailyTipsDataRenderer::render_text(const ImVec2& start_pos, const ImVec2& s
         ImVec2 link_start_pos = ImGui::GetCursorScreenPos();
         imgui.text(first_part_text);
 
-        ImColor HyperColor = ImColor(0, 150, 136, (int)(255 * m_fade_opacity)).Value; // ORCA match color of hyperlinks
+        ImColor HyperColor = ImColor(0, 144, 255, (int)(255 * m_fade_opacity)).Value; // ORCA match color of hyperlinks
         ImVec2 wiki_part_rect_min = ImVec2(link_start_pos.x + first_part_size.x, link_start_pos.y);
         ImVec2 wiki_part_rect_max = wiki_part_rect_min + wiki_part_size;
         ImGui::PushStyleColor(ImGuiCol_Text, HyperColor.Value);
@@ -477,7 +468,7 @@ void DailyTipsPanel::render_controller_buttons(const ImVec2& pos, const ImVec2& 
                     if (ImGui::IsMouseClicked(ImGuiMouseButton_Left))
                         expand();
                 }
-
+                
                 ImGui::PopStyleColor(4);
 
                 ImGui::EndChild();
@@ -498,7 +489,7 @@ void DailyTipsPanel::render_controller_buttons(const ImVec2& pos, const ImVec2& 
         imgui.text(text_str);
         ImGui::PopStyleColor();
         ImGui::PopItemWidth();
-
+        
         ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(.0f, .0f, .0f, .0f));
         ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(.0f, .0f, .0f, .0f));
         ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(.0f, .0f, .0f, .0f));

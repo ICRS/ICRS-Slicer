@@ -58,15 +58,11 @@ CalibrationDialog::CalibrationDialog(Plater *plater)
     select_heatbed_cali  = create_check_option(_L("High-temperature Heatbed Calibration"), cali_left_panel, _L("High-temperature Heatbed Calibration"), "bed_cali");
     select_clumppos_cali = create_check_option(_L("Nozzle clumping detection Calibration"), cali_left_panel, _L("Nozzle clumping detection Calibration"), "clump_pos_cali");
 
-<<<<<<< HEAD
-
-=======
     // STUDIO-10091 the default not checked option
     if(m_checkbox_list.count("bed_cali") != 0)
     {
         m_checkbox_list["bed_cali"]->SetValue(false);
     }
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     cali_left_sizer->Add(0, FromDIP(18), 0, wxEXPAND, 0);
     cali_left_sizer->Add(select_xcam_cali, 0, wxLEFT, FromDIP(15));
@@ -137,26 +133,6 @@ CalibrationDialog::CalibrationDialog(Plater *plater)
     auto staticline = new ::StaticLine(cali_right_panel);
     staticline->SetLineColour(AMS_CONTROL_BRAND_COLOUR);
     auto calibration_sizer = new wxBoxSizer(wxVERTICAL);
-<<<<<<< HEAD
-    calibration_panel->SetMinSize(wxSize(FromDIP(170), FromDIP(160)));
-    calibration_panel->SetSize(wxSize(FromDIP(170), FromDIP(160)));
-
-    m_calibration_flow = new StepIndicator(calibration_panel, wxID_ANY);
-    StateColor bg_color(std::pair<wxColour, int>(BG_COLOR, StateColor::Normal));
-    m_calibration_flow->SetBackgroundColor(bg_color);
-    m_calibration_flow->SetFont(Label::Body_12);
-
-    m_calibration_flow->SetMinSize(wxSize(FromDIP(170), FromDIP(160)));
-    m_calibration_flow->SetSize(wxSize(FromDIP(170), FromDIP(160)));
-
-    calibration_panel->SetSizer(calibration_sizer);
-    calibration_panel->Layout();
-    calibration_sizer->Add(m_calibration_flow, 0, wxEXPAND, 0);
-
-    StateColor btn_bg_green(std::pair<wxColour, int>(AMS_CONTROL_DISABLE_COLOUR, StateColor::Disabled), std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-                            std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered), std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
-    StateColor btn_bd_green(std::pair<wxColour, int>(AMS_CONTROL_WHITE_COLOUR, StateColor::Disabled), std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Enabled));
-=======
 
     m_calibration_flow = new StepIndicator(cali_right_panel, wxID_ANY);
     StateColor bg_color(std::pair<wxColour, int>(BG_COLOR, StateColor::Normal));
@@ -164,7 +140,6 @@ CalibrationDialog::CalibrationDialog(Plater *plater)
     m_calibration_flow->SetFont(Label::Body_12);
     m_calibration_flow->SetMinSize(wxSize(CALI_FLOW_CONTENT_WIDTH, FromDIP(160)));
     m_calibration_flow->SetSize(wxSize(CALI_FLOW_CONTENT_WIDTH, FromDIP(160)));
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     m_calibration_btn = new Button(cali_right_panel, _L("Start Calibration"));
     m_calibration_btn->SetStyle(ButtonStyle::Confirm, ButtonType::Choice);
@@ -243,11 +218,7 @@ void CalibrationDialog::update_cali(MachineObject *obj)
         m_checkbox_list["xcam_cali"]->SetValue(false);
     }
 
-<<<<<<< HEAD
-    if(obj->is_support_auto_leveling){
-=======
     if(obj->is_support_bed_leveling != 0){
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
         select_bed_leveling->Show();
     }else{
         select_bed_leveling->Hide();

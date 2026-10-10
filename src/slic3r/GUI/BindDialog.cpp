@@ -64,13 +64,6 @@ PingCodeBindDialog::PingCodeBindDialog(Plater* plater /*= nullptr*/)
 #endif //__WINDOWS__
     wxBoxSizer* sizer_main = new wxBoxSizer(wxVERTICAL);
 
-<<<<<<< HEAD
-
-    std::string icon_path = (boost::format("%1%/images/OrcaSlicerTitle.ico") % resources_dir()).str();
-    SetIcon(wxIcon(encode_path(icon_path.c_str()), wxBITMAP_TYPE_ICO));
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     SetBackgroundColour(*wxWHITE);
     wxBoxSizer* m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1), wxTAB_TRAVERSAL);
@@ -132,21 +125,7 @@ PingCodeBindDialog::PingCodeBindDialog(Plater* plater /*= nullptr*/)
     wxBoxSizer* m_sizer_button = new wxBoxSizer(wxHORIZONTAL);
     m_sizer_button->Add(0, 0, 1, wxEXPAND, 5);
     m_button_bind = new Button(request_bind_panel, _L("Confirm"));
-<<<<<<< HEAD
-
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Disabled),
-        std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-    m_button_bind->SetBackgroundColor(btn_bg_green);
-    m_button_bind->SetBorderColor(*wxWHITE);
-    m_button_bind->SetTextColor(wxColour("#FFFFFE"));
-    m_button_bind->SetSize(BIND_DIALOG_BUTTON_SIZE);
-    m_button_bind->SetMinSize(BIND_DIALOG_BUTTON_SIZE);
-    m_button_bind->SetCornerRadius(FromDIP(12));
-=======
     m_button_bind->SetStyle(ButtonStyle::Confirm, ButtonType::Choice);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     m_button_bind->Enable(false);
 
     m_button_cancel = new Button(request_bind_panel, _L("Cancel"));
@@ -470,10 +449,6 @@ PingCodeBindDialog::~PingCodeBindDialog() {
      m_link_Terms_title->SetFont(Label::Head_13);
      m_link_Terms_title->SetMaxSize(wxSize(FromDIP(450), -1));
      m_link_Terms_title->Wrap(FromDIP(450));
-<<<<<<< HEAD
-     m_link_Terms_title->SetForegroundColour(wxColour(0x0090ff));
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
      m_link_Terms_title->Bind(wxEVT_LEFT_DOWN, [this](auto& e) {
          wxString txt = _L("Thank you for purchasing a Bambu Lab device. Before using your Bambu Lab device, please read the terms and conditions. "
                            "By clicking to agree to use your Bambu Lab device, you agree to abide by the Privacy Policy and Terms of Use (collectively, the \"Terms\"). "
@@ -493,10 +468,6 @@ PingCodeBindDialog::~PingCodeBindDialog() {
      m_link_privacy_title->SetFont(Label::Head_13);
      m_link_privacy_title->SetMaxSize(wxSize(FromDIP(450), -1));
      m_link_privacy_title->Wrap(FromDIP(450));
-<<<<<<< HEAD
-     m_link_privacy_title->SetForegroundColour(wxColour(0x0090ff));
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
      m_link_privacy_title->Bind(wxEVT_LEFT_DOWN, [this](auto& e) {
          std::string url;
          std::string country_code = Slic3r::GUI::wxGetApp().app_config->get_country_code();
@@ -535,12 +506,6 @@ PingCodeBindDialog::~PingCodeBindDialog() {
      m_link_notice_title->SetFont(Label::Head_13);
      m_link_notice_title->SetMaxSize(wxSize(FromDIP(450), -1));
      m_link_notice_title->Wrap(FromDIP(450));
-<<<<<<< HEAD
-     m_link_notice_title->SetForegroundColour(wxColour(0x0090ff));
-     m_link_notice_title->Bind(wxEVT_ENTER_WINDOW, [this](auto& e) {SetCursor(wxCURSOR_HAND); });
-     m_link_notice_title->Bind(wxEVT_LEAVE_WINDOW, [this](auto& e) {SetCursor(wxCURSOR_ARROW); });
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
      m_link_notice_title->Bind(wxEVT_LEFT_DOWN, [this](auto& e) {
          wxString txt = _L("In the 3D Printing community, we learn from each other's successes and failures to adjust "
                            "our own slicing parameters and settings. %s follows the same principle and uses machine "
@@ -600,18 +565,8 @@ PingCodeBindDialog::~PingCodeBindDialog() {
      wxBoxSizer* m_sizer_bind_failed_info = new wxBoxSizer(wxVERTICAL);
      m_sw_bind_failed_info->SetSizer( m_sizer_bind_failed_info );
 
-<<<<<<< HEAD
-     m_link_network_state = new wxHyperlinkCtrl(m_sw_bind_failed_info, wxID_ANY,_L("Check the status of current system services"),"");
-     m_link_network_state->SetFont(::Label::Body_12);
-     m_link_network_state->Bind(wxEVT_LEFT_DOWN, [this](auto& e) {wxGetApp().link_to_network_check(); });
-     m_link_network_state->Bind(wxEVT_ENTER_WINDOW, [this](auto& e) {m_link_network_state->SetCursor(wxCURSOR_HAND); });
-     m_link_network_state->Bind(wxEVT_LEAVE_WINDOW, [this](auto& e) {m_link_network_state->SetCursor(wxCURSOR_ARROW); });
-
-
-=======
      // ORCA standardized HyperLink
      m_link_network_state = new HyperLink(m_sw_bind_failed_info, _L("Check the status of current system services"), wxGetApp().link_to_network_check());
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
      wxBoxSizer* sizer_error_code = new wxBoxSizer(wxHORIZONTAL);
      wxBoxSizer* sizer_error_desc = new wxBoxSizer(wxHORIZONTAL);
@@ -687,21 +642,7 @@ PingCodeBindDialog::~PingCodeBindDialog() {
      button_panel->SetBackgroundColour(*wxWHITE);
      wxBoxSizer *m_sizer_button = new wxBoxSizer(wxHORIZONTAL);
      m_button_bind = new Button(button_panel, _L("Confirm"));
-<<<<<<< HEAD
-
-     StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Disabled),
-         std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-         std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-         std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-     m_button_bind->SetBackgroundColor(btn_bg_green);
-     m_button_bind->SetBorderColor(*wxWHITE);
-     m_button_bind->SetTextColor(wxColour("#FFFFFE"));
-     m_button_bind->SetSize(BIND_DIALOG_BUTTON_SIZE);
-     m_button_bind->SetMinSize(BIND_DIALOG_BUTTON_SIZE);
-     m_button_bind->SetCornerRadius(FromDIP(12));
-=======
      m_button_bind->SetStyle(ButtonStyle::Confirm, ButtonType::Choice);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
      m_button_bind->Enable(false);
 
      m_button_cancel = new Button(button_panel, _L("Cancel"));
@@ -1037,22 +978,7 @@ UnBindMachineDialog::UnBindMachineDialog(Plater *plater /*= nullptr*/)
 
      m_sizer_button->Add(0, 0, 1, wxEXPAND, 5);
      m_button_unbind = new Button(this, _L("Confirm"));
-<<<<<<< HEAD
-     StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                             std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-     m_button_unbind->SetBackgroundColor(btn_bg_green);
-     m_button_unbind->SetBorderColor(wxColour(0, 133, 255));
-     m_button_unbind->SetTextColor(wxColour("#FFFFFE"));
-     m_button_unbind->SetSize(BIND_DIALOG_BUTTON_SIZE);
-     m_button_unbind->SetMinSize(BIND_DIALOG_BUTTON_SIZE);
-     m_button_unbind->SetCornerRadius(FromDIP(12));
-
-
-     StateColor btn_bg_white(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Hovered),
-                            std::pair<wxColour, int>(*wxWHITE, StateColor::Normal));
-=======
      m_button_unbind->SetStyle(ButtonStyle::Confirm, ButtonType::Choice);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
      m_button_cancel = new Button(this, _L("Cancel"));
      m_button_cancel->SetStyle(ButtonStyle::Regular, ButtonType::Choice);
@@ -1154,11 +1080,7 @@ void UnBindMachineDialog::on_show(wxShowEvent &event)
             wxString username_text = from_u8(wxGetApp().getAgent()->get_user_name(provider));
             m_user_name->SetLabelText(username_text);
 
-<<<<<<< HEAD
-            std::string avatar_url = wxGetApp().getAgent()->get_user_avatar();
-=======
             std::string avatar_url = wxGetApp().getAgent()->get_user_avatar(provider);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
             Slic3r::Http http = Slic3r::Http::get(avatar_url);
             std::string  suffix = avatar_url.substr(avatar_url.find_last_of(".") + 1);
             http.header("accept", "image/" + suffix)
@@ -1185,7 +1107,7 @@ void UnBindMachineDialog::on_show(wxShowEvent &event)
 
         Layout();
         event.Skip();
-    }
+    } 
 }
 
 }} // namespace Slic3r::GUI

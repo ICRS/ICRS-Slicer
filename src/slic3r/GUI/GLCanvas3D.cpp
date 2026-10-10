@@ -1953,8 +1953,6 @@ void GLCanvas3D::render(bool only_init)
 
     if (!is_initialized() && !init())
         return;
-<<<<<<< HEAD
-=======
 
     // If a scene reload was postponed while the canvas was hidden, consume it on first visible render.
     if (m_reload_delayed) {
@@ -1963,7 +1961,6 @@ void GLCanvas3D::render(bool only_init)
             return;
     }
 
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     if (m_canvas_type == ECanvasType::CanvasView3D  && m_gizmos.get_current_type() == GLGizmosManager::Undefined) {
         enable_return_toolbar(false);
     }
@@ -2458,12 +2455,7 @@ void GLCanvas3D::reload_scene(bool refresh_immediately, bool force_full_scene_re
         m_reload_delayed = true;
         set_as_dirty();
         return;
-<<<<<<< HEAD
-
-    _set_current();
-=======
     }
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     m_hover_volume_idxs.clear();
 
@@ -4531,12 +4523,6 @@ void GLCanvas3D::on_mouse(wxMouseEvent& evt)
             }
         }
         // do not process the dragging if the left mouse was set down in another canvas
-<<<<<<< HEAD
-        else if (is_camera_rotate(evt)) {
-            // Orca: Sphere rotation for painting view
-            // if dragging over blank area with left button, rotate
-            if ((any_gizmo_active || m_hover_volume_idxs.empty()) && m_mouse.is_start_position_3D_defined()) {
-=======
         else if (is_camera_rotate(evt, button_mappings)) {
             // Orca: Sphere rotation for painting view
             // if dragging over blank area with left button or other button mapped to rotate, then rotate
@@ -4544,7 +4530,6 @@ void GLCanvas3D::on_mouse(wxMouseEvent& evt)
                                                          (evt.RightIsDown() && button_mappings[MouseButton::Right] == MouseAction::Rotation);         
             if ((any_gizmo_active || middle_or_right_button_used_as_rotate || m_hover_volume_idxs.empty()) &&
                 m_mouse.is_start_position_3D_defined()) {
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
                 Camera& camera = wxGetApp().plater()->get_camera();
                 auto mult_pref = wxGetApp().app_config->get("camera_orbit_mult");
                 const double mult = mult_pref.empty() ? 1.0 : std::stod(mult_pref);
@@ -6052,13 +6037,8 @@ void GLCanvas3D::_render_3d_navigator()
     strcpy(style.FaceLabels[ImGuizmo::FACES::FACE_BACK], _utf8("Back").c_str());
     strcpy(style.FaceLabels[ImGuizmo::FACES::FACE_TOP], _utf8("Top").c_str());
     strcpy(style.FaceLabels[ImGuizmo::FACES::FACE_BOTTOM], _utf8("Bottom").c_str());
-<<<<<<< HEAD
-    strcpy(style.FaceLabels[ImGuizmo::FACES::FACE_LEFT], _utf8("Left").c_str());
-    strcpy(style.FaceLabels[ImGuizmo::FACES::FACE_RIGHT], _utf8("Right").c_str());
-=======
     strcpy(style.FaceLabels[ImGuizmo::FACES::FACE_LEFT], _CTX_utf8(L_CONTEXT("Left", "Camera"), "Camera").c_str());
     strcpy(style.FaceLabels[ImGuizmo::FACES::FACE_RIGHT], _CTX_utf8(L_CONTEXT("Right", "Camera"), "Camera").c_str());
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     float sc = get_scale();
 #ifdef WIN32
@@ -8725,19 +8705,11 @@ void GLCanvas3D::_render_imgui_select_plate_toolbar()
         m_render_preview = true;
 
     // places the toolbar on the top_left corner of the 3d scene
-<<<<<<< HEAD
-#if ENABLE_RETINA_GL
-    float f_scale  = m_retina_helper->get_scale_factor();
-#else
-    float f_scale  = wxGetApp().em_unit() / 10; // ORCA add scaling support
-#endif
-=======
     float f_scale = get_scale();
     #ifdef WIN32
         const int dpi = get_dpi_for_window(wxGetApp().GetTopWindow());
         f_scale *= (float) dpi / (float) DPI_DEFAULT;
     #endif // WIN32
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     Size cnv_size = get_canvas_size();
     auto canvas_w = float(cnv_size.get_width());
     auto canvas_h = float(cnv_size.get_height());

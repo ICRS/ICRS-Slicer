@@ -531,48 +531,8 @@ void PartPlate::calc_gridlines(const ExPolygon& poly, const BoundingBox& pp_bbox
     Vec2d scaled_origin = Vec2d(scale_(m_origin.x()),scale_(m_origin.y()));
     auto  grid_lines    = Bed_2D::generate_grid(poly, pp_bbox, scaled_origin, scale_(step), SCALED_EPSILON);
 
-<<<<<<< HEAD
-    // ORCA draw grid lines relative to origin
-    for (coord_t x = scale_(m_origin.x()); x >= pp_bbox.min(0); x -= scale_(step)) { // Negative X axis
-        (count % 5 == 0 ? axes_lines_bolder : axes_lines).push_back(Polyline(
-            Point(x, pp_bbox.min(1)),
-            Point(x, pp_bbox.max(1))
-        ));
-        count ++;
-    }
-    count = 0;
-    for (coord_t x = scale_(m_origin.x()); x <= pp_bbox.max(0); x += scale_(step)) { // Positive X axis
-        (count % 5 == 0 ? axes_lines_bolder : axes_lines).push_back(Polyline(
-            Point(x, pp_bbox.min(1)),
-            Point(x, pp_bbox.max(1))
-        ));
-        count ++;
-    }
-    count = 0;
-    for (coord_t y = scale_(m_origin.y()); y >= pp_bbox.min(1); y -= scale_(step)) { // Negative Y axis
-        (count % 5 == 0 ? axes_lines_bolder : axes_lines).push_back(Polyline(
-            Point(pp_bbox.min(0), y),
-            Point(pp_bbox.max(0), y)
-        ));
-        count ++;
-    }
-    count = 0;
-    for (coord_t y = scale_(m_origin.y()); y <= pp_bbox.max(1); y += scale_(step)) { // Positive Y axis
-        (count % 5 == 0 ? axes_lines_bolder : axes_lines).push_back(Polyline(
-            Point(pp_bbox.min(0), y),
-            Point(pp_bbox.max(0), y)
-        ));
-        count ++;
-    }
-    count = 0;
-
-	// clip with a slightly grown expolygon because our lines lay on the contours and may get erroneously clipped
-	Lines gridlines = to_lines(intersection_pl(axes_lines, offset(poly, (float)SCALED_EPSILON)));
-	Lines gridlines_bolder = to_lines(intersection_pl(axes_lines_bolder, offset(poly, (float)SCALED_EPSILON)));
-=======
     Lines lines_thin = to_lines(grid_lines[0]);
 	Lines lines_bold = to_lines(grid_lines[1]);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
 	// append bed contours
 	Lines contour_lines = to_lines(poly);

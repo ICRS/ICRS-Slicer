@@ -36,15 +36,9 @@ MultiTaskItem::MultiTaskItem(wxWindow* parent, MachineObject* obj, int type)
 
 
     auto m_btn_bg_enable = StateColor(
-<<<<<<< HEAD
         std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
         std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
         std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal)
-=======
-        std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal)
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     );
 
     m_button_resume = new Button(this, _L("Resume"));
@@ -394,13 +388,8 @@ void MultiTaskItem::doRender(wxDC& dc)
                 }
                 else if (state_device > 2 && state_device < 7) {
                     dc.SetFont(Label::Body_12);
-<<<<<<< HEAD
                     dc.SetTextForeground(wxColour(0, 133, 255));
-                    if (obj_->get_curr_stage().IsEmpty()) {
-=======
-                    dc.SetTextForeground(wxColour(0, 150, 136));
                     if (obj_->get_curr_stage() == _L("Printing") && obj_->subtask_) {
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
                         //wxString layer_info = wxString::Format(_L("Layer: %d/%d"), obj_->curr_layer, obj_->total_layers);
                         wxString progress_info = wxString::Format("%d", obj_->subtask_->task_progress);
                         wxString left_time = wxString::Format("%s", get_left_time(obj_->mc_left_time));

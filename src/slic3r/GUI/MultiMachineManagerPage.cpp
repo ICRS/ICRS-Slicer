@@ -188,13 +188,8 @@ void MultiMachineItem::doRender(wxDC& dc)
         }
         else if (state_device > 2 && state_device < 7) {
             dc.SetFont(Label::Body_12);
-<<<<<<< HEAD
             dc.SetTextForeground(wxColour(0, 133, 255));
-            if (obj_->get_curr_stage().IsEmpty() && obj_->subtask_) {
-=======
-            dc.SetTextForeground(wxColour(0, 150, 136));
             if (obj_->get_curr_stage() == _L("Printing") && obj_->subtask_) {
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
                 //wxString layer_info = wxString::Format(_L("Layer: %d/%d"), obj_->curr_layer, obj_->total_layers);
                 wxString progress_info = wxString::Format("%d", obj_->subtask_->task_progress);
                 wxString left_time = wxString::Format("%s", get_left_time(obj_->mc_left_time));
@@ -287,22 +282,6 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
     );
 
     //edit prints
-<<<<<<< HEAD
-    auto m_btn_bg_enable = StateColor(
-        std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal)
-    );
-
-
-    StateColor clean_bg(std::pair<wxColour, int>(wxColour(255, 255, 255), StateColor::Disabled), std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(238, 238, 238), StateColor::Hovered), std::pair<wxColour, int>(wxColour(255, 255, 255), StateColor::Enabled),
-        std::pair<wxColour, int>(wxColour(255, 255, 255), StateColor::Normal));
-    StateColor clean_bd(std::pair<wxColour, int>(wxColour(144, 144, 144), StateColor::Disabled), std::pair<wxColour, int>(wxColour(38, 46, 48), StateColor::Enabled));
-    StateColor clean_text(std::pair<wxColour, int>(wxColour(144, 144, 144), StateColor::Disabled), std::pair<wxColour, int>(wxColour(38, 46, 48), StateColor::Enabled));
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     auto sizer_button_printer = new wxBoxSizer(wxHORIZONTAL);
     sizer_button_printer->SetMinSize(wxSize(FromDIP(DEVICE_ITEM_MAX_WIDTH), -1));
     m_button_edit = new Button(m_main_panel, _L("Edit Printers"));
@@ -345,10 +324,6 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
         this->m_sort.set_role(sortcb, SortItem::SR_MACHINE_NAME, device_dev_name_big);
         this->refresh_user_device();
     });
-<<<<<<< HEAD
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
 
     m_task_name = new Button(m_table_head_panel, _L("Task Name"), "", wxNO_BORDER, ICON_SINGLE_SIZE);
@@ -359,10 +334,6 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
     m_task_name->SetMaxSize(wxSize(FromDIP(DEVICE_LEFT_DEV_NAME), FromDIP(DEVICE_ITEM_MAX_HEIGHT)));
     m_task_name->SetCenter(false);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
 
     m_status = new Button(m_table_head_panel, _L("Device Status"), "toolbar_double_directional_arrow", wxNO_BORDER, ICON_SINGLE_SIZE);
@@ -386,10 +357,6 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
         this->m_sort.set_role(sortcb, SortItem::SortRule::SR_MACHINE_STATE, device_state_big);
         this->refresh_user_device();
     });
-<<<<<<< HEAD
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
 
     m_action = new Button(m_table_head_panel, _L("Actions"), "", wxNO_BORDER, ICON_SINGLE_SIZE, false);

@@ -68,20 +68,6 @@ TipsDialog::TipsDialog(wxWindow *parent, const wxString &title, const wxString &
 
     wxBoxSizer *m_sizer_right = new wxBoxSizer(wxHORIZONTAL);
 
-<<<<<<< HEAD
-    m_confirm = new Button(this, _L("OK"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                            std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-
-    m_confirm->SetBackgroundColor(btn_bg_green);
-    m_confirm->SetBorderColor(wxColour(0, 133, 255));
-    m_confirm->SetTextColor(wxColour(255, 255, 255));
-    m_confirm->SetSize(TIPS_DIALOG_BUTTON_SIZE);
-    m_confirm->SetMinSize(TIPS_DIALOG_BUTTON_SIZE);
-    m_confirm->SetCornerRadius(FromDIP(12));
-    m_confirm->Bind(wxEVT_LEFT_DOWN, &TipsDialog::on_ok, this);
-    m_sizer_right->Add(m_confirm, 0, wxALL, FromDIP(5));
-=======
     if (style & wxOK) {
         wxString str = _L("OK");
         if (auto iter = option_map.find(wxID_OK); iter != option_map.end())
@@ -110,7 +96,6 @@ TipsDialog::TipsDialog(wxWindow *parent, const wxString &title, const wxString &
         Button *btn = add_button(wxID_CANCEL, str, false);
         m_sizer_right->Add(btn, 0, wxALL, FromDIP(5));
     }
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     m_sizer_bottom->Add(m_sizer_right, 0, wxEXPAND, FromDIP(5));
     m_sizer_main->Add(m_sizer_bottom, 0, wxEXPAND | wxLEFT | wxRIGHT, FromDIP(40));

@@ -34,10 +34,6 @@ namespace Slic3r { namespace GUI {
 wxDEFINE_EVENT(EVT_SET_FINISH_MAPPING, wxCommandEvent);
 const int LEFT_OFFSET = 2;
 
-<<<<<<< HEAD
- MaterialItem::MaterialItem(wxWindow *parent, wxColour mcolour, wxString mname)
- : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize)
-=======
 static void _add_containers(const AmsMapingPopup *                 win,
                             std::list<MappingContainer *> &        one_slot_containers,
                             const std::vector<MappingContainer *> &four_slots_containers,
@@ -60,7 +56,6 @@ static void _add_containers(const AmsMapingPopup *                 win,
 
  MaterialItem::MaterialItem(wxWindow *parent, wxColour mcolour, wxString mname)
     : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize)
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
  {
     m_arraw_bitmap_gray  = ScalableBitmap(this, "drop_down2", FromDIP(8));
     m_arraw_bitmap_white =  ScalableBitmap(this, "topbar_dropdown", 12);
@@ -256,9 +251,6 @@ void MaterialItem::render(wxDC &dc)
     }
 }
 
-<<<<<<< HEAD
-void MaterialItem::doRender(wxDC &dc)
-=======
 
 void MaterialItem::match(bool mat)
 {
@@ -267,7 +259,6 @@ void MaterialItem::match(bool mat)
 }
 
 void MaterialItem::doRender(wxDC& dc)
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 {
     wxSize size = GetSize();
     auto mcolor = m_material_coloul;
@@ -286,10 +277,6 @@ void MaterialItem::doRender(wxDC& dc)
     //top
     dc.SetPen(*wxTRANSPARENT_PEN);
     dc.SetBrush(wxBrush(mcolor));
-<<<<<<< HEAD
-    dc.DrawRoundedRectangle(FromDIP(1), FromDIP(1), MATERIAL_ITEM_REAL_SIZE.x, FromDIP(18), 5);
-
-=======
     dc.DrawRoundedRectangle(0, 0, MATERIAL_ITEM_SIZE.x, FromDIP(20), 5);
 
     dc.SetPen(*wxTRANSPARENT_PEN);
@@ -304,7 +291,6 @@ void MaterialItem::doRender(wxDC& dc)
     auto up = (size.y * 0.4 + (size.y * 0.6 - MATERIAL_REC_WHEEL_SIZE.y) / 2);
     auto right = left + MATERIAL_REC_WHEEL_SIZE.x - FromDIP(3);
     dc.SetPen(*wxTRANSPARENT_PEN);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     //bottom
     if (m_ams_cols.size() > 1) {
         int gwidth = std::round(MATERIAL_REC_WHEEL_SIZE.x / (m_ams_cols.size() - 1));
@@ -328,21 +314,6 @@ void MaterialItem::doRender(wxDC& dc)
                     dc.DrawRoundedRectangle(x - FromDIP(LEFT_OFFSET), up, ((float) MATERIAL_REC_WHEEL_SIZE.x) / cols_size - FromDIP(1), MATERIAL_REC_WHEEL_SIZE.y, 3);
                 }
             }
-<<<<<<< HEAD
-
-        }
-    }
-    else {
-
-        dc.SetPen(*wxTRANSPARENT_PEN);
-        dc.SetBrush(wxBrush(wxColour(acolor)));
-        dc.DrawRoundedRectangle(FromDIP(1), FromDIP(18), MATERIAL_ITEM_REAL_SIZE.x, FromDIP(16), 5);
-        ////middle
-
-        dc.SetPen(*wxTRANSPARENT_PEN);
-        dc.SetBrush(wxBrush(acolor));
-        dc.DrawRectangle(FromDIP(1), FromDIP(18), MATERIAL_ITEM_REAL_SIZE.x, FromDIP(8));
-=======
         }
     }
     else {
@@ -352,7 +323,6 @@ void MaterialItem::doRender(wxDC& dc)
             dc.DrawRectangle((size.x / 2 - MATERIAL_REC_WHEEL_SIZE.x) / 2 + FromDIP(3) - FromDIP(LEFT_OFFSET), up, MATERIAL_REC_WHEEL_SIZE.x - FromDIP(1),
                              MATERIAL_REC_WHEEL_SIZE.y);
         }
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     }
 
 
@@ -379,404 +349,6 @@ void MaterialItem::doRender(wxDC& dc)
         dc.SetPen(wxPen(wxColour(234, 31, 48), FromDIP(1)));
     }
 
-<<<<<<< HEAD
-    if (m_selected) {
-        dc.SetPen(wxColour(0x00, 0xAE, 0x42));
-        dc.SetBrush(*wxTRANSPARENT_BRUSH);
-        dc.DrawRoundedRectangle(1, 1, MATERIAL_ITEM_SIZE.x - 1, MATERIAL_ITEM_SIZE.y - 1, 5);
-    }
-#else
-    if (mcolor == *wxWHITE || acolor == *wxWHITE || acolor.Alpha() == 0) {
-        dc.SetPen(wxColour(0xAC, 0xAC, 0xAC));
-        dc.SetBrush(*wxTRANSPARENT_BRUSH);
-        dc.DrawRoundedRectangle(0, 0, MATERIAL_ITEM_SIZE.x, MATERIAL_ITEM_SIZE.y, 5);
-    }
-
-    if (m_selected) {
-        dc.SetPen(wxColour(0x00, 0xAE, 0x42));
-        dc.SetBrush(*wxTRANSPARENT_BRUSH);
-        dc.DrawRoundedRectangle(0, 0, MATERIAL_ITEM_SIZE.x, MATERIAL_ITEM_SIZE.y, 5);
-    }
-#endif
-    //arrow
-    if ( (acolor.Red() > 160 && acolor.Green() > 160 && acolor.Blue() > 160) &&
-        (acolor.Red() < 180 && acolor.Green() < 180 && acolor.Blue() < 180)) {
-        dc.DrawBitmap(m_arraw_bitmap_white.bmp(), size.x - m_arraw_bitmap_white.GetBmpSize().x - FromDIP(7), size.y - m_arraw_bitmap_white.GetBmpSize().y);
-    }
-    else {
-        dc.DrawBitmap(m_arraw_bitmap_gray.bmp(), size.x - m_arraw_bitmap_gray.GetBmpSize().x - FromDIP(7), size.y - m_arraw_bitmap_gray.GetBmpSize().y);
-    }
-
-
-}
-
- AmsMapingPopup::AmsMapingPopup(wxWindow *parent)
-    : PopupWindow(parent, wxBORDER_NONE)
- {
-     SetSize(wxSize(FromDIP(252), -1));
-     SetMinSize(wxSize(FromDIP(252), -1));
-     SetMaxSize(wxSize(FromDIP(252), -1));
-     Bind(wxEVT_PAINT, &AmsMapingPopup::paintEvent, this);
-
-
-     #if __APPLE__
-     Bind(wxEVT_LEFT_DOWN, &AmsMapingPopup::on_left_down, this);
-     #endif
-
-     SetBackgroundColour(*wxWHITE);
-     m_sizer_main         = new wxBoxSizer(wxVERTICAL);
-     //m_sizer_main->Add(0, 0, 1, wxEXPAND, 0);
-
-     auto title_panel = new wxPanel(this, wxID_ANY);
-     title_panel->SetBackgroundColour(wxColour(0xF8, 0xF8, 0xF8));
-     title_panel->SetSize(wxSize(-1, FromDIP(30)));
-     title_panel->SetMinSize(wxSize(-1, FromDIP(30)));
-
-
-     wxBoxSizer *title_sizer_h= new wxBoxSizer(wxHORIZONTAL);
-
-     wxBoxSizer *title_sizer_v = new wxBoxSizer(wxVERTICAL);
-
-     auto title_text = new wxStaticText(title_panel, wxID_ANY, _L("AMS Slots"));
-     title_text->SetForegroundColour(wxColour(0x32, 0x3A, 0x3D));
-     title_text->SetFont(::Label::Head_13);
-     title_sizer_v->Add(title_text, 0, wxALIGN_CENTER, 5);
-     title_sizer_h->Add(title_sizer_v, 1, wxALIGN_CENTER, 5);
-     title_panel->SetSizer(title_sizer_h);
-     title_panel->Layout();
-     title_panel->Fit();
-
-     m_sizer_list = new wxBoxSizer(wxVERTICAL);
-     for (auto i = 0; i < AMS_TOTAL_COUNT; i++) {
-         auto sizer_mapping_list = new wxBoxSizer(wxHORIZONTAL);
-         /*auto ams_mapping_item_container = new wxStaticBitmap(this, wxID_ANY, create_scaled_bitmap("ams_mapping_container", this, 78), wxDefaultPosition,
-             wxSize(FromDIP(230), FromDIP(78)), 0);*/
-         auto ams_mapping_item_container = new MappingContainer(this);
-         ams_mapping_item_container->SetSizer(sizer_mapping_list);
-         ams_mapping_item_container->Layout();
-         //ams_mapping_item_container->Hide();
-         m_amsmapping_container_sizer_list.push_back(sizer_mapping_list);
-         m_amsmapping_container_list.push_back(ams_mapping_item_container);
-         m_sizer_list->Add(ams_mapping_item_container, 0, wxALIGN_CENTER_HORIZONTAL|wxTOP|wxBOTTOM, FromDIP(5));
-     }
-
-     m_warning_text = new wxStaticText(this, wxID_ANY, wxEmptyString);
-     m_warning_text->SetForegroundColour(wxColour(0xFF, 0x6F, 0x00));
-     m_warning_text->SetFont(::Label::Body_12);
-     auto cant_not_match_tip = _L("Note: Only the AMS slots loaded with the same material type can be selected.");
-     m_warning_text->SetLabel(format_text(cant_not_match_tip));
-     m_warning_text->SetMinSize(wxSize(FromDIP(248), FromDIP(-1)));
-     m_warning_text->Wrap(FromDIP(248));
-
-     m_sizer_main->Add(title_panel, 0, wxEXPAND | wxALL, FromDIP(2));
-     m_sizer_main->Add(0, 0, 0, wxTOP, FromDIP(5));
-     m_sizer_main->Add(m_sizer_list, 0, wxEXPAND | wxALL, FromDIP(0));
-     m_sizer_main->Add(0, 0, 0, wxTOP, FromDIP(5));
-     m_sizer_main->Add(m_warning_text, 0, wxEXPAND | wxALL, FromDIP(6));
-
-     SetSizer(m_sizer_main);
-     Layout();
-     Fit();
-
-     Bind(wxEVT_SHOW, [this](wxShowEvent& e) {
-         if (e.IsShown() && m_parent_item) {
-             wxPoint pos = m_parent_item->ClientToScreen(wxPoint(0, 0));
-             pos.y += m_parent_item->GetRect().height;
-             this->Move(pos);
-         }
-     });
- }
-
- wxString AmsMapingPopup::format_text(wxString &m_msg)
- {
-     if (wxGetApp().app_config->get("language") != "zh_CN") { return m_msg; }
-
-     wxString out_txt      = m_msg;
-     wxString count_txt    = "";
-     int      new_line_pos = 0;
-
-     for (int i = 0; i < m_msg.length(); i++) {
-         auto text_size = m_warning_text->GetTextExtent(count_txt);
-         if (text_size.x < (FromDIP(280))) {
-             count_txt += m_msg[i];
-         } else {
-             out_txt.insert(i - 1, '\n');
-             count_txt = "";
-         }
-     }
-     return out_txt;
- }
-
-void AmsMapingPopup::update_materials_list(std::vector<std::string> list)
-{
-    m_materials_list = list;
-}
-
-void AmsMapingPopup::set_tag_texture(std::string texture)
-{
-    m_tag_material = texture;
-}
-
-
-bool AmsMapingPopup::is_match_material(std::string material)
-{
-    return m_tag_material == material ? true : false;
-}
-
-
-void AmsMapingPopup::on_left_down(wxMouseEvent &evt)
-{
-    auto pos = ClientToScreen(evt.GetPosition());
-    for (MappingItem *item : m_mapping_item_list) {
-        auto p_rect = item->ClientToScreen(wxPoint(0, 0));
-        auto left = item->GetSize();
-
-        if (pos.x > p_rect.x && pos.y > p_rect.y && pos.x < (p_rect.x + item->GetSize().x) && pos.y < (p_rect.y + item->GetSize().y)) {
-            if (item->m_tray_data.type == TrayType::NORMAL  && !is_match_material(item->m_tray_data.filament_type)) return;
-            item->send_event(m_current_filament_id);
-            Dismiss();
-        }
-    }
-}
-
-void AmsMapingPopup::update_ams_data_multi_machines()
-{
-    m_has_unmatch_filament = false;
-    for (auto& ams_container : m_amsmapping_container_list) {
-        ams_container->Hide();
-    }
-
-    for (wxWindow* mitem : m_mapping_item_list) {
-        mitem->Destroy();
-        mitem = nullptr;
-    }
-    m_mapping_item_list.clear();
-
-    if (m_amsmapping_container_sizer_list.size() > 0) {
-        for (wxBoxSizer* siz : m_amsmapping_container_sizer_list) {
-            siz->Clear(true);
-        }
-    }
-
-    int m_amsmapping_container_list_index = 0;
-    std::vector<TrayData> tray_datas;
-
-    for (int i = 0; i < 4; ++i) {
-        TrayData td;
-        td.id = i;
-        td.type = EMPTY;
-        td.colour = wxColour(166, 169, 170);
-        td.name = "";
-        td.filament_type = "";
-        td.ctype = 0;
-        tray_datas.push_back(td);
-    }
-
-    m_amsmapping_container_list[m_amsmapping_container_list_index]->Show();
-    add_ams_mapping(tray_datas, m_amsmapping_container_list[m_amsmapping_container_list_index], m_amsmapping_container_sizer_list[m_amsmapping_container_list_index]);
-
-    m_warning_text->Show(m_has_unmatch_filament);
-
-    Layout();
-    Fit();
-}
-
-void AmsMapingPopup::update_ams_data(std::map<std::string, Ams*> amsList)
-{
-    m_has_unmatch_filament = false;
-    //m_mapping_item_list.clear();
-
-    for (auto& ams_container : m_amsmapping_container_list) {
-        ams_container->Hide();
-    }
-
-
-    for (wxWindow *mitem : m_mapping_item_list) {
-        mitem->Destroy();
-        mitem = nullptr;
-    }
-     m_mapping_item_list.clear();
-
-    if (m_amsmapping_container_sizer_list.size() > 0) {
-        for (wxBoxSizer *siz : m_amsmapping_container_sizer_list) {
-            siz->Clear(true);
-        }
-    }
-
-    std::map<std::string, Ams *>::iterator ams_iter;
-
-    BOOST_LOG_TRIVIAL(trace) << "ams_mapping total count " << amsList.size();
-    int m_amsmapping_container_list_index = 0;
-
-    for (ams_iter = amsList.begin(); ams_iter != amsList.end(); ams_iter++) {
-
-        BOOST_LOG_TRIVIAL(trace) << "ams_mapping ams id " << ams_iter->first.c_str();
-
-        auto ams_indx = atoi(ams_iter->first.c_str());
-        Ams *ams_group = ams_iter->second;
-        std::vector<TrayData>                      tray_datas;
-        std::map<std::string, AmsTray *>::iterator tray_iter;
-
-        for (tray_iter = ams_group->trayList.begin(); tray_iter != ams_group->trayList.end(); tray_iter++) {
-            AmsTray *tray_data = tray_iter->second;
-            TrayData td;
-
-            td.id = ams_indx * AMS_TOTAL_COUNT + atoi(tray_data->id.c_str());
-
-            if (!tray_data->is_exists) {
-                td.type = EMPTY;
-            } else {
-                if (!tray_data->is_tray_info_ready()) {
-                    td.type = THIRD;
-                } else {
-                    td.type   = NORMAL;
-                    td.colour = AmsTray::decode_color(tray_data->color);
-                    td.name   = tray_data->get_display_filament_type();
-                    td.filament_type = tray_data->get_filament_type();
-                    td.ctype = tray_data->ctype;
-                    for (auto col : tray_data->cols) {
-                        td.material_cols.push_back(AmsTray::decode_color(col));
-                    }
-                }
-            }
-
-            tray_datas.push_back(td);
-        }
-
-        m_amsmapping_container_list[m_amsmapping_container_list_index]->Show();
-        add_ams_mapping(tray_datas, m_amsmapping_container_list[m_amsmapping_container_list_index], m_amsmapping_container_sizer_list[m_amsmapping_container_list_index]);
-        m_amsmapping_container_list_index++;
-    }
-
-
-    m_warning_text->Show(m_has_unmatch_filament);
-    Layout();
-    Fit();
-}
-
-std::vector<TrayData> AmsMapingPopup::parse_ams_mapping(std::map<std::string, Ams*> amsList)
-{
-    std::vector<TrayData> m_tray_data;
-    std::map<std::string, Ams *>::iterator ams_iter;
-
-    for (ams_iter = amsList.begin(); ams_iter != amsList.end(); ams_iter++) {
-
-        BOOST_LOG_TRIVIAL(trace) << "ams_mapping ams id " << ams_iter->first.c_str();
-
-        auto ams_indx = atoi(ams_iter->first.c_str());
-        Ams* ams_group = ams_iter->second;
-        std::vector<TrayData>                      tray_datas;
-        std::map<std::string, AmsTray*>::iterator tray_iter;
-
-        for (tray_iter = ams_group->trayList.begin(); tray_iter != ams_group->trayList.end(); tray_iter++) {
-            AmsTray* tray_data = tray_iter->second;
-            TrayData td;
-
-            td.id = ams_indx * AMS_TOTAL_COUNT + atoi(tray_data->id.c_str());
-
-            if (!tray_data->is_exists) {
-                td.type = EMPTY;
-            }
-            else {
-                if (!tray_data->is_tray_info_ready()) {
-                    td.type = THIRD;
-                }
-                else {
-                    td.type = NORMAL;
-                    td.colour = AmsTray::decode_color(tray_data->color);
-                    td.name = tray_data->get_display_filament_type();
-                    td.filament_type = tray_data->get_filament_type();
-                }
-            }
-
-            m_tray_data.push_back(td);
-        }
-    }
-
-    return m_tray_data;
-}
-
-void AmsMapingPopup::add_ams_mapping(std::vector<TrayData> tray_data, wxWindow* container, wxBoxSizer* sizer)
-{
-    sizer->Add(0,0,0,wxLEFT,FromDIP(6));
-    for (auto i = 0; i < tray_data.size(); i++) {
-
-        // set number
-       /* auto number = new wxStaticText(this, wxID_ANY, wxGetApp().transition_tridid(tray_data[i].id), wxDefaultPosition, wxDefaultSize, 0);
-        number->SetFont(::Label::Body_13);
-        number->SetForegroundColour(wxColour(0X6B, 0X6B, 0X6B));
-        number->Wrap(-1);*/
-
-
-        // set button
-        MappingItem *m_mapping_item = new MappingItem(container);
-        m_mapping_item->SetSize(wxSize(FromDIP(68 * 0.7), FromDIP(100 * 0.6)));
-        m_mapping_item->SetMinSize(wxSize(FromDIP(68 * 0.7), FromDIP(100 * 0.6)));
-        m_mapping_item->SetMaxSize(wxSize(FromDIP(68 * 0.7), FromDIP(100 * 0.6)));
-        //m_mapping_item->SetCornerRadius(5);
-        m_mapping_item->SetFont(::Label::Body_12);
-        m_mapping_item_list.push_back(m_mapping_item);
-
-        if (tray_data[i].type == NORMAL) {
-            if (is_match_material(tray_data[i].filament_type)) {
-                m_mapping_item->set_data(tray_data[i].colour, tray_data[i].name, tray_data[i]);
-            } else {
-                m_mapping_item->set_data(wxColour(0xEE,0xEE,0xEE), tray_data[i].name, tray_data[i], true);
-                m_has_unmatch_filament = true;
-            }
-
-            m_mapping_item->Bind(wxEVT_LEFT_DOWN, [this, tray_data, i, m_mapping_item](wxMouseEvent &e) {
-                if (!is_match_material(tray_data[i].filament_type)) return;
-                m_mapping_item->send_event(m_current_filament_id);
-                Dismiss();
-            });
-        }
-
-
-        // temp
-        if (tray_data[i].type == EMPTY) {
-            m_mapping_item->set_data(wxColour(0xCE, 0xCE, 0xCE), "-", tray_data[i]);
-            m_mapping_item->Bind(wxEVT_LEFT_DOWN, [this, tray_data, i, m_mapping_item](wxMouseEvent &e) {
-                m_mapping_item->send_event(m_current_filament_id);
-                Dismiss();
-            });
-        }
-
-        // third party
-        if (tray_data[i].type == THIRD) {
-            m_mapping_item->set_data(wxColour(0xCE, 0xCE, 0xCE), "?", tray_data[i]);
-            m_mapping_item->Bind(wxEVT_LEFT_DOWN, [this, tray_data, i, m_mapping_item](wxMouseEvent &e) {
-                m_mapping_item->send_event(m_current_filament_id);
-                Dismiss();
-            });
-        }
-
-
-        //sizer_mapping_item->Add(number, 0, wxALIGN_CENTER_HORIZONTAL, 0);
-        //sizer_mapping_item->Add(m_mapping_item, 0, wxALIGN_CENTER_HORIZONTAL, 0);
-        m_mapping_item->set_tray_index(wxGetApp().transition_tridid(tray_data[i].id));
-        sizer->Add(0,0,0,wxRIGHT,FromDIP(6));
-        sizer->Add(m_mapping_item, 0, wxTOP, FromDIP(1));
-    }
-
-}
-
-void AmsMapingPopup::OnDismiss()
-{
-
-}
-
-bool AmsMapingPopup::ProcessLeftDown(wxMouseEvent &event)
-{
-    return PopupWindow::ProcessLeftDown(event);
-}
-
-void AmsMapingPopup::paintEvent(wxPaintEvent &evt)
-{
-    wxPaintDC dc(this);
-    dc.SetPen(wxColour(0xAC, 0xAC, 0xAC));
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     dc.SetBrush(*wxTRANSPARENT_BRUSH);
     dc.DrawRoundedRectangle(FromDIP(0), FromDIP(0), MATERIAL_ITEM_SIZE.x - FromDIP(0), MATERIAL_ITEM_SIZE.y - FromDIP(0), 5);
 
@@ -810,55 +382,23 @@ void AmsMapingPopup::paintEvent(wxPaintEvent &evt)
     }
 }
 
-<<<<<<< HEAD
- MappingItem::MappingItem(wxWindow *parent)
- : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize)
-{
-#ifdef __WINDOWS__
-    SetDoubleBuffered(true);
-#endif //__WINDOWS__
-
-    m_transparent_mapping_item = ScalableBitmap(this, "transparent_mapping_item", FromDIP(44));
-    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
-    Bind(wxEVT_PAINT, &MappingItem::paintEvent, this);
-}
-
- MappingItem::~MappingItem()
-=======
 void MaterialItem::reset_valid_info() {
     set_ams_info(m_back_ams_coloul, m_back_ams_name, m_back_ams_ctype, m_back_ams_cols);
 }
 
  MaterialSyncItem::MaterialSyncItem(wxWindow *parent, wxColour mcolour, wxString mname) : MaterialItem(parent, mcolour, mname)
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 {
 
 }
 
 MaterialSyncItem::~MaterialSyncItem() {}
 
-<<<<<<< HEAD
-void MappingItem::send_event(int fliament_id)
-{
-    auto number = wxGetApp().transition_tridid(m_tray_data.id);
-    wxCommandEvent event(EVT_SET_FINISH_MAPPING);
-    event.SetInt(m_tray_data.id);
-
-    wxString param = wxString::Format("%d|%d|%d|%d|%s|%d", m_coloul.Red(), m_coloul.Green(), m_coloul.Blue(), m_coloul.Alpha(), number, fliament_id);
-    event.SetString(param);
-    event.SetEventObject(this->GetParent()->GetParent());
-    wxPostEvent(this->GetParent()->GetParent()->GetParent(), event);
-}
-
- void MappingItem::msw_rescale()
-=======
 int  MaterialSyncItem::get_real_offset() {
     int real_left_offset = m_dropdown_allow_painted ? LEFT_OFFSET : -2;
     return real_left_offset;
 }
 
 void MaterialSyncItem::render(wxDC &dc)
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 {
     wxString mapping_txt = wxEmptyString;
     if (m_ams_name.empty()) {
@@ -2117,8 +1657,6 @@ void MappingItem::doRender(wxDC &dc)
     dc.DrawRectangle(size.x - FromDIP(4), get_remain_area_height(), FromDIP(4), size.y);
 }
 
-<<<<<<< HEAD
-=======
 int MappingItem::get_remain_area_height() const
 {
     if (m_to_paint_remain) { return FromDIP(10);}
@@ -2126,7 +1664,6 @@ int MappingItem::get_remain_area_height() const
 }
 
 
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 AmsMapingTipPopup::AmsMapingTipPopup(wxWindow *parent)
     :PopupWindow(parent, wxBORDER_NONE)
 {
@@ -2480,7 +2017,7 @@ AmsIntroducePopup::AmsIntroducePopup(wxWindow* parent)
 
     m_staticText_top = new Label(this, _L("Do not Enable AMS"));
     m_staticText_top->SetFont(::Label::Head_13);
-    // m_staticText_top->SetForegroundColour(wxColour("#323A3D"));
+    // m_staticText_top->SetForegroundColour(wxColour("#5476B0"));
     m_staticText_top->Wrap(-1);
     bSizer4->Add(m_staticText_top, 0, wxALL, 5);
 
@@ -2658,12 +2195,6 @@ void AmsReplaceMaterialDialog::create()
     m_nozzle_btn_panel->Hide();
     m_nozzle_btn_panel->Connect(wxCUSTOMEVT_SWITCH_POS, wxCommandEventHandler(AmsReplaceMaterialDialog::on_nozzle_selected), NULL, this);
 
-<<<<<<< HEAD
-    auto label_title = new Label(this, _L("Auto Refill"));
-    label_title->SetFont(Label::Head_14);
-    label_title->SetForegroundColour(0x0090ff);
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     label_txt = new Label(this, _L("When the current material run out, the printer will continue to print in the following order."));
     label_txt->SetFont(Label::Body_13);
     label_txt->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#323A3C")));
@@ -2673,7 +2204,7 @@ void AmsReplaceMaterialDialog::create()
 
     identical_filament = new Label(this, _L("Identical filament: same brand, type and color."));
     identical_filament->SetFont(Label::Body_13);
-    identical_filament->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#009688")));
+    identical_filament->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#0085ff")));
 
     m_scrollview_groups = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
     m_scrollview_groups->SetScrollRate(5, 5);
@@ -2741,82 +2272,6 @@ void AmsReplaceMaterialDialog::update_machine_obj(MachineObject* obj)
 
         update_to_nozzle(MAIN_EXTRUDER_ID);
     }
-<<<<<<< HEAD
-
-    try {
-        for (auto ams_info : obj->amsList) {
-            int ams_id_int = atoi(ams_info.first.c_str()) * 4;
-
-            for (auto tray_info : ams_info.second->trayList) {
-                int tray_id_int = atoi(tray_info.first.c_str());
-                tray_id_int =  ams_id_int + tray_id_int;
-                tray_list[tray_id_int] = tray_info.second;
-            }
-        }
-    }
-    catch (...) {}
-
-    //creat group
-    int group_index = 0;
-    for (int filam : m_obj->filam_bak) {
-         auto status_list = GetStatus(filam);
-
-         std::map<std::string, wxColour> group_info;
-         std::string    group_material;
-         bool   is_in_tray = false;
-
-         //get color & material
-         for (auto i = 0; i < status_list.size(); i++) {
-             if (status_list[i] && tray_list[i] != nullptr) {
-                 auto tray_name = wxGetApp().transition_tridid(i).ToStdString();
-                 auto it = std::find(m_tray_used.begin(), m_tray_used.end(), tray_name);
-                 if (it != m_tray_used.end()) {
-                     is_in_tray = true;
-                 }
-
-                 group_info[tray_name] = AmsTray::decode_color(tray_list[i]->color);
-                 group_material = tray_list[i]->get_display_filament_type();
-             }
-         }
-
-         if (is_in_tray || m_tray_used.size() <= 0) {
-             m_groups_sizer->Add(create_backup_group(wxString::Format("%s%d", _L("Group"), group_index + 1), group_info, group_material, status_list), 0, wxALL, FromDIP(10));
-             group_index++;
-         }
-    }
-
-    if (group_index > 0) {
-        auto height = 0;
-        if (group_index > 6) {
-            height = FromDIP(550);
-        }
-        else {
-            height = FromDIP(200) * (std::ceil(group_index / 2.0));
-        }
-        m_scrollview_groups->SetMinSize(wxSize(FromDIP(400), height));
-        m_scrollview_groups->SetMaxSize(wxSize(FromDIP(400), height));
-    } else {
-        if (!obj->is_support_filament_backup) {
-            label_txt->SetLabel(_L("The printer does not currently support auto refill."));
-        }
-        else if (!obj->ams_auto_switch_filament_flag) {
-            label_txt->SetLabelText(_L("AMS filament backup is not enabled, please enable it in the AMS settings."));
-        }
-        else {
-            label_txt->SetLabelText(_L("If there are two identical filaments in AMS, AMS filament backup will be enabled. \n(Currently supporting automatic supply of consumables with the same brand, material type, and color)"));
-        }
-
-        label_txt->SetMinSize(wxSize(FromDIP(380), -1));
-        label_txt->SetMaxSize(wxSize(FromDIP(380), -1));
-        label_txt->Wrap(FromDIP(380));
-
-    }
-
-    m_scrollview_groups->Layout();
-    Layout();
-    Fit();
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 }
 
 AmsRMGroup* AmsReplaceMaterialDialog::create_backup_group(wxString gname, std::map<std::string, wxColour> group_info, wxString material)
@@ -3213,7 +2668,7 @@ void AmsRMGroup::doRender(wxDC& dc)
     //dc.DrawBitmap(bitmap_backup_tips_1.bmp(), wxPoint((size.x - bitmap_backup_tips_1.GetBmpSize().x) / 2, (size.y - bitmap_backup_tips_1.GetBmpSize().y) / 2));
 
     //draw material
-    dc.SetTextForeground(wxColour("#323A3D"));
+    dc.SetTextForeground(wxColour("#5476B0"));
     dc.SetFont(Label::Head_15);
     auto text_size = dc.GetTextExtent(m_material_name);
     dc.DrawText(m_material_name, (size.x - text_size.x) / 2,(size.y - text_size.y) / 2 - FromDIP(12));

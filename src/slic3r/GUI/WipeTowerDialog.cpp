@@ -60,7 +60,7 @@ RammingDialog::RammingDialog(wxWindow* parent,const std::string& parameters)
 
 #ifdef _WIN32
 #define style wxSP_ARROW_KEYS | wxBORDER_SIMPLE
-#else
+#else 
 #define style wxSP_ARROW_KEYS
 #endif
 
@@ -93,12 +93,6 @@ RammingPanel::RammingPanel(wxWindow* parent, const std::string& parameters)
     update_ui(m_chart);
  	sizer_chart->Add(m_chart, 0, wxALL, 5);
 
-<<<<<<< HEAD
-    m_widget_time						= new wxSpinCtrlDouble(this,wxID_ANY,wxEmptyString,wxDefaultPosition,wxSize(ITEM_WIDTH()*2.5, -1),style,0.,5.0,3.,0.5);
-    m_widget_volume							  = new wxSpinCtrl(this,wxID_ANY,wxEmptyString,wxDefaultPosition,wxSize(ITEM_WIDTH()*2.5, -1),style,0,10000,0);
-    m_widget_ramming_line_width_multiplicator = new wxSpinCtrl(this,wxID_ANY,wxEmptyString,wxDefaultPosition,wxSize(ITEM_WIDTH()*2.5, -1),style,10,200,100);
-    m_widget_ramming_step_multiplicator		  = new wxSpinCtrl(this,wxID_ANY,wxEmptyString,wxDefaultPosition,wxSize(ITEM_WIDTH()*2.5, -1),style,10,200,100);
-=======
     // Create help text for constant flow rate dragging
     std::string ctrl_str = GUI::shortkey_ctrl_prefix();
     if (!ctrl_str.empty() && ctrl_str.back() == '+') 
@@ -112,7 +106,6 @@ RammingPanel::RammingPanel(wxWindow* parent, const std::string& parameters)
     label->split_lines(dc, scale(470), message, multiline_message);
     label->SetLabel(multiline_message);
     sizer_chart->Add(label, 0, wxEXPAND | wxALL, 5);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     m_widget_time                             = new SpinInput(this, wxEmptyString, _L("ms"), wxDefaultPosition, wxSize(scale(120), -1), wxSP_ARROW_KEYS, 0 , 5000 , 3000, 250);
     m_widget_volume                           = new SpinInput(this, wxEmptyString, _L("mm³"), wxDefaultPosition, wxSize(scale(120), -1), wxSP_ARROW_KEYS, 0 , 10000, 0   );
@@ -162,13 +155,8 @@ RammingPanel::RammingPanel(wxWindow* parent, const std::string& parameters)
     m_widget_ramming_line_width_multiplicator->SetValue(m_ramming_line_width_multiplicator);
     m_widget_ramming_step_multiplicator->SetValue(m_ramming_step_multiplicator);
 
-<<<<<<< HEAD
-    m_widget_ramming_step_multiplicator->Bind(wxEVT_TEXT,[this](wxCommandEvent&) { line_parameters_changed(); });
-    m_widget_ramming_line_width_multiplicator->Bind(wxEVT_TEXT,[this](wxCommandEvent&) { line_parameters_changed(); });
-=======
     m_widget_ramming_step_multiplicator->Bind(wxEVT_SPINCTRL,[this](wxCommandEvent&) { line_parameters_changed(); });
     m_widget_ramming_line_width_multiplicator->Bind(wxEVT_SPINCTRL,[this](wxCommandEvent&) { line_parameters_changed(); });
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
 	auto sizer = new wxBoxSizer(wxHORIZONTAL);
 	sizer->Add(sizer_chart, 0, wxALL, 5);
@@ -181,16 +169,11 @@ RammingPanel::RammingPanel(wxWindow* parent, const std::string& parameters)
         m_chart->set_xy_range(m_widget_time->GetValue() * 0.001,-1);
     });
     m_widget_time->Bind(wxEVT_CHAR,[](wxKeyEvent&){});      // do nothing - prevents the user to change the value
-<<<<<<< HEAD
-    m_widget_volume->Bind(wxEVT_CHAR,[](wxKeyEvent&){});    // do nothing - prevents the user to change the value
-    Bind(EVT_WIPE_TOWER_CHART_CHANGED,[this](wxCommandEvent&) {m_widget_volume->SetValue(m_chart->get_volume()); m_widget_time->SetValue(m_chart->get_time());} );
-=======
     m_widget_volume->Bind(wxEVT_CHAR,[](wxKeyEvent&){});    // do nothing - prevents the user to change the value   
     Bind(EVT_WIPE_TOWER_CHART_CHANGED,[this](wxCommandEvent&) {
         m_widget_volume->SetValue(m_chart->get_volume());
         m_widget_time->SetValue(m_chart->get_time() * 1000);
     });
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     Refresh(true); // erase background
 }
 
@@ -207,22 +190,12 @@ std::string RammingPanel::get_parameters()
     stream << m_ramming_line_width_multiplicator << " " << m_ramming_step_multiplicator;
     for (const float& speed_value : speeds)
         stream << " " << speed_value;
-    stream << "|";
+    stream << "|";    
     for (const auto& button : buttons)
         stream << " " << button.first << " " << button.second;
     return stream.str();
 }
 
-<<<<<<< HEAD
-
-#ifdef _WIN32
-#define style wxSP_ARROW_KEYS | wxBORDER_SIMPLE
-#else
-#define style wxSP_ARROW_KEYS
-#endif
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 static const float g_min_flush_multiplier = 0.f;
 static const float g_max_flush_multiplier = 3.f;
 
@@ -232,392 +205,6 @@ bool is_flush_config_modified()
     const std::vector<double> &config_matrix     = (project_config.option<ConfigOptionFloats>("flush_volumes_matrix"))->values;
     const std::vector<double> &config_multiplier = (project_config.option<ConfigOptionFloats>("flush_multiplier"))->values;
 
-<<<<<<< HEAD
-    StateColor ok_btn_bg(
-        std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal)
-    );
-
-    StateColor ok_btn_bd(
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal)
-    );
-
-    StateColor ok_btn_text(
-        std::pair<wxColour, int>(wxColour(255, 255, 254), StateColor::Normal)
-    );
-
-    StateColor cancel_btn_bg(
-        std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(238, 238, 238), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(255, 255, 255), StateColor::Normal)
-    );
-
-    StateColor cancel_btn_bd_(
-        std::pair<wxColour, int>(wxColour(38, 46, 48), StateColor::Normal)
-    );
-
-    StateColor cancel_btn_text(
-        std::pair<wxColour, int>(wxColour(38, 46, 48), StateColor::Normal)
-    );
-
-
-    StateColor calc_btn_bg(
-        std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal)
-    );
-
-    StateColor calc_btn_bd(
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal)
-    );
-
-    StateColor calc_btn_text(
-        std::pair<wxColour, int>(wxColour(255, 255, 254), StateColor::Normal)
-    );
-
-    if (flags & wxRESET) {
-        Button *calc_btn = new Button(this, _L("Auto-Calc"));
-        calc_btn->SetMinSize(wxSize(FromDIP(75), FromDIP(24)));
-        calc_btn->SetCornerRadius(FromDIP(12));
-        calc_btn->SetBackgroundColor(calc_btn_bg);
-        calc_btn->SetBorderColor(calc_btn_bd);
-        calc_btn->SetTextColor(calc_btn_text);
-        calc_btn->SetFocus();
-        calc_btn->SetId(wxID_RESET);
-        btn_sizer->Add(calc_btn, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, BTN_GAP);
-        m_button_list[wxRESET] = calc_btn;
-    }
-    if (flags & wxOK) {
-        Button* ok_btn = new Button(this, _L("OK"));
-        ok_btn->SetMinSize(BTN_SIZE);
-        ok_btn->SetCornerRadius(FromDIP(12));
-        ok_btn->SetBackgroundColor(ok_btn_bg);
-        ok_btn->SetBorderColor(ok_btn_bd);
-        ok_btn->SetTextColor(ok_btn_text);
-        ok_btn->SetFocus();
-        ok_btn->SetId(wxID_OK);
-        btn_sizer->Add(ok_btn, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, BTN_GAP);
-        m_button_list[wxOK] = ok_btn;
-    }
-    if (flags & wxCANCEL) {
-        Button* cancel_btn = new Button(this, _L("Cancel"));
-        cancel_btn->SetMinSize(BTN_SIZE);
-        cancel_btn->SetCornerRadius(FromDIP(12));
-        cancel_btn->SetBackgroundColor(cancel_btn_bg);
-        cancel_btn->SetBorderColor(cancel_btn_bd_);
-        cancel_btn->SetTextColor(cancel_btn_text);
-        cancel_btn->SetId(wxID_CANCEL);
-        btn_sizer->Add(cancel_btn, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, BTN_GAP);
-        m_button_list[wxCANCEL] = cancel_btn;
-    }
-
-    return btn_sizer;
-
-}
-
-wxBoxSizer* WipingPanel::create_calc_btn_sizer(wxWindow* parent) {
-    auto btn_sizer = new wxBoxSizer(wxHORIZONTAL);
-    StateColor calc_btn_bg(
-        std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal)
-    );
-
-    StateColor calc_btn_bd(
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal)
-    );
-
-    StateColor calc_btn_text(
-        std::pair<wxColour, int>(wxColour(255, 255, 254), StateColor::Normal)
-    );
-
-    Button* calc_btn = new Button(parent, _L("Re-calculate"));
-    calc_btn->SetFont(Label::Body_13);
-    calc_btn->SetMinSize(wxSize(FromDIP(75), FromDIP(24)));
-    calc_btn->SetCornerRadius(FromDIP(12));
-    calc_btn->SetBackgroundColor(calc_btn_bg);
-    calc_btn->SetBorderColor(calc_btn_bd);
-    calc_btn->SetTextColor(calc_btn_text);
-    calc_btn->SetFocus();
-    btn_sizer->Add(calc_btn, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, BTN_GAP);
-    calc_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { calc_flushing_volumes(); });
-
-    return btn_sizer;
-}
-void WipingDialog::on_dpi_changed(const wxRect &suggested_rect)
-{
-    for (auto button_item : m_button_list)
-    {
-        if (button_item.first == wxRESET)
-        {
-            button_item.second->SetMinSize(wxSize(FromDIP(75), FromDIP(24)));
-            button_item.second->SetCornerRadius(FromDIP(12));
-        }
-        if (button_item.first == wxOK) {
-            button_item.second->SetMinSize(BTN_SIZE);
-            button_item.second->SetCornerRadius(FromDIP(12));
-        }
-        if (button_item.first == wxCANCEL) {
-            button_item.second->SetMinSize(BTN_SIZE);
-            button_item.second->SetCornerRadius(FromDIP(12));
-        }
-    }
-    m_panel_wiping->msw_rescale();
-    this->Refresh();
-};
-
-// Parent dialog for purging volume adjustments - it fathers WipingPanel widget (that contains all controls) and a button to toggle simple/advanced mode:
-WipingDialog::WipingDialog(wxWindow* parent, const std::vector<float>& matrix, const std::vector<float>& extruders, const std::vector<std::string>& extruder_colours,
-    const std::vector<int>&extra_flush_volume, float flush_multiplier)
-    : DPIDialog(parent ? parent : static_cast<wxWindow *>(wxGetApp().mainframe),
-                wxID_ANY,
-                _(L("Flushing volumes for filament change")),
-                wxDefaultPosition,
-                wxDefaultSize,
-                wxDEFAULT_DIALOG_STYLE /* | wxRESIZE_BORDER*/)
-{
-    std::string icon_path = (boost::format("%1%/images/OrcaSlicerTitle.ico") % Slic3r::resources_dir()).str();
-    SetIcon(wxIcon(Slic3r::encode_path(icon_path.c_str()), wxBITMAP_TYPE_ICO));
-
-    auto m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1));
-    m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
-
-    this->SetBackgroundColour(*wxWHITE);
-    this->SetMinSize(wxSize(MIN_WIPING_DIALOG_WIDTH, -1));
-
-
-    m_panel_wiping = new WipingPanel(this, matrix, extruders, extruder_colours, nullptr, extra_flush_volume, flush_multiplier);
-
-    auto main_sizer = new wxBoxSizer(wxVERTICAL);
-    main_sizer->Add(m_line_top, 0, wxEXPAND, 0);
-
-    // set min sizer width according to extruders count
-    auto sizer_width = (int)((sqrt(matrix.size()) + 2.8)*ITEM_WIDTH());
-    sizer_width = sizer_width > MIN_WIPING_DIALOG_WIDTH ? sizer_width : MIN_WIPING_DIALOG_WIDTH;
-    main_sizer->SetMinSize(wxSize(sizer_width, -1));
-    main_sizer->Add(m_panel_wiping, 1, wxEXPAND | wxALL, 0);
-
-    auto btn_sizer = create_btn_sizer(wxOK | wxCANCEL);
-    main_sizer->Add(btn_sizer, 0, wxBOTTOM | wxRIGHT | wxEXPAND, BTN_GAP);
-    SetSizer(main_sizer);
-    main_sizer->SetSizeHints(this);
-
-    if (this->FindWindowById(wxID_OK, this)) {
-        this->FindWindowById(wxID_OK, this)->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {                 // if OK button is clicked..
-            m_output_matrix = m_panel_wiping->read_matrix_values();    // ..query wiping panel and save returned values
-            m_output_extruders = m_panel_wiping->read_extruders_values(); // so they can be recovered later by calling get_...()
-            EndModal(wxID_OK);
-            }, wxID_OK);
-    }
-    if (this->FindWindowById(wxID_CANCEL, this)) {
-        update_ui(static_cast<wxButton*>(this->FindWindowById(wxID_CANCEL, this)));
-        this->FindWindowById(wxID_CANCEL, this)->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { EndModal(wxCANCEL); });
-
-    }
-
-    /*
-    if (this->FindWindowById(wxID_RESET, this)) {
-        this->FindWindowById(wxID_RESET, this)->Bind(wxEVT_BUTTON, [this](wxCommandEvent &) { m_panel_wiping->calc_flushing_volumes(); });
-    }
-    */
-
-    this->Bind(wxEVT_CLOSE_WINDOW, [this](wxCloseEvent& e) { EndModal(wxCANCEL); });
-    this->Bind(wxEVT_CHAR_HOOK, [this](wxKeyEvent& e) {
-        if (e.GetKeyCode() == WXK_ESCAPE) {
-            if (this->IsModal())
-                this->EndModal(wxID_CANCEL);
-            else
-                this->Close();
-        }
-        else
-            e.Skip();
-        });
-
-    wxGetApp().UpdateDlgDarkUI(this);
-}
-
-void WipingPanel::create_panels(wxWindow* parent, const int num) {
-    for (size_t i = 0; i < num; i++)
-    {
-        wxPanel* panel = new wxPanel(parent);
-        panel->SetBackgroundColour(i % 2 == 0 ? *wxWHITE : wxColour(238, 238, 238));
-        auto sizer = new wxBoxSizer(wxHORIZONTAL);
-        panel->SetSizer(sizer);
-
-        wxButton* icon = new wxButton(panel, wxID_ANY, {}, wxDefaultPosition, ICON_SIZE, wxBORDER_NONE | wxBU_AUTODRAW);
-        icon->SetBitmap(*get_extruder_color_icon(m_colours[i].GetAsString(wxC2S_HTML_SYNTAX).ToStdString(), std::to_string(i + 1), FromDIP(16), FromDIP(16)));
-        icon->SetCanFocus(false);
-        icon_list2.push_back(icon);
-
-        sizer->AddSpacer(ROW_BEG_PADDING);
-        sizer->Add(icon, 0, wxALIGN_CENTER_VERTICAL | wxTOP | wxBOTTOM, ROW_VERT_PADDING);
-
-        for (int j = 0; j < num; ++j) {
-            edit_boxes[j][i]->Reparent(panel);
-            edit_boxes[j][i]->SetBackgroundColour(panel->GetBackgroundColour());
-            edit_boxes[j][i]->SetFont(::Label::Body_13);
-            sizer->AddSpacer(EDIT_BOXES_GAP);
-            sizer->Add(edit_boxes[j][i], 0, wxALIGN_CENTER_VERTICAL, 0);
-        }
-        sizer->AddSpacer(ROW_END_PADDING);
-
-        m_sizer_advanced->Add(panel, 0, wxRIGHT | wxLEFT | wxEXPAND, TABLE_BORDER);
-        panel->Layout();
-    }
-}
-
-// This panel contains all control widgets for both simple and advanced mode (these reside in separate sizers)
-WipingPanel::WipingPanel(wxWindow* parent, const std::vector<float>& matrix, const std::vector<float>& extruders, const std::vector<std::string>& extruder_colours, Button* calc_button,
-    const std::vector<int>& extra_flush_volume, float flush_multiplier)
-: wxPanel(parent,wxID_ANY, wxDefaultPosition, wxDefaultSize/*,wxBORDER_RAISED*/)
-,m_matrix(matrix), m_min_flush_volume(extra_flush_volume), m_max_flush_volume(Slic3r::g_max_flush_volume)
-{
-    m_number_of_extruders = (int)(sqrt(matrix.size())+0.001);
-
-    for (const std::string& color : extruder_colours) {
-        Slic3r::ColorRGB rgb;
-        Slic3r::decode_color(color, rgb);
-        m_colours.push_back(wxColor(rgb.r_uchar(), rgb.g_uchar(), rgb.b_uchar()));
-    }
-    auto sizer_width = (int)((sqrt(matrix.size())) * ITEM_WIDTH() + (sqrt(matrix.size()) + 1) * HEADER_BEG_PADDING);
-    sizer_width = sizer_width > MIN_WIPING_DIALOG_WIDTH ? sizer_width : MIN_WIPING_DIALOG_WIDTH;
-    // Create two switched panels with their own sizers
-    m_sizer_simple          = new wxBoxSizer(wxVERTICAL);
-    m_sizer_advanced        = new wxBoxSizer(wxVERTICAL);
-    m_page_simple			= new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_page_advanced			= new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_page_simple->SetSizer(m_sizer_simple);
-    m_page_advanced->SetSizer(m_sizer_advanced);
-    m_page_advanced->SetBackgroundColour(*wxWHITE);
-
-    update_ui(m_page_simple);
-    update_ui(m_page_advanced);
-
-    auto gridsizer_simple   = new wxGridSizer(3, 5, 10);
-    m_gridsizer_advanced = new wxGridSizer(m_number_of_extruders + 1, 5, 1);
-
-    // First create controls for advanced mode and assign them to m_page_advanced:
-    for (unsigned int i = 0; i < m_number_of_extruders; ++i) {
-        edit_boxes.push_back(std::vector<wxTextCtrl*>(0));
-
-        for (unsigned int j = 0; j < m_number_of_extruders; ++j) {
-#ifdef _WIN32
-            wxTextCtrl* text = new wxTextCtrl(m_page_advanced, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(ITEM_WIDTH(), -1), wxTE_CENTER | wxBORDER_NONE | wxTE_PROCESS_ENTER);
-            update_ui(text);
-            edit_boxes.back().push_back(text);
-#else
-            edit_boxes.back().push_back(new wxTextCtrl(m_page_advanced, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(ITEM_WIDTH(), -1)));
-#endif
-            if (i == j) {
-                edit_boxes[i][j]->SetValue(wxString("0"));
-                edit_boxes[i][j]->SetEditable(false);
-                edit_boxes[i][j]->Bind(wxEVT_KILL_FOCUS, [this](wxFocusEvent&) {});
-                edit_boxes[i][j]->Bind(wxEVT_SET_FOCUS, [this](wxFocusEvent&) {});
-            }
-            else {
-                edit_boxes[i][j]->SetValue(wxString("") << int(m_matrix[m_number_of_extruders * j + i] * flush_multiplier));
-
-                edit_boxes[i][j]->Bind(wxEVT_TEXT, [this, i, j](wxCommandEvent& e) {
-                    wxString str = edit_boxes[i][j]->GetValue();
-                    int value = wxAtoi(str);
-                    if (value > MAX_FLUSH_VALUE) {
-                        str = wxString::Format(("%d"), MAX_FLUSH_VALUE);
-                        edit_boxes[i][j]->SetValue(str);
-                    }
-                    else if (value < 0) {
-                        edit_boxes[i][j]->SetValue(wxString("0"));
-                    }
-                    });
-
-                auto on_apply_text_modify = [this, i, j](wxEvent &e) {
-                    wxString str   = edit_boxes[i][j]->GetValue();
-                    int      value = wxAtoi(str);
-                    m_matrix[m_number_of_extruders * j + i] = value / get_flush_multiplier();
-                    this->update_warning_texts();
-                    e.Skip();
-                };
-
-                edit_boxes[i][j]->Bind(wxEVT_TEXT_ENTER, on_apply_text_modify);
-                edit_boxes[i][j]->Bind(wxEVT_KILL_FOCUS, on_apply_text_modify);
-            }
-        }
-    }
-
-    // BBS
-    m_sizer_advanced->AddSpacer(FromDIP(10));
-    auto tip_message_panel = new wxPanel(m_page_advanced, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    tip_message_panel->SetBackgroundColour(wxColour(238, 238, 238));
-    auto message_sizer = new wxBoxSizer(wxVERTICAL);
-    tip_message_panel->SetSizer(message_sizer);
-    {
-        wxString message = _L("Orca would re-calculate your flushing volumes every time the filaments color changed. You could disable the auto-calculate in Orca Slicer > Preferences");
-        m_tip_message_label = new Label(tip_message_panel, wxEmptyString);
-        wxClientDC dc(tip_message_panel);
-        wxString multiline_message;
-        m_tip_message_label->split_lines(dc, sizer_width, message, multiline_message);
-        m_tip_message_label->SetLabel(multiline_message);
-        m_tip_message_label->SetFont(Label::Body_13);
-        message_sizer->Add(m_tip_message_label, 0, wxEXPAND | wxALL, TIP_MESSAGES_PADDING);
-    }
-    m_sizer_advanced->Add(tip_message_panel, 0, wxEXPAND | wxRIGHT | wxLEFT, TABLE_BORDER);
-    bool is_show = wxGetApp().app_config->get("auto_calculate") == "true" || wxGetApp().app_config->get("auto_calculate_when_filament_change") == "true";
-    tip_message_panel->Show(is_show);
-    m_sizer_advanced->AddSpacer(FromDIP(10));
-    auto calc_btn_sizer = create_calc_btn_sizer(m_page_advanced);
-    m_sizer_advanced->Add(calc_btn_sizer, 0, wxEXPAND | wxLEFT, FromDIP(30));
-
-    //m_sizer_advanced->AddSpacer(FromDIP(10));
-    m_sizer_advanced->AddSpacer(FromDIP(5));
-    header_line_panel = new wxPanel(m_page_advanced, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    header_line_panel->SetBackgroundColour(wxColour(238, 238, 238));
-    auto header_line_sizer = new wxBoxSizer(wxHORIZONTAL);
-    header_line_panel->SetSizer(header_line_sizer);
-
-    header_line_sizer->AddSpacer(HEADER_BEG_PADDING);
-    for (unsigned int i = 0; i < m_number_of_extruders; ++i) {
-        wxButton* icon = new wxButton(header_line_panel, wxID_ANY, {}, wxDefaultPosition, ICON_SIZE, wxBORDER_NONE | wxBU_AUTODRAW);
-        icon->SetBitmap(*get_extruder_color_icon(m_colours[i].GetAsString(wxC2S_HTML_SYNTAX).ToStdString(), std::to_string(i + 1), FromDIP(16), FromDIP(16)));
-        icon->SetCanFocus(false);
-        icon_list1.push_back(icon);
-
-        header_line_sizer->AddSpacer(ICON_GAP);
-        header_line_sizer->Add(icon, 0, wxALIGN_CENTER_VERTICAL | wxTOP | wxBOTTOM, HEADER_VERT_PADDING);
-    }
-    header_line_sizer->AddSpacer(HEADER_END_PADDING);
-
-    m_sizer_advanced->Add(header_line_panel, 0, wxEXPAND | wxRIGHT | wxLEFT, TABLE_BORDER);
-
-    create_panels(m_page_advanced, m_number_of_extruders);
-
-    //m_sizer_advanced->AddSpacer(BTN_SIZE.y);
-
-    // BBS: for tunning flush volumes
-    {
-        auto multi_desc_label = new wxStaticText(m_page_advanced, wxID_ANY, _(L("Flushing volume (mm³) for each filament pair.")), wxDefaultPosition, wxDefaultSize, 0);
-        multi_desc_label->SetForegroundColour(g_text_color);
-        m_sizer_advanced->Add(multi_desc_label, 0, wxEXPAND | wxLEFT, TEXT_BEG_PADDING);
-
-        wxString min_flush_str = wxString::Format(_L("Suggestion: Flushing Volume in range [%d, %d]"),*std::min_element(m_min_flush_volume.begin(), m_min_flush_volume.end()), m_max_flush_volume);
-        m_min_flush_label = new wxStaticText(m_page_advanced, wxID_ANY, min_flush_str, wxDefaultPosition, wxDefaultSize, 0);
-        m_min_flush_label->SetForegroundColour(g_text_color);
-        m_sizer_advanced->Add(m_min_flush_label, 0, wxEXPAND | wxLEFT, TEXT_BEG_PADDING);
-
-        auto on_apply_text_modify = [this](wxEvent& e) {
-            wxString str = m_flush_multiplier_ebox->GetValue();
-            float      multiplier = wxAtof(str);
-            if (multiplier < g_min_flush_multiplier || multiplier > g_max_flush_multiplier) {
-                str = wxString::Format(("%.2f"), multiplier < g_min_flush_multiplier ? g_min_flush_multiplier : g_max_flush_multiplier);
-                m_flush_multiplier_ebox->SetValue(str);
-                MessageDialog dlg(nullptr,
-                    wxString::Format(_L("The multiplier should be in range [%.2f, %.2f]."), g_min_flush_multiplier, g_max_flush_multiplier),
-                    _L("Warning"), wxICON_WARNING | wxOK);
-                dlg.ShowModal();
-            }
-            for (unsigned int i = 0; i < m_number_of_extruders; ++i) {
-                for (unsigned int j = 0; j < m_number_of_extruders; ++j) {
-                    edit_boxes[i][j]->SetValue(to_string(int(m_matrix[m_number_of_extruders * j + i] * multiplier)));
-=======
     bool has_modify = false;
     for (int i = 0; i < config_multiplier.size(); i++) {
         if (config_multiplier[i] != 1) {
@@ -632,7 +219,6 @@ WipingPanel::WipingPanel(wxWindow* parent, const std::vector<float>& matrix, con
                 if (config_matrix[idx] != default_matrix[m][n] * config_multiplier[i]) {
                     has_modify = true;
                     break;
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
                 }
             }
             if (has_modify) break;
@@ -921,105 +507,7 @@ WipingDialog::WipingDialog(wxWindow* parent, const int max_flush_volume) :
             else Close();
             return;
     }
-<<<<<<< HEAD
-    this->update_warning_texts();
-
-    m_page_advanced->Hide();
-
-    // Now the same for simple mode:
-    gridsizer_simple->Add(new wxStaticText(m_page_simple, wxID_ANY, wxString("")), 0, wxALIGN_CENTER | wxALIGN_CENTER_VERTICAL);
-    gridsizer_simple->Add(new wxStaticText(m_page_simple, wxID_ANY, wxString(_(L("unloaded")))), 0, wxALIGN_CENTER | wxALIGN_CENTER_VERTICAL);
-    gridsizer_simple->Add(new wxStaticText(m_page_simple,wxID_ANY,wxString(_(L("loaded")))), 0, wxALIGN_CENTER | wxALIGN_CENTER_VERTICAL);
-
-    auto add_spin_ctrl = [this](std::vector<wxSpinCtrl*>& vec, float initial)
-    {
-        wxSpinCtrl* spin_ctrl = new wxSpinCtrl(m_page_simple, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(ITEM_WIDTH(), -1), style | wxALIGN_RIGHT, 0, 300, (int)initial);
-        update_ui(spin_ctrl);
-        vec.push_back(spin_ctrl);
-
-#ifdef __WXOSX__
-        // On OSX / Cocoa, wxSpinCtrl::GetValue() doesn't return the new value
-        // when it was changed from the text control, so the on_change callback
-        // gets the old one, and on_kill_focus resets the control to the old value.
-        // As a workaround, we get the new value from $event->GetString and store
-        // here temporarily so that we can return it from get_value()
-        spin_ctrl->Bind(wxEVT_TEXT, ([spin_ctrl](wxCommandEvent e)
-        {
-            long value;
-            const bool parsed = e.GetString().ToLong(&value);
-            int tmp_value = parsed && value >= INT_MIN && value <= INT_MAX ? (int)value : INT_MIN;
-
-            // Forcibly set the input value for SpinControl, since the value
-            // inserted from the keyboard or clipboard is not updated under OSX
-            if (tmp_value != INT_MIN) {
-                spin_ctrl->SetValue(tmp_value);
-
-                // But in SetValue() is executed m_text_ctrl->SelectAll(), so
-                // discard this selection and set insertion point to the end of string
-                spin_ctrl->GetText()->SetInsertionPointEnd();
-            }
-        }), spin_ctrl->GetId());
-#endif
-    };
-
-    for (unsigned int i=0;i<m_number_of_extruders;++i) {
-        add_spin_ctrl(m_old, extruders[2 * i]);
-        add_spin_ctrl(m_new, extruders[2 * i+1]);
-
-        auto hsizer = new wxBoxSizer(wxHORIZONTAL);
-        wxWindow* w = new wxWindow(m_page_simple, wxID_ANY, wxDefaultPosition, ICON_SIZE, wxBORDER_SIMPLE);
-        w->SetCanFocus(false);
-        w->SetBackgroundColour(m_colours[i]);
-        hsizer->Add(w, wxALIGN_CENTER_VERTICAL);
-        hsizer->AddSpacer(10);
-        hsizer->Add(new wxStaticText(m_page_simple, wxID_ANY, wxString(_(L("Filament #"))) << i + 1 << ": "), 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL);
-
-        gridsizer_simple->Add(hsizer, 1, wxEXPAND | wxALIGN_CENTER_VERTICAL);
-        gridsizer_simple->Add(m_old.back(),0);
-        gridsizer_simple->Add(m_new.back(),0);
-    }
-
-    m_sizer = new wxBoxSizer(wxVERTICAL);
-    m_sizer->Add(m_page_simple, 0, wxEXPAND, 0);
-    m_sizer->Add(m_page_advanced, 0, wxEXPAND, 0);
-
-    m_sizer->SetSizeHints(this);
-    SetSizer(m_sizer);
-    this->Layout();
-
-    toggle_advanced(); // to show/hide what is appropriate
-
-    header_line_panel->Bind(wxEVT_PAINT, [this](wxPaintEvent&) {
-        wxPaintDC dc(header_line_panel);
-        wxString from_text = _L("From");
-        wxString to_text = _L("To");
-        wxSize from_text_size = dc.GetTextExtent(from_text);
-        wxSize to_text_size = dc.GetTextExtent(to_text);
-
-        int base_y = (header_line_panel->GetSize().y - from_text_size.y - to_text_size.y) / 2;
-        int vol_width = ROW_BEG_PADDING + EDIT_BOXES_GAP / 2 + ICON_SIZE.x;
-        int base_x = (vol_width - from_text_size.x - to_text_size.x) / 2;
-
-        // draw from text
-        int x = base_x;
-        int y = base_y + to_text_size.y;
-        dc.DrawText(from_text, x, y);
-
-        // draw to text
-        x = base_x + from_text_size.x;
-        y = base_y;
-        dc.DrawText(to_text, x, y);
-
-        // draw a line
-        int p1_x = base_x + from_text_size.x - to_text_size.y;
-        int p1_y = base_y;
-        int p2_x = base_x + from_text_size.x + from_text_size.y;
-        int p2_y = base_y + from_text_size.y + to_text_size.y;
-        dc.SetPen(wxPen(wxColour(172, 172, 172, 1)));
-        dc.DrawLine(p1_x, p1_y, p2_x, p2_y);
-=======
         e.Skip();
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     });
 }
 

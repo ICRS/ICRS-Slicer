@@ -40,21 +40,9 @@ static void update_ui(wxWindow* window)
 }
 
 static const char g_min_cluster_color = 1;
-<<<<<<< HEAD
-//static const char g_max_cluster_color = 15;
-static const char g_max_color = 16;
-const  StateColor ok_btn_bg(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-                     std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                     std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-const StateColor  ok_btn_disable_bg(std::pair<wxColour, int>(wxColour(205, 201, 201), StateColor::Pressed),
-                                   std::pair<wxColour, int>(wxColour(205, 201, 201), StateColor::Hovered),
-                                   std::pair<wxColour, int>(wxColour(205, 201, 201), StateColor::Normal));
-wxBoxSizer* ObjColorDialog::create_btn_sizer(long flags)
-=======
 static const char g_max_color = (int) EnforcerBlockerType::ExtruderMax;
 
 wxBoxSizer* ObjColorDialog::create_btn_sizer(long flags,bool exist_error)
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 {
     auto btn_sizer = new wxBoxSizer(wxHORIZONTAL);
     if (!exist_error) {
@@ -65,66 +53,11 @@ wxBoxSizer* ObjColorDialog::create_btn_sizer(long flags,bool exist_error)
     }
     btn_sizer->AddStretchSpacer();
 
-<<<<<<< HEAD
-    StateColor ok_btn_bd(
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal)
-    );
-    StateColor ok_btn_text(
-        std::pair<wxColour, int>(wxColour(255, 255, 254), StateColor::Normal)
-    );
-    StateColor cancel_btn_bg(
-        std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(238, 238, 238), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(255, 255, 255), StateColor::Normal)
-    );
-    StateColor cancel_btn_bd_(
-        std::pair<wxColour, int>(wxColour(38, 46, 48), StateColor::Normal)
-    );
-    StateColor cancel_btn_text(
-        std::pair<wxColour, int>(wxColour(38, 46, 48), StateColor::Normal)
-    );
-    StateColor calc_btn_bg(
-        std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal)
-    );
-    StateColor calc_btn_bd(
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal)
-    );
-    StateColor calc_btn_text(
-        std::pair<wxColour, int>(wxColour(255, 255, 254), StateColor::Normal)
-    );
-    if (flags & wxOK) {
-        Button* ok_btn = new Button(this, _L("OK"));
-        ok_btn->SetMinSize(BTN_SIZE);
-        ok_btn->SetCornerRadius(FromDIP(12));
-        ok_btn->Enable(false);
-        ok_btn->SetBackgroundColor(ok_btn_disable_bg);
-        ok_btn->SetBorderColor(ok_btn_bd);
-        ok_btn->SetTextColor(ok_btn_text);
-        ok_btn->SetFocus();
-        ok_btn->SetId(wxID_OK);
-        btn_sizer->Add(ok_btn, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, BTN_GAP);
-        m_button_list[wxOK] = ok_btn;
-    }
-    if (flags & wxCANCEL) {
-        Button* cancel_btn = new Button(this, _L("Cancel"));
-        cancel_btn->SetMinSize(BTN_SIZE);
-        cancel_btn->SetCornerRadius(FromDIP(12));
-        cancel_btn->SetBackgroundColor(cancel_btn_bg);
-        cancel_btn->SetBorderColor(cancel_btn_bd_);
-        cancel_btn->SetTextColor(cancel_btn_text);
-        cancel_btn->SetId(wxID_CANCEL);
-        btn_sizer->Add(cancel_btn, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, BTN_GAP);
-        m_button_list[wxCANCEL] = cancel_btn;
-    }
-=======
     auto dlg_btns = new DialogButtons(this, {"OK", "Cancel"});
     m_button_list[wxOK]     = dlg_btns->GetOK();
     m_button_list[wxCANCEL] = dlg_btns->GetCANCEL();
 
     btn_sizer->Add(dlg_btns, 0, wxEXPAND);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     return btn_sizer;
 }
 
@@ -546,14 +479,6 @@ void ObjColorPanel::do_layout_callback() {
 wxBoxSizer *ObjColorPanel::create_approximate_match_btn_sizer(wxWindow *parent)
 {
     auto       btn_sizer = new wxBoxSizer(wxHORIZONTAL);
-<<<<<<< HEAD
-    StateColor calc_btn_bg(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                           std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-    StateColor calc_btn_bd(std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-    StateColor calc_btn_text(std::pair<wxColour, int>(wxColour(255, 255, 254), StateColor::Normal));
-    //create btn
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     m_quick_approximate_match_btn = new Button(parent, _L("Color match"));
     m_quick_approximate_match_btn->SetToolTip(_L("Approximate color matching."));
     m_quick_approximate_match_btn->SetStyle(ButtonStyle::Regular, ButtonType::Window);
@@ -569,14 +494,6 @@ wxBoxSizer *ObjColorPanel::create_approximate_match_btn_sizer(wxWindow *parent)
 wxBoxSizer *ObjColorPanel::create_add_btn_sizer(wxWindow *parent)
 {
     auto       btn_sizer = new wxBoxSizer(wxHORIZONTAL);
-<<<<<<< HEAD
-    StateColor calc_btn_bg(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                           std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-    StateColor calc_btn_bd(std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-    StateColor calc_btn_text(std::pair<wxColour, int>(wxColour(255, 255, 254), StateColor::Normal));
-    // create btn
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     m_quick_add_btn = new Button(parent, _L("Append"));
     m_quick_add_btn->SetToolTip(_L("Append to existing filaments"));
     auto cur_btn    = m_quick_add_btn;
@@ -593,14 +510,6 @@ wxBoxSizer *ObjColorPanel::create_add_btn_sizer(wxWindow *parent)
 wxBoxSizer *ObjColorPanel::create_reset_btn_sizer(wxWindow *parent)
 {
     auto       btn_sizer = new wxBoxSizer(wxHORIZONTAL);
-<<<<<<< HEAD
-    StateColor calc_btn_bg(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                           std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-    StateColor calc_btn_bd(std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-    StateColor calc_btn_text(std::pair<wxColour, int>(wxColour(255, 255, 254), StateColor::Normal));
-    // create btn
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     m_quick_reset_btn = new Button(parent, _L("Reset"));
     m_quick_reset_btn->SetToolTip(_L("Reset mapped extruders."));
     auto cur_btn      = m_quick_reset_btn;

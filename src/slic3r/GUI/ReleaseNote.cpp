@@ -149,15 +149,6 @@ UpdatePluginDialog::UpdatePluginDialog(wxWindow* parent /*= nullptr*/)
 
     auto sizer_button = new wxBoxSizer(wxHORIZONTAL);
 
-<<<<<<< HEAD
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
-
-    StateColor btn_bg_white(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Pressed), std::pair<wxColour, int>(wxColour(238, 238, 238), StateColor::Hovered),
-        std::pair<wxColour, int>(*wxWHITE, StateColor::Normal));
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     auto m_button_ok = new Button(this, _L("OK"));
     m_button_ok->SetStyle(ButtonStyle::Confirm, ButtonType::Choice);
 
@@ -252,27 +243,12 @@ UpdateVersionDialog::UpdateVersionDialog(wxWindow *parent)
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top   = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1));
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
-<<<<<<< HEAD
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     wxBoxSizer *m_sizer_top  = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer *m_sizer_desc = new wxBoxSizer(wxVERTICAL);
 
-<<<<<<< HEAD
-
-
-    auto sm    = create_scaled_bitmap("OrcaSlicer", nullptr, 70);
-    m_brand = new wxStaticBitmap(this, wxID_ANY, sm, wxDefaultPosition, wxSize(FromDIP(70), FromDIP(70)));
-
-
-
-    wxBoxSizer *m_sizer_right = new wxBoxSizer(wxVERTICAL);
-=======
     auto sm    = create_scaled_bitmap("OrcaSlicer", nullptr, 64);
     m_brand = new wxStaticBitmap(this, wxID_ANY, sm, wxDefaultPosition, FromDIP(wxSize(64, 64)));
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     m_text_up_info = new Label(this, Label::Head_14, wxEmptyString, LB_AUTO_WRAP);
     m_text_up_info->SetForegroundColour(wxColour(0x26, 0x2E, 0x30));
@@ -311,10 +287,6 @@ UpdateVersionDialog::UpdateVersionDialog(wxWindow *parent)
             wxLaunchDefaultBrowser(event.GetURL());
             event.Veto();
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     });
 
 	// fs::path ph(data_dir());
@@ -331,32 +303,10 @@ UpdateVersionDialog::UpdateVersionDialog(wxWindow *parent)
     m_simplebook_release_note->AddPage(m_scrollwindows_release_note, wxEmptyString, false);
     m_simplebook_release_note->AddPage(m_vebview_release_note, wxEmptyString, false);
 
-<<<<<<< HEAD
-
-
-    auto sizer_button = new wxBoxSizer(wxHORIZONTAL);
-
-
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                            std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
-
-    StateColor btn_bg_white(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Pressed), std::pair<wxColour, int>(wxColour(238, 238, 238), StateColor::Hovered),
-                            std::pair<wxColour, int>(*wxWHITE, StateColor::Normal));
-
-    m_button_download = new Button(this, _L("Download"));
-    m_button_download->SetBackgroundColor(btn_bg_green);
-    m_button_download->SetBorderColor(*wxWHITE);
-    m_button_download->SetTextColor(wxColour("#FFFFFE"));
-    m_button_download->SetFont(Label::Body_12);
-    m_button_download->SetSize(wxSize(FromDIP(58), FromDIP(24)));
-    m_button_download->SetMinSize(wxSize(FromDIP(58), FromDIP(24)));
-    m_button_download->SetCornerRadius(FromDIP(12));
-=======
     auto sizer_button = new wxBoxSizer(wxHORIZONTAL);
 
     m_button_download = new Button(this, is_running_in_msix() ? _L("Open Microsoft Store") : _L("Download"));
     m_button_download->SetStyle(ButtonStyle::Confirm, ButtonType::Choice);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     m_button_download->Bind(wxEVT_LEFT_DOWN, [this](wxMouseEvent &e) {
         EndModal(wxID_YES);
@@ -387,11 +337,6 @@ UpdateVersionDialog::UpdateVersionDialog(wxWindow *parent)
         EndModal(wxID_NO);
     });
 
-<<<<<<< HEAD
-    m_sizer_main->Add(m_line_top, 0, wxEXPAND | wxBOTTOM, 0);
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     //sizer_button->Add(m_remind_choice, 0, wxALL | wxEXPAND, FromDIP(5));
 
     sizer_button->Add(m_cb_stable_only     , 0, wxALIGN_CENTER);
@@ -545,7 +490,7 @@ void UpdateVersionDialog::update_version_info(wxString release_note, wxString ve
     auto bg_color = StateColor::darkModeColorFor(wxColour("#FFFFFF")).GetAsString();
     auto fg_color = StateColor::darkModeColorFor(wxColour("#262E30")).GetAsString();
     auto style    = "body {color:" + fg_color + "; background-color:" + bg_color + "; font-family:sans-serif}"
-                  + "a    {color: #009688}"               // matches hyperlink colors
+                  + "a    {color: #0085ff}"               // matches hyperlink colors
                   + "img  {max-width:100%; height:auto}"  // fixes overflowing images
                   + "ul   {padding-inline-start: 20px}";  // reduce left padding on list items
     html_source = (boost::format("<html><head><style>%1%</style></head><body>") % style).str();
@@ -590,15 +535,6 @@ SecondaryCheckDialog::SecondaryCheckDialog(wxWindow* parent, wxWindowID id, cons
 
     auto bottom_sizer = new wxBoxSizer(wxVERTICAL);
     auto sizer_button = new wxBoxSizer(wxHORIZONTAL);
-<<<<<<< HEAD
-    btn_bg_green = StateColor(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
-
-    btn_bg_white = StateColor(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Pressed), std::pair<wxColour, int>(wxColour(238, 238, 238), StateColor::Hovered),
-        std::pair<wxColour, int>(*wxWHITE, StateColor::Normal));
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     if (not_show_again_check) {
         auto checkbox_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -1183,15 +1119,6 @@ ConfirmBeforeSendDialog::ConfirmBeforeSendDialog(wxWindow* parent, wxWindowID id
 
     auto bottom_sizer = new wxBoxSizer(wxVERTICAL);
     auto sizer_button = new wxBoxSizer(wxHORIZONTAL);
-<<<<<<< HEAD
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
-
-    StateColor btn_bg_white(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Pressed), std::pair<wxColour, int>(wxColour(238, 238, 238), StateColor::Hovered),
-        std::pair<wxColour, int>(*wxWHITE, StateColor::Normal));
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     if (not_show_again_check) {
         auto checkbox_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -1414,8 +1341,8 @@ void ConfirmBeforeSendDialog::edit_cancel_button_txt(const wxString& txt, bool s
 
     if (switch_green)
     {
-        StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed),
-                                std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
+        StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
+                                std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
                                 std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
         m_button_cancel->SetBackgroundColor(btn_bg_green);
         m_button_cancel->SetBorderColor(*wxWHITE);
@@ -1430,15 +1357,7 @@ void ConfirmBeforeSendDialog::disable_button_ok()
 
 void ConfirmBeforeSendDialog::enable_button_ok()
 {
-<<<<<<< HEAD
-    m_button_ok->Enable();
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
-    m_button_ok->SetBackgroundColor(btn_bg_green);
-    m_button_ok->SetBorderColor(btn_bg_green);
-=======
     m_button_ok->Enable(); // ORCA enabling / disabling buttons with conditions enough to change its style
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 }
 
 void ConfirmBeforeSendDialog::rescale()
@@ -1611,15 +1530,6 @@ InputIpAddressDialog::InputIpAddressDialog(wxWindow *parent)
 
     auto m_sizer_button = new wxBoxSizer(wxHORIZONTAL);
 
-<<<<<<< HEAD
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                            std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
-
-    StateColor btn_bg_white(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Pressed), std::pair<wxColour, int>(wxColour(238, 238, 238), StateColor::Hovered),
-                            std::pair<wxColour, int>(*wxWHITE, StateColor::Normal));
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     m_button_ok = new Button(this, _L("Connect"));
     m_button_ok->SetStyle(ButtonStyle::Confirm, ButtonType::Choice);
     m_button_ok->Enable(false);
@@ -1685,10 +1595,7 @@ InputIpAddressDialog::InputIpAddressDialog(wxWindow *parent)
     m_step_icon_panel2->SetMinSize(wxSize(-1, m_tip2->GetBestSize().y));
     m_step_icon_panel2->SetMaxSize(wxSize(-1, m_tip2->GetBestSize().y));
 
-<<<<<<< HEAD
-=======
     m_worker = std::make_unique<PlaterWorker<BoostThreadWorker>>(this, m_status_bar, "send_worker");
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     m_sizer_msg->Layout();
 
@@ -1714,17 +1621,8 @@ InputIpAddressDialog::InputIpAddressDialog(wxWindow *parent)
     m_sizer_main->Add(m_test_right_msg, 0, wxEXPAND, 0);
     m_sizer_main->Add(m_test_wrong_msg, 0, wxEXPAND, 0);
 
-<<<<<<< HEAD
-    m_sizer_main_right->Add(0, 0, 0, wxTOP, FromDIP(4));
-    m_sizer_main_right->Add(m_status_bar->get_panel(), 0,wxRIGHT|wxEXPAND, FromDIP(18));
-    m_sizer_main_right->Layout();
-
-    m_sizer_main->Add(m_sizer_main_left, 0, wxLEFT, FromDIP(18));
-    m_sizer_main->Add(m_sizer_main_right, 0, wxLEFT|wxEXPAND, FromDIP(4));
-=======
     m_sizer_main->Add(0, 0, 0, wxTOP, FromDIP(4));
     m_sizer_main->Add(m_status_bar->get_panel(), 0, wxEXPAND, 0);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     m_sizer_main->Layout();
 
     m_sizer_body->Add(m_line_top, 0, wxEXPAND, 0);
@@ -1826,23 +1724,8 @@ void InputIpAddressDialog::set_machine_obj(MachineObject* obj)
 
     auto str_ip = m_input_ip->GetTextCtrl()->GetValue();
     auto str_access_code = m_input_access_code->GetTextCtrl()->GetValue();
-<<<<<<< HEAD
-    if (isIp(str_ip.ToStdString()) && str_access_code.Length() == 8) {
-        m_button_ok->Enable(true);
-        StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-            std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
-        m_button_ok->SetTextColor(StateColor::darkModeColorFor("#FFFFFE"));
-        m_button_ok->SetBackgroundColor(btn_bg_green);
-    }
-    else {
-        m_button_ok->Enable(false);
-        m_button_ok->SetBackgroundColor(wxColour(0x90, 0x90, 0x90));
-        m_button_ok->SetBorderColor(wxColour(0x90, 0x90, 0x90));
-    }
-=======
     // ORCA enabling / disabling buttons with conditions enough to change its style
     m_button_ok->Enable(isIp(str_ip.ToStdString()) && str_access_code.Length() == 8);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     Layout();
     Fit();
@@ -2154,14 +2037,7 @@ void InputIpAddressDialog::on_check_ip_address_failed(wxCommandEvent& evt)
     }
 
     m_button_ok->Enable(true);
-<<<<<<< HEAD
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
-    m_button_ok->SetTextColor(StateColor::darkModeColorFor("#FFFFFE"));
-    m_button_ok->SetBackgroundColor(btn_bg_green);
-=======
     // ORCA enabling / disabling buttons with conditions enough to change its style
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 }
 
 void InputIpAddressDialog::on_text(wxCommandEvent &evt)
@@ -2179,25 +2055,10 @@ void InputIpAddressDialog::on_text(wxCommandEvent &evt)
         }
     }
 
-<<<<<<< HEAD
-    const auto enable_btn = [](Button* btn, bool enabled) {
-        btn->Enable(enabled);
-        if (enabled) {
-            StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                                    std::pair<wxColour, int>(AMS_CONTROL_BRAND_COLOUR, StateColor::Normal));
-            btn->SetTextColor(StateColor::darkModeColorFor("#FFFFFE"));
-            btn->SetBackgroundColor(btn_bg_green);
-        } else {
-            btn->SetBackgroundColor(wxColour(0x90, 0x90, 0x90));
-            btn->SetBorderColor(wxColour(0x90, 0x90, 0x90));
-        }
-    };
-=======
     // ORCA enabling / disabling buttons with conditions enough to change its style
     bool enable_btns = isIp(str_ip.ToStdString()) && str_access_code.Length() == 8 && invalid_access_code;
     m_button_manual_setup->Enable(enable_btns);
     m_button_ok->Enable(enable_btns);
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     if (current_input_index == 1)
         m_button_ok->Enable(!str_name.IsEmpty() && str_sn.length() == 15);

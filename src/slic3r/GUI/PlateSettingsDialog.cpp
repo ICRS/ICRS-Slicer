@@ -474,26 +474,7 @@ PlateSettingsDialog::PlateSettingsDialog(wxWindow* parent, const wxString& title
 
     auto dlg_btns = new DialogButtons(this, {"OK", "Cancel"});
 
-<<<<<<< HEAD
-    auto sizer_button = new wxBoxSizer(wxHORIZONTAL);
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-
-    StateColor btn_bg_white(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Pressed), std::pair<wxColour, int>(wxColour(238, 238, 238), StateColor::Hovered),
-        std::pair<wxColour, int>(*wxWHITE, StateColor::Normal));
-
-    m_button_ok = new Button(this, _L("OK"));
-    m_button_ok->SetBackgroundColor(btn_bg_green);
-    m_button_ok->SetBorderColor(*wxWHITE);
-    m_button_ok->SetTextColor(wxColour("#FFFFFE"));
-    m_button_ok->SetFont(Label::Body_12);
-    m_button_ok->SetSize(wxSize(FromDIP(58), FromDIP(24)));
-    m_button_ok->SetMinSize(wxSize(FromDIP(58), FromDIP(24)));
-    m_button_ok->SetCornerRadius(FromDIP(12));
-    m_button_ok->Bind(wxEVT_BUTTON, [this](auto& e) {
-=======
     dlg_btns->GetOK()->Bind(wxEVT_BUTTON, [this](auto& e) {
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
         wxCommandEvent evt(EVT_SET_BED_TYPE_CONFIRM, GetId());
         static_cast<wxEvtHandler*>(m_other_layers_seq_panel)->ProcessEvent(evt);
         GetEventHandler()->ProcessEvent(evt);
@@ -637,7 +618,7 @@ void PlateSettingsDialog::on_dpi_changed(const wxRect& suggested_rect)
 }
 
 wxString PlateSettingsDialog::get_plate_name() const {
-    return m_ti_plate_name->GetTextCtrl()->GetValue();
+    return m_ti_plate_name->GetTextCtrl()->GetValue(); 
 }
 
 void PlateSettingsDialog::set_plate_name(const wxString &name) { m_ti_plate_name->GetTextCtrl()->SetValue(name); }
@@ -690,13 +671,7 @@ PlateNameEditDialog::PlateNameEditDialog(wxWindow *parent, wxWindowID id, const 
 
     m_sizer_main->Add(top_sizer, 0, wxEXPAND | wxALL, FromDIP(30));
 
-<<<<<<< HEAD
-    auto       sizer_button = new wxBoxSizer(wxHORIZONTAL);
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-                            std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-=======
     auto dlg_btns = new DialogButtons(this, {"OK", "Cancel"});
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     dlg_btns->GetOK()->Bind(wxEVT_BUTTON, [this](wxCommandEvent &e) {
         if (this->IsModal())

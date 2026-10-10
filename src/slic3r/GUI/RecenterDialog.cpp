@@ -28,36 +28,9 @@ RecenterDialog::RecenterDialog(wxWindow* parent, wxWindowID id, const wxString& 
     wxPanel* m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1), wxTAB_TRAVERSAL);
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
 
-<<<<<<< HEAD
-    m_button_confirm = new Button(this, _L("Go Home"));
-    m_button_confirm->SetFont(Label::Body_14);
-    m_button_confirm->SetMinSize(wxSize(-1, FromDIP(24)));
-    m_button_confirm->SetCornerRadius(FromDIP(12));
-    StateColor confirm_btn_bg(std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-    m_button_confirm->SetBackgroundColor(confirm_btn_bg);
-    m_button_confirm->SetBorderColor(wxColour(0, 133, 255));
-    m_button_confirm->SetTextColor(*wxWHITE);
-
-    m_button_close = new Button(this, _L("Close"));
-    m_button_close->SetFont(Label::Body_14);
-    m_button_close->SetMinSize(wxSize(-1, FromDIP(24)));
-    m_button_close->SetCornerRadius(FromDIP(12));
-    StateColor close_btn_bg(std::pair<wxColour, int>(wxColour(206, 206, 206), StateColor::Hovered),
-        std::pair<wxColour, int>(*wxWHITE, StateColor::Normal));
-    m_button_close->SetBackgroundColor(close_btn_bg);
-    m_button_close->SetBorderColor(wxColour(38, 46, 48));
-    m_button_close->SetTextColor(wxColour(38, 46, 48));
-
-    button_sizer->AddStretchSpacer();
-    button_sizer->Add(m_button_confirm);
-    button_sizer->AddSpacer(FromDIP(20));
-    button_sizer->Add(m_button_close);
-=======
     auto dlg_btns = new DialogButtons(this, {"OK", "Cancel"});
     dlg_btns->GetOK()->SetLabel(_L("Go Home"));
     dlg_btns->GetCANCEL()->SetLabel(_L("Close"));
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
 
     main_sizer->Add(m_line_top, 0, wxEXPAND, 0);
     main_sizer->AddSpacer(DRAW_PANEL_SIZE.y);
@@ -88,7 +61,7 @@ void RecenterDialog::OnPaint(wxPaintEvent& event){
     wxPaintDC dc(this);
     render(dc);
 }
-
+  
 void RecenterDialog::render(wxDC& dc) {
     wxSize     size = GetSize();
 
@@ -111,7 +84,7 @@ void RecenterDialog::render(wxDC& dc) {
 
     if (hint2_size.x + pos_hint2.x + BORDER > DRAW_PANEL_SIZE.x) {
         bool is_ch = false;
-        if (hint2[0] > 0x80 && hint2[1] > 0x80)
+        if (hint2[0] > 0x80 && hint2[1] > 0x80) 
             is_ch = true;
 
         wxString fisrt_line;
@@ -149,7 +122,7 @@ void RecenterDialog::render(wxDC& dc) {
         for (int i = 0; i < remaining_line.length(); i++) {
             count_txt += remaining_line[i];
             auto text_size = dc.GetTextExtent(count_txt);
-            if (text_size.x + BORDER + BORDER < DRAW_PANEL_SIZE.x)
+            if (text_size.x + BORDER + BORDER < DRAW_PANEL_SIZE.x) 
             {
                 if (remaining_line[i] == ' ' || remaining_line[i] == '\n')
                     new_line_pos = i;

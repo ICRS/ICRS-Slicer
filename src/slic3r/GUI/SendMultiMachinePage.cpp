@@ -460,11 +460,6 @@ PrintParams SendMultiMachinePage::request_params(MachineObject* obj)
         if (rs->m_param_name == "use_extra" && rs->m_radiobox->GetValue()) {
             use_ams = false;
         }
-<<<<<<< HEAD
-
-        node = node->GetNext();
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     }
 
     //use ams
@@ -1346,15 +1341,6 @@ wxPanel* SendMultiMachinePage::create_page()
     m_tip_text->SetFont(::Label::Head_20);
     m_tip_text->Wrap(-1);
 
-<<<<<<< HEAD
-    auto m_btn_bg_enable = StateColor(
-        std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed),
-        std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal)
-    );
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     m_button_add = new Button(main_page, _L("Add"));
     m_button_add->SetStyle(ButtonStyle::Confirm, ButtonType::Window);
     m_button_add->Bind(wxEVT_BUTTON, [this](wxCommandEvent& evt) {
@@ -1405,12 +1391,6 @@ wxPanel* SendMultiMachinePage::create_page()
     sizer->AddSpacer(FromDIP(10));
 
     // add send button
-<<<<<<< HEAD
-    btn_bg_enable = StateColor(std::pair<wxColour, int>(wxColour(0, 100, 239), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 144, 255), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 133, 255), StateColor::Normal));
-
-=======
->>>>>>> 8500fcdccaa10b5099ac20d252af3a7c560046f1
     m_button_send = new Button(main_page, _L("Send"));
     m_button_send->SetStyle(ButtonStyle::Confirm, ButtonType::Choice);
     m_button_send->Bind(wxEVT_BUTTON, &SendMultiMachinePage::on_send, this);
